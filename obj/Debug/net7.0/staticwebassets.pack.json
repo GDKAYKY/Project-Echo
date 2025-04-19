@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\database-search-icon.svg",
+      "PackagePath": "staticwebassets\\images\\database-search-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\desktop-windows-icon.svg",
+      "PackagePath": "staticwebassets\\images\\desktop-windows-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\docs-icon.svg",
+      "PackagePath": "staticwebassets\\images\\docs-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
+      "PackagePath": "staticwebassets\\images\\public-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\radar-icon.svg",
+      "PackagePath": "staticwebassets\\images\\radar-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\terminal-icon.svg",
+      "PackagePath": "staticwebassets\\images\\terminal-icon.svg"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\world-map-dots.png",
+      "PackagePath": "staticwebassets\\images\\world-map-dots.png"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\js\\search.js",
+      "PackagePath": "staticwebassets\\js\\search.js"
+    },
+    {
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "PackagePath": "staticwebassets\\js\\worldMap.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.EchoSearch.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.EchoSearch.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.EchoSearch.props",
+      "PackagePath": "build\\EchoSearch.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.EchoSearch.props",
+      "PackagePath": "buildMultiTargeting\\EchoSearch.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.EchoSearch.props",
+      "PackagePath": "buildTransitive\\EchoSearch.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

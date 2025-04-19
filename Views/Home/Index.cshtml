@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Database Search";
+}
+
+<div class="copy">
+    <div class="page-title">
+        <h1 id="search-title">Database Search<span class="cursor">_</span></h1>
+        <p class="subtitle">Search Anyone,Anywhere,Anytime</p>
+    </div>
+    
+    <div class="search-button">
+        <input type="text" id="search-input" class="search-input" placeholder="Search_" />
+    </div>
+    
+    <div id="search-results" class="search-results"></div>
+</div>
+
+@section Scripts {
+    <script src="~/js/worldMap.js"></script>
+    <script src="~/js/search.js"></script>
+}

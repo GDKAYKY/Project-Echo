@@ -1,0 +1,1052 @@
+{
+  "Version": 1,
+  "Hash": "e11mgUbsFEIoheY3AQ1eUU3TCYzQBxDmTnK+kG83VqQ=",
+  "Source": "EchoSearch",
+  "BasePath": "_content/EchoSearch",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EchoSearch\\wwwroot",
+      "Source": "EchoSearch",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\css\\site.css",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k6gi42vw72",
+      "Integrity": "lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\database-search-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/database-search-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0l3d1huhiq",
+      "Integrity": "ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\database-search-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\desktop-windows-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/desktop-windows-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n4hh7zbhxx",
+      "Integrity": "9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\desktop-windows-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\docs-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/docs-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ch0ielau8v",
+      "Integrity": "8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\docs-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/public-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "loi2st00et",
+      "Integrity": "6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\public-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\radar-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/radar-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "aqaxo07qbo",
+      "Integrity": "bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\radar-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\terminal-icon.svg",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/terminal-icon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izcrslfl4n",
+      "Integrity": "gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\terminal-icon.svg"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\images\\world-map-dots.png",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "images/world-map-dots#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fajkgnjrzm",
+      "Integrity": "p1p3dAGSs+EBdum0xjB+Tbc96BmbqmiqJ/mL9Tz/omE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\world-map-dots.png"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\js\\search.js",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "js/search#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iennsytlrt",
+      "Integrity": "xrW4A5p+1/DgnQ51knDutFIIme51jXyrNnFQHo1cUfs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\search.js"
+    },
+    {
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "SourceId": "EchoSearch",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
+      "BasePath": "_content/EchoSearch",
+      "RelativePath": "js/worldMap#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gwxp8j0e8j",
+      "Integrity": "INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\worldMap.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/site.css",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5358"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.k6gi42vw72.css",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5358"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6gi42vw72"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc="
+        }
+      ]
+    },
+    {
+      "Route": "images/database-search-icon.0l3d1huhiq.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\database-search-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1286"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0l3d1huhiq"
+        },
+        {
+          "Name": "label",
+          "Value": "images/database-search-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I="
+        }
+      ]
+    },
+    {
+      "Route": "images/database-search-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\database-search-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1286"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I="
+        }
+      ]
+    },
+    {
+      "Route": "images/desktop-windows-icon.n4hh7zbhxx.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\desktop-windows-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "373"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n4hh7zbhxx"
+        },
+        {
+          "Name": "label",
+          "Value": "images/desktop-windows-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/desktop-windows-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\desktop-windows-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "373"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/docs-icon.ch0ielau8v.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\docs-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ch0ielau8v"
+        },
+        {
+          "Name": "label",
+          "Value": "images/docs-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo="
+        }
+      ]
+    },
+    {
+      "Route": "images/docs-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\docs-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo="
+        }
+      ]
+    },
+    {
+      "Route": "images/public-icon.loi2st00et.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "415"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "loi2st00et"
+        },
+        {
+          "Name": "label",
+          "Value": "images/public-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c="
+        }
+      ]
+    },
+    {
+      "Route": "images/public-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "415"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c="
+        }
+      ]
+    },
+    {
+      "Route": "images/radar-icon.aqaxo07qbo.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\radar-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aqaxo07qbo"
+        },
+        {
+          "Name": "label",
+          "Value": "images/radar-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY="
+        }
+      ]
+    },
+    {
+      "Route": "images/radar-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\radar-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY="
+        }
+      ]
+    },
+    {
+      "Route": "images/terminal-icon.izcrslfl4n.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\terminal-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izcrslfl4n"
+        },
+        {
+          "Name": "label",
+          "Value": "images/terminal-icon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs="
+        }
+      ]
+    },
+    {
+      "Route": "images/terminal-icon.svg",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\terminal-icon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "311"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs="
+        }
+      ]
+    },
+    {
+      "Route": "images/world-map-dots.fajkgnjrzm.png",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\world-map-dots.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30402"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p1p3dAGSs+EBdum0xjB+Tbc96BmbqmiqJ/mL9Tz/omE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fajkgnjrzm"
+        },
+        {
+          "Name": "label",
+          "Value": "images/world-map-dots.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-p1p3dAGSs+EBdum0xjB+Tbc96BmbqmiqJ/mL9Tz/omE="
+        }
+      ]
+    },
+    {
+      "Route": "images/world-map-dots.png",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\images\\world-map-dots.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30402"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p1p3dAGSs+EBdum0xjB+Tbc96BmbqmiqJ/mL9Tz/omE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-p1p3dAGSs+EBdum0xjB+Tbc96BmbqmiqJ/mL9Tz/omE="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.iennsytlrt.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\search.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2607"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xrW4A5p+1/DgnQ51knDutFIIme51jXyrNnFQHo1cUfs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iennsytlrt"
+        },
+        {
+          "Name": "label",
+          "Value": "js/search.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xrW4A5p+1/DgnQ51knDutFIIme51jXyrNnFQHo1cUfs="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\search.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2607"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xrW4A5p+1/DgnQ51knDutFIIme51jXyrNnFQHo1cUfs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xrW4A5p+1/DgnQ51knDutFIIme51jXyrNnFQHo1cUfs="
+        }
+      ]
+    },
+    {
+      "Route": "js/worldMap.gwxp8j0e8j.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gwxp8j0e8j"
+        },
+        {
+          "Name": "label",
+          "Value": "js/worldMap.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg="
+        }
+      ]
+    },
+    {
+      "Route": "js/worldMap.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg="
+        }
+      ]
+    }
+  ]
+}
