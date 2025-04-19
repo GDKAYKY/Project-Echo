@@ -17,12 +17,12 @@
       "PackagePath": "staticwebassets\\images\\docs-icon.svg"
     },
     {
-      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
-      "PackagePath": "staticwebassets\\images\\public-icon.svg"
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\echo.svg",
+      "PackagePath": "staticwebassets\\images\\echo.svg"
     },
     {
-      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\radar-icon.svg",
-      "PackagePath": "staticwebassets\\images\\radar-icon.svg"
+      "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\public-icon.svg",
+      "PackagePath": "staticwebassets\\images\\public-icon.svg"
     },
     {
       "Id": "C:\\repos\\Project-Echo\\wwwroot\\images\\terminal-icon.svg",

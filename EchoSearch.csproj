@@ -6,4 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\public\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\echo.svg" />
+  </ItemGroup>
+
 </Project>

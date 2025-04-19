@@ -26,6 +26,7 @@ body {
 /* Database Search container */
 .database-search {
   position: relative;
+  font-weight: bold;
   width: 100%;
   height: 100vh;
   /* Main background */
@@ -64,11 +65,10 @@ body {
 
 .radar-icon {
   position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 42px;
-  top: 41px;
-  background-image: url("/images/radar-icon.svg");
+  width: 128px;
+  height: 128px;
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/images/echo.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -83,7 +83,7 @@ body {
 
 /* Sidebar - fixed width */
 .sidebar {
-  width: 128px;
+  width: clamp(64px, 5vw, 128px);
   height: 100%;
   /* Sidebar background */
   background-color: #1e1e1e;
@@ -106,15 +106,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
   border-bottom: 1px solid #333333;
+  border-left: none; /* Garantir que a borda esquerda sempre esteja desativada */
   cursor: pointer;
   background-color: #1e1e1e;
-  transition: all 0.2s ease;
+  transition: border-top 0.2s ease, border-right 0.2s ease, border-bottom 0.2s ease;
 }
 
-/* Active state - only change the icon color, not the background */
+/* Active state - keep background color and add white outline (except left side) */
 .sidebar-item.active {
   background-color: #1e1e1e;
+  border-top: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
 }
 
 .sidebar-item.active .icon svg {
@@ -122,9 +129,12 @@ body {
   stroke: #ffffff;
 }
 
-/* Hover state - add white outline to the icon container only */
-.sidebar-item:hover .icon {
-  border: 1px solid #ffffff;
+/* Hover state - add white outline to the sidebar item (box) not the icon (except left side) */
+.sidebar-item:hover { 
+  border-top: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-left: none !important; /* Garantir que mesmo durante a transição a borda esquerda não seja mostrada */
 }
 
 /* Icon container */
@@ -135,19 +145,33 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  border: 1px solid transparent;
+  border: none;
   background-color: transparent;
 }
 
-/* Icon colors */
+/* Default icon colors (inactive state) */
 .sidebar-item .icon svg {
   fill: #7e7e7e;
   stroke: #7e7e7e;
 }
 
+.sidebar-item .icon img {
+  /* Aplicar um filtro para colorir os SVGs com a cor #7e7e7e */
+  filter: brightness(0) saturate(100%) invert(50%) sepia(9%) saturate(6%) hue-rotate(201deg) brightness(94%) contrast(87%);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+/* Icon colors when item is clicked/active */
 .sidebar-item.active .icon svg {
   fill: #ffffff;
   stroke: #ffffff;
+}
+
+.sidebar-item.active .icon img {
+  /* Aplicar um filtro para colorir os SVGs com a cor branca */
+  filter: brightness(0) saturate(100%) invert(100%);
+  opacity: 1;
 }
 
 /* Content area - flexible width */
@@ -167,6 +191,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  /*noinspection CssUnknownTarget*/
   background-image: url("/images/world-map-dots.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -237,7 +262,7 @@ h1 {
   height: 100%;
   padding: 20px 32px;
   background: #cfcfcf;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   border: none;
   font-family: "Inter", sans-serif;

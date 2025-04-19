@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <path d="M40 4H12C9.79086 4 8 5.79086 8 8V56C8 58.2091 9.79086 60 12 60H52C54.2091 60 56 58.2091 56 56V20L40 4Z" stroke="#7E7E7E" stroke-width="4"/>
-  <path d="M40 4V20H56" stroke="#7E7E7E" stroke-width="4"/>
-  <path d="M44 36H20" stroke="#7E7E7E" stroke-width="4"/>
-  <path d="M44 44H20" stroke="#7E7E7E" stroke-width="4"/>
-  <path d="M28 28H24H20" stroke="#7E7E7E" stroke-width="4"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M320-460h320v-60H320v60Zm0 120h320v-60H320v60Zm0 120h200v-60H320v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg>

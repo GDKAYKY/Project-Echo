@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>k6gi42vw72</Fingerprint>
-      <Integrity>lCFtsN7/zea7YtoUovmldTPBoH2erjSYh0YkFxWtoGc=</Integrity>
+      <Fingerprint>j3x4ay72yx</Fingerprint>
+      <Integrity>j4K5ep3KZrR/+X5aLa0Pwtn+0LcCaPaxJjIBz5mhTjs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0l3d1huhiq</Fingerprint>
-      <Integrity>ZPjXTGkz2oMICKm/mLkouH1dMhRGyzXOlmSg1CZAX7I=</Integrity>
+      <Fingerprint>44bsheqfex</Fingerprint>
+      <Integrity>vM+DBcl0XMjVHLyOFbuL5hhyOv8ysXFdI8dVu4KeHCs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\database-search-icon.svg'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>n4hh7zbhxx</Fingerprint>
-      <Integrity>9zMBxg+nNfdhDJb2JnJJQWkV+hWReR3yN3bLxhW63EQ=</Integrity>
+      <Fingerprint>fvremuxott</Fingerprint>
+      <Integrity>m6L1BfpPlfd8K8W9YDP1vfsVLfOY2hbSwTnMwRG2vHc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\desktop-windows-icon.svg'))</OriginalItemSpec>
@@ -66,11 +66,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ch0ielau8v</Fingerprint>
-      <Integrity>8DTpK7O/pd9+YH/R8lIpP1PY3e0Pz+Pv7HNKnpEgwmo=</Integrity>
+      <Fingerprint>s28s0zhqkn</Fingerprint>
+      <Integrity>HOy0DGDyW4yFX2Ij420JNN1efQj5S8I5NySakRDZ4VU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\docs-icon.svg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\echo.svg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EchoSearch</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EchoSearch</BasePath>
+      <RelativePath>images/echo.svg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>jfvukfb1q1</Fingerprint>
+      <Integrity>YeXXlrbDJ/XQDcUm6d7KFSgFQ8kS5SHX1Izw7rGXM9o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\echo.svg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\public-icon.svg'))">
       <SourceType>Package</SourceType>
@@ -84,29 +102,11 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>loi2st00et</Fingerprint>
-      <Integrity>6wQq5EEOJCSCETmCzJnaQQWGj0rNXuM2sjq01AkhD1c=</Integrity>
+      <Fingerprint>1p9hsisgx7</Fingerprint>
+      <Integrity>q9APWQADDV34xi5r8n0UaKPKyVXTJsxbYd/LEMjqCtE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\public-icon.svg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\radar-icon.svg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>EchoSearch</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/EchoSearch</BasePath>
-      <RelativePath>images/radar-icon.svg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>aqaxo07qbo</Fingerprint>
-      <Integrity>bkMKLQiPYrPP07THmSWmqQVO7ub/eoDsD14T2IDQAaY=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\radar-icon.svg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\terminal-icon.svg'))">
       <SourceType>Package</SourceType>
@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>izcrslfl4n</Fingerprint>
-      <Integrity>gkVC6jIJlSG8F6IDkgN4v4qC4tnHWn7VIBppYqvYuUs=</Integrity>
+      <Fingerprint>ojmikqompi</Fingerprint>
+      <Integrity>XIGZKfqqhM/tmIi8WkgbqDAmbXtnT6TQcvds1UgTyhY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\terminal-icon.svg'))</OriginalItemSpec>
