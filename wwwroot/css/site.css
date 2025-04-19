@@ -83,7 +83,7 @@ body {
 
 /* Sidebar - fixed width */
 .sidebar {
-  width: clamp(64px, 5vw, 128px);
+  width: clamp(128px, 5vw, 128px);
   height: 100%;
   /* Sidebar background */
   background-color: #1e1e1e;

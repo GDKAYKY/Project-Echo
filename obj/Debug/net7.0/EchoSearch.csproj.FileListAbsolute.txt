@@ -35,3 +35,4 @@ C:\repos\Project-Echo\obj\Debug\net7.0\EchoSearch.pdb
 C:\repos\Project-Echo\obj\Debug\net7.0\EchoSearch.genruntimeconfig.cache
 C:\repos\Project-Echo\obj\Debug\net7.0\ref\EchoSearch.dll
 C:\repos\Project-Echo\bin\Debug\net7.0\EchoSearch.Web\package-lock.json
+C:\repos\Project-Echo\bin\Debug\net7.0\appsetting.Staging.json
