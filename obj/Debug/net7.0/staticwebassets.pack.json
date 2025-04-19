@@ -37,10 +37,6 @@
       "PackagePath": "staticwebassets\\js\\search.js"
     },
     {
-      "Id": "C:\\repos\\Project-Echo\\wwwroot\\js\\w.js",
-      "PackagePath": "staticwebassets\\js\\w.js"
-    },
-    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.EchoSearch.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
