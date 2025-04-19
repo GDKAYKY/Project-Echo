@@ -1,10 +1,7 @@
 C:\repos\Project-Echo\bin\Debug\net7.0\appsettings.Development.json
 C:\repos\Project-Echo\bin\Debug\net7.0\appsettings.json
 C:\repos\Project-Echo\bin\Debug\net7.0\components.json
-C:\repos\Project-Echo\bin\Debug\net7.0\echo\components.json
-C:\repos\Project-Echo\bin\Debug\net7.0\echo\package-lock.json
-C:\repos\Project-Echo\bin\Debug\net7.0\echo\package.json
-C:\repos\Project-Echo\bin\Debug\net7.0\echo\tsconfig.json
+C:\repos\Project-Echo\bin\Debug\net7.0\package-lock.json
 C:\repos\Project-Echo\bin\Debug\net7.0\package.json
 C:\repos\Project-Echo\bin\Debug\net7.0\tsconfig.json
 C:\repos\Project-Echo\bin\Debug\net7.0\EchoSearch.staticwebassets.runtime.json
