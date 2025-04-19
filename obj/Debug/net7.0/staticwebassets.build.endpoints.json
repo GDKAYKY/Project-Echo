@@ -741,8 +741,8 @@
       ]
     },
     {
-      "Route": "js/worldMap.gwxp8j0e8j.js",
-      "AssetFile": "js/worldMap.js",
+      "Route": "js/w.gwxp8j0e8j.js",
+      "AssetFile": "js/w.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -767,7 +767,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+          "Value": "Sat, 19 Apr 2025 04:29:46 GMT"
         }
       ],
       "EndpointProperties": [
@@ -781,13 +781,13 @@
         },
         {
           "Name": "label",
-          "Value": "js/worldMap.js"
+          "Value": "js/w.js"
         }
       ]
     },
     {
-      "Route": "js/worldMap.js",
-      "AssetFile": "js/worldMap.js",
+      "Route": "js/w.js",
+      "AssetFile": "js/w.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -812,7 +812,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+          "Value": "Sat, 19 Apr 2025 04:29:46 GMT"
         }
       ],
       "EndpointProperties": [

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e11mgUbsFEIoheY3AQ1eUU3TCYzQBxDmTnK+kG83VqQ=",
+  "Hash": "99z+KYsHEmc9cZBxrUZF5HUAzzCTsdWrv2Wt5ae/Q28=",
   "Source": "EchoSearch",
   "BasePath": "_content/EchoSearch",
   "Mode": "Default",
@@ -206,12 +206,12 @@
       "OriginalItemSpec": "wwwroot\\js\\search.js"
     },
     {
-      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "Identity": "C:\\repos\\Project-Echo\\wwwroot\\js\\w.js",
       "SourceId": "EchoSearch",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\repos\\Project-Echo\\wwwroot\\",
       "BasePath": "_content/EchoSearch",
-      "RelativePath": "js/worldMap#[.{fingerprint}]?.js",
+      "RelativePath": "js/w#[.{fingerprint}]?.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -224,7 +224,7 @@
       "Integrity": "INRKF9IHFqf8PD61A8u/3Kkk4USrxGgCTRRm4Mo40tg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\worldMap.js"
+      "OriginalItemSpec": "wwwroot\\js\\w.js"
     }
   ],
   "Endpoints": [
@@ -967,8 +967,8 @@
       ]
     },
     {
-      "Route": "js/worldMap.gwxp8j0e8j.js",
-      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "Route": "js/w.gwxp8j0e8j.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\w.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -989,7 +989,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+          "Value": "Sat, 19 Apr 2025 04:29:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1003,7 +1003,7 @@
         },
         {
           "Name": "label",
-          "Value": "js/worldMap.js"
+          "Value": "js/w.js"
         },
         {
           "Name": "integrity",
@@ -1012,8 +1012,8 @@
       ]
     },
     {
-      "Route": "js/worldMap.js",
-      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\worldMap.js",
+      "Route": "js/w.js",
+      "AssetFile": "C:\\repos\\Project-Echo\\wwwroot\\js\\w.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1034,7 +1034,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 06:46:22 GMT"
+          "Value": "Sat, 19 Apr 2025 04:29:46 GMT"
         },
         {
           "Name": "Cache-Control",
