@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Visual Studio files
+.vs/
+.vscode/
+**/bin/
+**/obj/
+**/*.user
+**/*.userosscache
+**/*.suo
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Docker specific
+Dockerfile
+.dockerignore
+docker-compose*
+
+# Documentation
+README.md
+docs/
+*.md
+
+# Environment files
+*.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Testing
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+coverage/ 
