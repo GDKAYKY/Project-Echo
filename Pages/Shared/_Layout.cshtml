@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@100&display=swap" />
 </head>
 <body>
+    @{
+        var currentPage = ViewContext.RouteData.Values["Page"].ToString();
+    }
     <!-- Header -->
     <div class="header">
         <a href="/" class="radar-icon-link">
@@ -16,22 +19,6 @@
         <a href="/" class="site-name-link">
             <div class="site-name">ECHO</div>
         </a>
-        <div class="items">
-            <a asp-page="/About" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/About" ? "active-page" : "")">
-                <div class="page">About</div>
-            </a>
-            <a asp-page="/Features" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/Features" ? "active-page" : "")">
-                <div class="page">Features</div>
-            </a>
-            <a asp-page="/Contact" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/Contact" ? "active-page" : "")">
-                <div class="page">Contact</div>
-            </a>
-            <a asp-page="/Login" class="button-link">
-                <div class="button">
-                    <div class="button-text">Login</div>
-                </div>
-            </a>
-        </div>
     </div>
 
     <!-- Sidebar -->
@@ -39,35 +26,35 @@
         <div class="sidebar-base"></div>
         
         <!-- SQL QUERY -->
-        <a asp-page="/Index" class="sidebar-link">
+        <a asp-page="/Index" class="sidebar-link @(currentPage == "/Index" || currentPage == "/" ? "active" : "")">
             <div class="sql-query">
                 <div class="database-search-icon"></div>
             </div>
         </a>
         
         <!-- SSH TERMINAL -->
-        <a asp-page="/Terminal" class="sidebar-link">
+        <a asp-page="/Terminal" class="sidebar-link @(currentPage == "/Terminal" ? "active" : "")">
             <div class="ssh-terminal">
                 <div class="terminal-icon"></div>
             </div>
         </a>
         
         <!-- REMOTE ACCESS -->
-        <a asp-page="/RemoteAccess" class="sidebar-link">
+        <a asp-page="/RemoteAccess" class="sidebar-link @(currentPage == "/RemoteAccess" ? "active" : "")">
             <div class="remote-access">
                 <div class="desktop-windows-icon"></div>
             </div>
         </a>
         
         <!-- DOCUMENTATION -->
-        <a asp-page="/Documentation" class="sidebar-link">
+        <a asp-page="/Documentation" class="sidebar-link @(currentPage == "/Documentation" ? "active" : "")">
             <div class="documentation">
                 <div class="docs-icon"></div>
             </div>
         </a>
         
         <!-- NETWORK -->
-        <a asp-page="/Network" class="sidebar-link">
+        <a asp-page="/Network" class="sidebar-link @(currentPage == "/Network" ? "active" : "")">
             <div class="network">
                 <div class="public-icon"></div>
             </div>

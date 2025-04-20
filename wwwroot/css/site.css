@@ -28,14 +28,14 @@ body {
   top: 0;
   background: #1E1E1E;
   z-index: 10;
+  display: flex;
+  align-items: center;
 }
 
 .radar-icon {
-  position: absolute;
   width: 48px;
   height: 48px;
-  left: 42px;
-  top: 41px;
+  margin-left: 42px;
   background: #FFFFFF;
   mask: url('../images/echo.svg');
   mask-size: contain;
@@ -44,11 +44,9 @@ body {
 }
 
 .site-name {
-  position: absolute;
   width: 168px;
   height: 105px;
-  left: 90px;
-  top: 11px;
+  margin-left: 10px;
   font-family: 'JetBrains Mono', monospace;
   font-style: normal;
   font-weight: 100;
@@ -59,58 +57,45 @@ body {
   color: #FFFFFF;
 }
 
+/* Remove header items styles */
 .items {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0;
-  gap: 48px;
-  position: absolute;
-  width: 390px;
-  height: 52px;
-  right: 80px;
-  top: 56px;
+  display: none;
 }
 
 .page {
-  width: 49px;
-  height: 30px;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-  color: #FFFFFF;
+  display: none;
 }
 
 .button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 24px;
-  gap: 8px;
-  width: 99px;
-  height: 52px;
-  background: #000000;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
+  display: none;
 }
 
 .button-text {
-  width: 51px;
-  height: 24px;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-  display: flex;
-  align-items: center;
-  color: #FFFFFF;
+  display: none;
+}
+
+/* Remove active page indicator for header */
+.active-page {
+  display: none;
+}
+
+.page-link {
+  display: none;
+}
+
+.page-link:hover:after,
+.active-page:after {
+  display: none;
+}
+
+/* Remove hover effect for header button */
+.button-link:hover .button {
+  background-color: inherit;
+}
+
+/* Highlight login button when on login page */
+.button-link.active .button {
+  display: none;
 }
 
 /* Sidebar */
@@ -448,14 +433,7 @@ body {
   border-color: #CFCFCF;
 }
 
-/* Active page indicator */
-.active-page {
-  border-bottom: 2px solid #FFFFFF;
-}
-
 /* Navigation Links */
-.page-link, 
-.button-link, 
 .radar-icon-link, 
 .site-name-link,
 .sidebar-link {
@@ -508,30 +486,43 @@ body {
 }
 
 /* Terminal Page */
-.terminal-page,
-.remote-access-page,
-.documentation-page,
-.network-page {
+.terminal-page {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.terminal-page .copy {
+  width: 100%;
+  max-width: 1200px;
 }
 
 .terminal-window {
-  width: 800px;
-  height: 500px;
-  background-color: #1A1A1A;
-  border-radius: 8px;
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  background-color: rgba(26, 26, 26, 0.95);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  margin-top: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  margin: 30px auto;
+  transition: all 0.3s ease;
+}
+
+.terminal-window:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px);
 }
 
 .terminal-header {
-  height: 30px;
+  height: 40px;
   background-color: #333;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 15px;
+  user-select: none;
 }
 
 .terminal-controls {
@@ -540,9 +531,14 @@ body {
 }
 
 .control {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.control:hover {
+  transform: scale(1.1);
 }
 
 .red {
@@ -561,34 +557,71 @@ body {
   flex-grow: 1;
   text-align: center;
   color: #CCC;
-  font-size: 14px;
+  font-size: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
 }
 
 .terminal-content {
-  padding: 15px;
+  padding: 20px;
   color: #FFF;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  height: calc(100% - 60px);
+  font-size: 16px;
+  line-height: 1.7;
+  height: calc(100% - 80px);
   overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.terminal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .terminal-line {
   white-space: nowrap;
+  margin-bottom: 5px;
+  text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
 }
 
-.cursor {
-  display: inline-block;
-  width: 10px;
-  height: 18px;
-  background-color: #FFF;
-  animation: blink 1s step-end infinite;
+.terminal-input {
+  outline: none;
 }
 
-@keyframes blink {
+/* Make underscore blink */
+.blink-underscore {
+  animation: blink-animation 1s step-end infinite;
+  color: #9FFFCB;
+  font-weight: bold;
+}
+
+@keyframes blink-animation {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Remove after elements for h1 and buttons */
+h1:after, button:after {
+  display: none;
+}
+
+/* Update titles to have blinking underscores */
+h1 span.underscore, 
+button span.underscore {
+  display: inline-block;
+  animation: blink-animation 1s step-end infinite;
 }
 
 /* Remote Access Page */
@@ -720,4 +753,149 @@ body {
   width: auto;
   height: auto;
   min-width: 120px;
+}
+
+/* Active sidebar icon */
+.sidebar-link.active .sql-query,
+.sidebar-link.active .ssh-terminal,
+.sidebar-link.active .remote-access,
+.sidebar-link.active .documentation,
+.sidebar-link.active .network {
+  background-color: #333333;
+  border-left: 4px solid #FFFFFF;
+}
+
+.sidebar-link.active .database-search-icon {
+  background-color: #FFFFFF;
+}
+
+.sidebar-link.active .terminal-icon,
+.sidebar-link.active .desktop-windows-icon,
+.sidebar-link.active .docs-icon,
+.sidebar-link.active .public-icon {
+  background-color: #FFFFFF;
+}
+
+/* Adjust icon position on active state */
+.sidebar-link.active .database-search-icon,
+.sidebar-link.active .terminal-icon,
+.sidebar-link.active .desktop-windows-icon,
+.sidebar-link.active .docs-icon,
+.sidebar-link.active .public-icon {
+  left: 28px;
+}
+
+/* Improve header active page indicator */
+.page-link.active-page {
+  position: relative;
+  border-bottom: none;
+}
+
+.page-link.active-page:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  bottom: 0;
+  left: 0;
+}
+
+/* Terminal focus */
+.terminal-content.focused {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Search Input */
+.search-area {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 20px;
+  background: #2A2A2A;
+  border: 1px solid #444444;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+}
+
+.search-input input:focus {
+  outline: none;
+  border-color: #CFCFCF;
+}
+
+/* Search Results */
+.search-results {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.search-results h2 {
+  color: #CFCFCF;
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.result-item {
+  background-color: #1A1A1A;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.result-title {
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.result-details {
+  color: #CFCFCF;
+}
+
+.result-details p {
+  margin: 5px 0;
+}
+
+.result-details strong {
+  color: #FFFFFF;
+}
+
+.remote-access-page,
+.documentation-page,
+.network-page {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.remote-access-page .copy,
+.documentation-page .copy,
+.network-page .copy {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Remove cursor element styles */
+.cursor {
+  display: none;
 } 
