@@ -1,0 +1,49 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Database Search";
+}
+
+<div class="database-search">
+    <div class="page-container">
+        <div class="page-title">
+            <h1>Database Search<span class="underscore">_</span></h1>
+            <p class="subheading">Search Anyone,Anywhere,Anytime</p>
+        </div>
+        <div class="search-area">
+            <div class="search-input">
+                <input type="text" id="search-query" placeholder="Enter search query...">
+            </div>
+            <div class="search-button">
+                <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
+            </div>
+        </div>
+        <div class="search-results" id="search-results" style="display: none;">
+            <h2>Search Results</h2>
+            <div class="result-item">
+                <div class="result-title">John Doe</div>
+                <div class="result-details">
+                    <p><strong>Location:</strong> New York, USA</p>
+                    <p><strong>Last Seen:</strong> Today, 10:45 AM</p>
+                    <p><strong>Status:</strong> Active</p>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="result-title">Jane Smith</div>
+                <div class="result-details">
+                    <p><strong>Location:</strong> London, UK</p>
+                    <p><strong>Last Seen:</strong> Yesterday, 03:22 PM</p>
+                    <p><strong>Status:</strong> Inactive</p>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="result-title">Robert Johnson</div>
+                <div class="result-details">
+                    <p><strong>Location:</strong> Tokyo, Japan</p>
+                    <p><strong>Last Seen:</strong> 2023-04-18, 08:15 AM</p>
+                    <p><strong>Status:</strong> Active</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

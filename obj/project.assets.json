@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\repos\\Project-Echo\\EchoSearch.csproj",
-      "projectName": "EchoSearch",
-      "projectPath": "C:\\repos\\Project-Echo\\EchoSearch.csproj",
+      "projectUniqueName": "C:\\repos\\Project-Echo\\Project-Echo.csproj",
+      "projectName": "Project-Echo",
+      "projectPath": "C:\\repos\\Project-Echo\\Project-Echo.csproj",
       "packagesPath": "C:\\Users\\kayky.pereira\\.nuget\\packages\\",
       "outputPath": "C:\\repos\\Project-Echo\\obj\\",
       "projectStyle": "PackageReference",

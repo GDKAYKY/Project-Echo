@@ -1,0 +1,51 @@
+@page
+@model NetworkModel
+@{
+    ViewData["Title"] = "Network";
+}
+
+<div class="network-page">
+    <div class="page-container">
+        <div class="page-title">
+            <h1>Network<span class="underscore">_</span></h1>
+            <p class="subheading">Monitor and manage your network</p>
+        </div>
+        <div class="network-dashboard">
+            <div class="network-stats">
+                <div class="stat-card">
+                    <div class="stat-title">Active Connections</div>
+                    <div class="stat-value">247</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Network Utilization</div>
+                    <div class="stat-value">68%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Latency</div>
+                    <div class="stat-value">12ms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Packet Loss</div>
+                    <div class="stat-value">0.02%</div>
+                </div>
+            </div>
+            <div class="network-tools">
+                <div class="tool-heading">Network Tools</div>
+                <div class="tool-buttons">
+                    <div class="search-button">
+                        <button type="button">Ping<span class="underscore">_</span></button>
+                    </div>
+                    <div class="search-button">
+                        <button type="button">Traceroute<span class="underscore">_</span></button>
+                    </div>
+                    <div class="search-button">
+                        <button type="button">DNS Lookup<span class="underscore">_</span></button>
+                    </div>
+                    <div class="search-button">
+                        <button type="button">Port Scan<span class="underscore">_</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

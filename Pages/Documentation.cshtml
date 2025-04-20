@@ -1,0 +1,28 @@
+@page
+@model DocumentationModel
+@{
+    ViewData["Title"] = "Documentation";
+}
+
+<div class="documentation-page">
+    <div class="page-container">
+        <div class="page-title">
+            <h1>@Model.DocViewModel.PageTitle<span class="underscore">_</span></h1>
+            <p class="subheading">@Model.DocViewModel.PageSubtitle</p>
+        </div>
+        <div class="documentation-content">
+            @foreach (var docSection in Model.DocViewModel.Sections)
+            {
+                <div class="doc-section">
+                    <h2>@docSection.Title</h2>
+                    <ul>
+                        @foreach (var link in docSection.Links)
+                        {
+                            <li><a href="@link.Url" class="doc-link">@link.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div> 
