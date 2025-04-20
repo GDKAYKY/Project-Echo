@@ -1,0 +1,37 @@
+@page
+@model RemoteAccessModel
+@{
+    ViewData["Title"] = "Remote Access";
+}
+
+<div class="remote-access-page">
+    <div class="copy">
+        <div class="page-title">
+            <h1>Remote Access_</h1>
+            <p class="subheading">Connect to remote workstations</p>
+        </div>
+        <div class="remote-access-window">
+            <div class="connection-form">
+                <div class="form-group">
+                    <label for="hostname">Host IP or Domain</label>
+                    <input type="text" id="hostname" name="hostname" placeholder="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label for="port">Port</label>
+                    <input type="text" id="port" name="port" placeholder="3389" value="3389">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="administrator">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+                </div>
+                <div class="search-button">
+                    <button type="button">Connect_</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

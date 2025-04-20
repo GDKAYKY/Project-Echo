@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project ECHO
 
-## Getting Started
+This is a .NET Core web application that recreates the UI shown in the Figma design.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- .NET 7.0 SDK or later
+- Visual Studio 2022 or Visual Studio Code
+
+## How to Run
+
+1. Clone the repository
+2. Navigate to the project folder
+3. Run the following command:
+
+```
+dotnet run
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open a browser and navigate to `https://localhost:5003` or `http://localhost:5002`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `Pages/` - Contains Razor Pages
+- `wwwroot/` - Contains static files (CSS, JS, images)
+  - `wwwroot/images/` - Contains icon SVGs and world map background
+- `Program.cs` - Entry point for the application
 
-## Learn More
+## World Map Image
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application requires a world map image for the background. Please add a world map image file named `world-map.png` to the `wwwroot/images` directory before running the application. 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ECHO</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@100&display=swap" />
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="/" class="radar-icon-link">
+            <div class="radar-icon"></div>
+        </a>
+        <a href="/" class="site-name-link">
+            <div class="site-name">ECHO</div>
+        </a>
+        <div class="items">
+            <a asp-page="/About" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/About" ? "active-page" : "")">
+                <div class="page">About</div>
+            </a>
+            <a asp-page="/Features" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/Features" ? "active-page" : "")">
+                <div class="page">Features</div>
+            </a>
+            <a asp-page="/Contact" class="page-link @(ViewContext.RouteData.Values["Page"].ToString() == "/Contact" ? "active-page" : "")">
+                <div class="page">Contact</div>
+            </a>
+            <a asp-page="/Login" class="button-link">
+                <div class="button">
+                    <div class="button-text">Login</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-base"></div>
+        
+        <!-- SQL QUERY -->
+        <a asp-page="/Index" class="sidebar-link">
+            <div class="sql-query">
+                <div class="database-search-icon"></div>
+            </div>
+        </a>
+        
+        <!-- SSH TERMINAL -->
+        <a asp-page="/Terminal" class="sidebar-link">
+            <div class="ssh-terminal">
+                <div class="terminal-icon"></div>
+            </div>
+        </a>
+        
+        <!-- REMOTE ACCESS -->
+        <a asp-page="/RemoteAccess" class="sidebar-link">
+            <div class="remote-access">
+                <div class="desktop-windows-icon"></div>
+            </div>
+        </a>
+        
+        <!-- DOCUMENTATION -->
+        <a asp-page="/Documentation" class="sidebar-link">
+            <div class="documentation">
+                <div class="docs-icon"></div>
+            </div>
+        </a>
+        
+        <!-- NETWORK -->
+        <a asp-page="/Network" class="sidebar-link">
+            <div class="network">
+                <div class="public-icon"></div>
+            </div>
+        </a>
+        
+        <!-- Dividers -->
+        <div class="dividers">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="line-3"></div>
+            <div class="line-4"></div>
+            <div class="line-5"></div>
+            <div class="line-6"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="world-map-bg"></div>
+        @RenderBody()
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html> 
