@@ -5,25 +5,27 @@
 }
 
 <div class="terminal-page">
-    <div class="copy">
+    <div class="page-container">
         <div class="page-title">
             <h1>Terminal<span class="underscore">_</span></h1>
             <p class="subheading">Secure SSH Terminal Access</p>
         </div>
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-controls">
-                    <span class="control red"></span>
-                    <span class="control yellow"></span>
-                    <span class="control green"></span>
+        
+        <div class="terminal-container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="terminal-title">echo@server:~</div>
                 </div>
-                <div class="terminal-title">echo@server:~</div>
-            </div>
-            <div class="terminal-content">
-                <div class="terminal-line">Last login: @DateTime.Now.ToString("ddd MMM d HH:mm:ss") on ttys001</div>
-                <div class="terminal-line">Welcome to ECHO Terminal - Type 'help' for available commands</div>
-                <div class="terminal-line">&nbsp;</div>
-                <div class="terminal-line">echo@server:~ $ <span class="terminal-input"></span><span class="underscore blink-underscore">_</span></div>
+                <div class="terminal-content">
+                    <div class="terminal-line">Last login: @DateTime.Now.ToString("ddd MMM d HH:mm:ss") on ttys001</div>
+                    <div class="terminal-line">Welcome to ECHO Terminal - Type 'help' for available commands</div>
+                    <div class="terminal-line">echo@server:~ $ <span class="terminal-input"></span><span class="underscore blink-underscore">_</span></div>
+                </div>
             </div>
         </div>
     </div>

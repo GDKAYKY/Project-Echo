@@ -128,25 +128,15 @@ body {
   height: 0;
   left: 0;
   border: 1px solid #5E5E5E;
+  transition: border-color 0.2s ease;
 }
 
 .dividers .line-1 {
-  top: 0;
   border-color: #FFFFFF;
-  transform: rotate(180deg);
-}
-
-.dividers .line-2 {
-  top: 129px;
-  border-color: #FFFFFF;
-  transform: rotate(179.99deg);
 }
 
 .dividers .line-3 {
-  top: 1px;
-  left: 128px;
-  border-color: #FFFFFF;
-  transform: rotate(90deg);
+  top: 129px;
 }
 
 .dividers .line-4 {
@@ -176,7 +166,6 @@ body {
   height: 64px;
   left: 32px;
   top: 32px;
-  background: #FFFFFF;
   mask: url('../images/database-search-icon.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -205,6 +194,19 @@ body {
   mask-position: center;
 }
 
+/* Sidebar Icons Unactive global properties */
+.terminal-icon,
+.docs-icon,
+.public-icon,
+.desktop-windows-icon,
+.database-search-icon {
+  background: #7E7E7E;
+  width: 64px;
+  height: 64px;
+  left: 32px;
+  top: 32px;
+}
+
 /* REMOTE ACCESS */
 .remote-access {
   position: absolute;
@@ -216,11 +218,6 @@ body {
 
 .desktop-windows-icon {
   position: absolute;
-  width: 64px;
-  height: 64px;
-  left: 32px;
-  top: 32px;
-  background: #7E7E7E;
   mask: url('../images/desktop-windows-icon.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -238,11 +235,6 @@ body {
 
 .docs-icon {
   position: absolute;
-  width: 64px;
-  height: 64px;
-  left: 32px;
-  top: 32px;
-  background: #7E7E7E;
   mask: url('../images/docs-icon.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -252,19 +244,12 @@ body {
 /* NETWORK */
 .network {
   position: absolute;
-  width: 128px;
-  height: 128px;
   left: 0;
   top: 518px;
 }
 
 .public-icon {
   position: absolute;
-  width: 64px;
-  height: 64px;
-  left: 32px;
-  top: 32px;
-  background: #7E7E7E;
   mask: url('../images/public-icon.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -274,7 +259,7 @@ body {
 /* Main Content */
 .main-content {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 128px);
   height: calc(100% - 128px);
   top: 128px;
   left: 128px;
@@ -297,6 +282,17 @@ body {
 .database-search {
   position: relative;
   z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.database-search .page-container {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 50px;
 }
 
 .copy {
@@ -305,11 +301,11 @@ body {
   align-items: flex-start;
   padding: 0;
   gap: 40px;
-  position: absolute;
   width: 844px;
   height: 253px;
-  left: 129px;
-  top: 131px;
+  margin-left: 0;
+  position: relative;
+  left: 0;
 }
 
 .page-title {
@@ -489,31 +485,37 @@ body {
 .terminal-page {
   position: relative;
   z-index: 2;
+  width: 100%;
+  height: calc(100vh - 128px); /* Full height minus header */
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px;
 }
 
-.terminal-page .copy {
+.terminal-container {
   width: 100%;
-  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
 
 .terminal-window {
-  width: 90%;
-  max-width: 1000px;
-  height: 600px;
-  background-color: rgba(26, 26, 26, 0.95);
-  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  background-color: #000000;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-  margin: 30px auto;
-  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .terminal-window:hover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
-  transform: translateY(-2px);
 }
 
 .terminal-header {
@@ -538,7 +540,7 @@ body {
 }
 
 .control:hover {
-  transform: scale(1.1);
+  opacity: 0.9;
 }
 
 .red {
@@ -563,14 +565,11 @@ body {
 }
 
 .terminal-content {
-  padding: 20px;
-  color: #FFF;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
-  line-height: 1.7;
-  height: calc(100% - 80px);
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  color: #00ff00;
+  height: 470px;
+  overflow-y: auto;
+  line-height: 1.5;
 }
 
 .terminal-content::-webkit-scrollbar {
@@ -590,14 +589,36 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* Terminal line styling with exact height */
 .terminal-line {
   white-space: nowrap;
-  margin-bottom: 5px;
+  margin-bottom: 0;
+  padding-bottom: 0;
   text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+  height: 24px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
 }
 
-.terminal-input {
-  outline: none;
+/* Update other page styles to match new structure */
+.remote-access-page,
+.documentation-page,
+.network-page {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.remote-access-page .page-container,
+.documentation-page .page-container,
+.network-page .page-container {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 50px;
 }
 
 /* Make underscore blink */
@@ -755,36 +776,6 @@ button span.underscore {
   min-width: 120px;
 }
 
-/* Active sidebar icon */
-.sidebar-link.active .sql-query,
-.sidebar-link.active .ssh-terminal,
-.sidebar-link.active .remote-access,
-.sidebar-link.active .documentation,
-.sidebar-link.active .network {
-  background-color: #333333;
-  border-left: 4px solid #FFFFFF;
-}
-
-.sidebar-link.active .database-search-icon {
-  background-color: #FFFFFF;
-}
-
-.sidebar-link.active .terminal-icon,
-.sidebar-link.active .desktop-windows-icon,
-.sidebar-link.active .docs-icon,
-.sidebar-link.active .public-icon {
-  background-color: #FFFFFF;
-}
-
-/* Adjust icon position on active state */
-.sidebar-link.active .database-search-icon,
-.sidebar-link.active .terminal-icon,
-.sidebar-link.active .desktop-windows-icon,
-.sidebar-link.active .docs-icon,
-.sidebar-link.active .public-icon {
-  left: 28px;
-}
-
 /* Improve header active page indicator */
 .page-link.active-page {
   position: relative;
@@ -878,24 +869,69 @@ button span.underscore {
   color: #FFFFFF;
 }
 
-.remote-access-page,
-.documentation-page,
-.network-page {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.remote-access-page .copy,
-.documentation-page .copy,
-.network-page .copy {
-  width: 100%;
-  max-width: 1200px;
-}
-
 /* Remove cursor element styles */
 .cursor {
   display: none;
+}
+
+/* Page container */
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 50px;
+}
+
+/* Terminal input styling */
+.terminal-input {
+  outline: none;
+}
+
+/* Terminal focus state */
+.terminal-window.focused {
+  box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* When Terminal is active, highlight the divider below it */
+.sidebar-link.active .ssh-terminal ~ .dividers .line-4 {
+  border-color: #FFFFFF;
+}
+
+/* Tool buttons */
+.tool-buttons .search-button button {
+  width: auto;
+  height: auto;
+  min-width: 120px;
+}
+
+/* Active sidebar icon - normal positioning */
+.sidebar-link.active .sql-query,
+.sidebar-link.active .ssh-terminal,
+.sidebar-link.active .remote-access,
+.sidebar-link.active .documentation,
+.sidebar-link.active .network {
+  background-color: #333333;
+  border-left: 4px solid #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* Active icon colors - normal positioning */
+.sidebar-link.active .database-search-icon,
+.sidebar-link.active .terminal-icon,
+.sidebar-link.active .desktop-windows-icon,
+.sidebar-link.active .docs-icon,
+.sidebar-link.active .public-icon {
+  background-color: #FFFFFF;
+  left: 32px; /* Same position for all icons */
+}
+
+.sidebar-link[href="/Terminal"].active {
+  /* Remove this rule */
+}
+
+.sidebar-link[href="/Terminal"].active .ssh-terminal {
+  /* Remove this rule */
+}
+
+.sidebar-link[href="/Terminal"].active .terminal-icon {
+  /* Remove this rule */
 } 
