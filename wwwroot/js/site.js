@@ -6,25 +6,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     
-    // Highlight active sidebar link without any position calculations
+    // First reset all dividers to their default colors
+    document.querySelectorAll('.dividers .line-1, .dividers .line-2, .dividers .line-3, .dividers .line-4, .dividers .line-5, .dividers .line-6, .dividers .line-7').forEach(line => {
+        if (line.classList.contains('line-1')) {
+            line.style.backgroundColor = '#5E5E5E'; //top line always grey! unless active
+        } else if (line.classList.contains('line-2')) {
+            line.style.backgroundColor = '#5E5E5E';
+        } else {
+            line.style.backgroundColor = '#5E5E5E';
+        }
+    });
+    
+    // Map to connect pages with their corresponding divider lines
+    const pageToDividerMap = {
+        '/': '.dividers .line-3',
+        '/Index': ['.dividers .line-2', '.dividers .line-3'],
+        '/Terminal': ['.dividers .line-3', '.dividers .line-4'],
+        '/RemoteAccess': ['.dividers .line-4', '.dividers .line-5'],
+        '/Documentation': ['.dividers .line-5', '.dividers .line-6'],
+        '/Network': ['.dividers .line-6', '.dividers .line-7']
+    };
+    
+    // Highlight only the active sidebar link and its corresponding divider
     sidebarLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href === currentPath || 
             (currentPath === '/' && href === '/Index') || 
             (href === '/' && currentPath === '/Index')) {
             
-            // Simply add active class
+            // Add active class to the link
             link.classList.add('active');
             
             // Highlight the correct divider based on the active page
+            const dividerSelector = pageToDividerMap[href];
+            if (dividerSelector) {
+                if (Array.isArray(dividerSelector)) {
+                    // If it's an array, handle each selector
+                    dividerSelector.forEach(selector => {
+                        const divider = document.querySelector(selector);
+                        if (divider) {
+                            divider.style.backgroundColor = '#FFFFFF';
+                        }
+                    });
+                } else {
+                    // Handle single string selector
+                    const divider = document.querySelector(dividerSelector);
+                    if (divider) {
+                        divider.style.backgroundColor = '#FFFFFF';
+                    }
+                }
+            }
+            
+            // If this is the top level page, also highlight the top line
             if (href === '/' || href === '/Index') {
-                document.querySelector('.dividers .line-3').style.borderColor = '#FFFFFF';
-            } else if (href === '/Terminal') {
-                document.querySelector('.dividers .line-4').style.borderColor = '#FFFFFF';
-            } else if (href === '/RemoteAccess') {
-                document.querySelector('.dividers .line-5').style.borderColor = '#FFFFFF';
-            } else if (href === '/Documentation') {
-                document.querySelector('.dividers .line-6').style.borderColor = '#FFFFFF';
+                const topLine = document.querySelector('.dividers .line-1');
+                if (topLine) {
+                    topLine.style.backgroundColor = '#FFFFFF';
+                }
             }
         }
     });

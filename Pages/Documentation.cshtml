@@ -7,35 +7,22 @@
 <div class="documentation-page">
     <div class="page-container">
         <div class="page-title">
-            <h1>Documentation<span class="underscore">_</span></h1>
-            <p class="subheading">Guides and Reference Materials</p>
+            <h1>@Model.DocViewModel.PageTitle<span class="underscore">_</span></h1>
+            <p class="subheading">@Model.DocViewModel.PageSubtitle</p>
         </div>
         <div class="documentation-content">
-            <div class="doc-section">
-                <h2>Getting Started</h2>
-                <ul>
-                    <li><a href="#" class="doc-link">Introduction to ECHO</a></li>
-                    <li><a href="#" class="doc-link">Installation Guide</a></li>
-                    <li><a href="#" class="doc-link">Configuration Options</a></li>
-                </ul>
-            </div>
-            <div class="doc-section">
-                <h2>Features</h2>
-                <ul>
-                    <li><a href="#" class="doc-link">Database Search</a></li>
-                    <li><a href="#" class="doc-link">SSH Terminal</a></li>
-                    <li><a href="#" class="doc-link">Remote Desktop</a></li>
-                    <li><a href="#" class="doc-link">Network Management</a></li>
-                </ul>
-            </div>
-            <div class="doc-section">
-                <h2>API Reference</h2>
-                <ul>
-                    <li><a href="#" class="doc-link">REST API</a></li>
-                    <li><a href="#" class="doc-link">GraphQL Schema</a></li>
-                    <li><a href="#" class="doc-link">Authentication</a></li>
-                </ul>
-            </div>
+            @foreach (var docSection in Model.DocViewModel.Sections)
+            {
+                <div class="doc-section">
+                    <h2>@docSection.Title</h2>
+                    <ul>
+                        @foreach (var link in docSection.Links)
+                        {
+                            <li><a href="@link.Url" class="doc-link">@link.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            }
         </div>
     </div>
 </div> 

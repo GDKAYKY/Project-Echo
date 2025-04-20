@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+// Add support for controllers
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -21,5 +23,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+// Map controller routes
+app.MapControllers();
 
 app.Run(); 
