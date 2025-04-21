@@ -28,4 +28,3 @@ C:\repos\Project-Echo\obj\Debug\net7.0\Project-Echo.pdb
 C:\repos\Project-Echo\obj\Debug\net7.0\Project-Echo.genruntimeconfig.cache
 C:\repos\Project-Echo\obj\Debug\net7.0\ref\Project-Echo.dll
 C:\repos\Project-Echo\obj\Debug\net7.0\Project-Echo.sourcelink.json
-c:\repos\Project-Echo\bin\Debug\net7.0\vercel.json

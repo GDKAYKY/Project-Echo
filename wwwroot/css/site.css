@@ -166,14 +166,16 @@ body {
 .main-content {
   position: absolute;
   width: calc(100% - var(--sidebar-width));
-  height: calc(100% - var(--header-height));
+  height: calc(100vh - var(--header-height));
   top: var(--header-height);
   left: var(--sidebar-width);
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow: auto;
+  z-index: 1;
 }
 
+/* Default world map background for all pages */
 .world-map-bg {
   position: absolute;
   width: 100%;
@@ -189,6 +191,8 @@ body {
   width: 100%;
   max-width: 1200px;
   padding: var(--spacing-responsive-lg) var(--spacing-responsive-md);
+  margin: 0;
+  box-sizing: border-box;
 }
 
 /* =========================================
@@ -458,17 +462,26 @@ body {
   outline-offset: 2px;
 }
 
+/* Typing animation for search placeholder */
+@keyframes typing {
+  0% { width: 0; }
+  100% { width: 6ch; } /* "Anyone" */
+}
+
 /* Search Input */
 .search-area {
   display: flex;
   align-items: center;
   gap: var(--spacing-responsive-md);
   margin-bottom: var(--spacing-responsive-lg);
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .search-input {
   flex-grow: 1;
   max-width: 500px;
+  width: 100%;
 }
 
 .search-input input {
@@ -487,7 +500,10 @@ body {
   border-color: var(--color-text-secondary);
 }
 
-/* Button styling */
+.search-button {
+  position: relative;
+}
+
 .search-button button {
   display: flex;
   flex-direction: row;
@@ -518,11 +534,24 @@ body {
   transform: translateY(1px);
 }
 
-/* Tool buttons */
+/* Make underscore blink */
+.underscore {
+  animation: blink-animation 1s step-end infinite;
+}
+
+@keyframes blink-animation {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Reset tool buttons for other pages */
 .tool-buttons .search-button button {
   width: auto;
   height: auto; 
   min-width: 120px;
+  display: inline-flex;
+  justify-content: center;
+  padding: var(--spacing-responsive-md);
 }
 
 /* =========================================
@@ -531,19 +560,26 @@ body {
 
 /* Database Search */
 .database-search {
-  position: relative;
+  position: fixed;
   z-index: 2;
-  width: 100%;
+  top: var(--header-height);
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: calc(100vh - var(--header-height));
   display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--spacing-responsive-md);
+  background-color: transparent;
 }
 
 .database-search .page-container {
   width: 100%;
   max-width: 1200px;
   padding-top: 50px;
+  margin: 0;
+  align-self: flex-start;
 }
 
 .copy {
@@ -572,8 +608,8 @@ body {
 }
 
 .page-title h1 {
-  width: 844px;
-  height: 77px;
+  width: auto;
+  height: auto;
   font-family: var(--font-family-base);
   font-style: normal;
   font-weight: 700;
@@ -582,39 +618,55 @@ body {
   letter-spacing: -0.02em;
   color: var(--color-text-secondary);
   margin: 0;
+  text-align: left;
 }
 
 .page-title .subheading {
-  width: 844px;
-  height: 36px;
+  width: auto;
+  height: auto;
   font-family: var(--font-family-base);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(18px, 3vw, 24px);
   line-height: 150%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: var(--color-text-muted);
   margin: 0;
+  text-align: left;
 }
 
 /* Terminal Page */
 .terminal-page {
-  position: relative;
+  position: fixed;
   z-index: 2;
-  width: 100%;
+  top: var(--header-height);
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
   height: calc(100vh - var(--header-height));
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 0 var(--spacing-responsive-md);
+  background-color: transparent;
 }
 
 .terminal-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-top: 20px;
   padding-bottom: 20px;
+}
+
+.terminal-page .page-container {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 50px;
+  margin: 0;
+  align-self: flex-start;
 }
 
 .terminal-window {
@@ -729,18 +781,6 @@ body {
 /* Terminal input styling */
 .terminal-input {
   outline: none;
-}
-
-/* Make underscore blink */
-.blink-underscore {
-  animation: blink-animation 1s step-end infinite;
-  color: #ccc;
-  font-weight: bold;
-}
-
-@keyframes blink-animation {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
 }
 
 /* Remove cursor element styles */
@@ -993,7 +1033,7 @@ h1:after, button:after {
   .form-group input,
   .form-group textarea,
   .terminal-window,
-  .search-button button,
+  .search-button button,  
   .doc-link {
     transition: none;
   }
@@ -1075,9 +1115,21 @@ h1:after, button:after {
     padding-right: var(--spacing-responsive-md);
   }
   
+  /* Adjust database-search and terminal-page for mobile */
+  .database-search,
+  .terminal-page {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 0 var(--spacing-responsive-md);
+    align-items: flex-start;
+  }
+  
   /* Improve spacing in mobile view */
   .page-container {
     padding: var(--spacing-responsive-md);
+    margin: 0;
+    width: 100%;
   }
   
   /* Adjust terminal for mobile */
@@ -1162,3 +1214,20 @@ h1:after, button:after {
   background-color: var(--color-icon-active);
   left: clamp(24px, 25%, 32px);
 }
+
+/* Specific page container styling for Terminal and Database pages */
+.terminal-page .page-container,
+.database-search .page-container {
+  background-color: transparent;
+  position: relative;
+  z-index: 2; /* Ensure content is above the black background */
+}
+
+/* Ensure main-content area doesn't show background in these pages */
+.main-content:has(.terminal-page),
+.main-content:has(.database-search) {
+  background-color: transparent;
+}
+
+/* Animation content for all pages */
+

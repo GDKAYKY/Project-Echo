@@ -9,7 +9,7 @@
 </head>
 <body>
     @{
-        var currentPage = ViewContext.RouteData.Values["Page"].ToString();
+        var currentPage = ViewContext.RouteData.Values["Page"]?.ToString() ?? "/";
     }
     <!-- Header -->
     <div class="header">

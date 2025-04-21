@@ -1,0 +1,94 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# NuGet Packages
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+
+# Node.js Tools
+node_modules/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# Local History for Visual Studio
+.localhistory/
+
+# Temporary files
+*.swp
+*~
+*.tmp
+*.bak
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# User-specific files
+*.rsuser
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# FileContentIndex
+.vs/ProjectEvaluation/
+
+# Specific files shown in the repository
+*.dll
+*.exe
+*.pdb
+*.staticwebassets.*
+apphosts.exe
+*.csproj.nuget.g.*
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.*
+*.csproj.CoreCompileInputs.*
+*.csproj.FileListAbsolute.*
+*.sourcelink.json
+staticwebassets.build.*
+staticwebassets.build.json
+msbuild.*.Microsoft.*
+*.Microsoft.* 
