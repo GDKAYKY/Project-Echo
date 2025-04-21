@@ -4,7 +4,7 @@ This is a .NET Core web application that recreates the UI shown in the Figma des
 
 ## Prerequisites
 
-- .NET 7.0 SDK or later
+- .NET 9.0 SDK
 - Visual Studio 2022 or Visual Studio Code
 - Docker (for containerized deployment)
 

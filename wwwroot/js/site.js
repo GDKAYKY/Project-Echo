@@ -1,7 +1,5 @@
 // Site JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Remove the opacity change that causes blinking
-    
     // Highlight active page in sidebar based on current path
     const currentPath = window.location.pathname;
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
@@ -177,6 +175,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // Command history
         const commandHistory = [];
         let historyIndex = -1;
+        
+        // Handle initial setup - ensure only one blinking underscore when page loads
+        const initTerminal = () => {
+            const allUnderscores = terminalContent.querySelectorAll('.underscore');
+            
+            // Remove blink class from all underscores except the last one
+            if (allUnderscores.length > 0) {
+                for (let i = 0; i < allUnderscores.length - 1; i++) {
+                    allUnderscores[i].classList.remove('blink-underscore');
+                }
+            }
+        };
+        
+        // Run initial setup
+        initTerminal();
         
         // Add the first command line if not already present
         if (!terminalContent.querySelector('.terminal-line:last-child .terminal-input')) {
@@ -492,6 +505,12 @@ MiB Swap:   2048.0 total,   2047.8 free,      0.2 used.   6374.8 avail Mem
         
         // Add a new command line
         function addNewLine() {
+            // Remove blinking effect from all previous underscores
+            const previousUnderscores = terminalContent.querySelectorAll('.blink-underscore');
+            previousUnderscores.forEach(underscoreElem => {
+                underscoreElem.classList.remove('blink-underscore');
+            });
+            
             const newLine = document.createElement('div');
             newLine.className = 'terminal-line';
             
