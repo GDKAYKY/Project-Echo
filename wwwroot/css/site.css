@@ -1,10 +1,10 @@
 /* CSS Variables for consistent styling */
 :root {
   /* Colors */
-  --color-background: #151515;
+  --color-background: #000000;
   --color-surface: #1E1E1E;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #CFCFCF;
+  --color-text-primary: #FFF;
+  --color-text-secondary: #ddd;
   --color-text-muted: rgba(174, 174, 174, 0.75);
   --color-icon: #7E7E7E;
   --color-icon-active: #FFFFFF;
@@ -34,8 +34,8 @@
   --font-family-mono: 'JetBrains Mono', monospace;
   
   /* Layout */
-  --header-height: 128px;
-  --sidebar-width: 128px;
+  --header-height: 64px;
+  --sidebar-width: 64px;
   --border-radius: 8px;
 }
 
@@ -79,8 +79,8 @@ body {
 }
 
 .radar-icon {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   margin-left: var(--spacing-responsive-md);
   background: var(--color-text-primary);
   mask: url('../images/echo.svg');
@@ -90,13 +90,13 @@ body {
 }
 
 .site-name {
-  width: 168px;
-  height: 105px;
+  width: 120px;
+  height: 50px;
   margin-left: 10px;
   font-family: var(--font-family-mono);
   font-style: normal;
   font-weight: 100;
-  font-size: 70px;
+  font-size: 40px;
   line-height: 150%;
   display: flex;
   align-items: center;
@@ -139,27 +139,27 @@ body {
 }
 
 .dividers .line-2 {
-  top: 129px;
+  top: 64px;
 }
 
 .dividers .line-3 {
-  top: 129px;
+  top: 64px;
 }
 
 .dividers .line-4 {
-  top: 260px;
+  top: 128px;
 }
 
 .dividers .line-5 {
-  top: 389px;
+  top: 192px;
 }
 
 .dividers .line-6 {
-  top: 518px;
+  top: 256px;
 }
 
 .dividers .line-7 {
-  top: 646px;
+  top: 320px;
 }
 
 /* Main Content with improved responsive layout */
@@ -178,6 +178,7 @@ body {
 /* Default world map background for all pages */
 .world-map-bg {
   position: absolute;
+  margin: auto +var(--header-height)px;
   width: 100%;
   height: 100%;
   background-image: url('../images/world-map-dots.png');
@@ -302,31 +303,29 @@ body {
    Sidebar Components
    ========================================= */
 
-/* Sidebar Icons - Common Properties */
-.terminal-icon,
-.docs-icon,
-.public-icon,
-.desktop-windows-icon,
-.database-search-icon {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  left: 32px;
-  top: 32px;
-  background: var(--color-icon);
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  transition: background-color 0.2s ease;
-}
-
 /* SQL QUERY */
 .sql-query {
   position: absolute;
   width: var(--sidebar-width);
   height: var(--sidebar-width);
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s ease;
   cursor: pointer;
+}
+
+.database-search-icon {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: var(--color-icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
 }
 
 .database-search-icon {
@@ -339,9 +338,23 @@ body {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
   left: 0;
-  top: 130px;
+  top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s ease;
   cursor: pointer;
+}
+
+.terminal-icon {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: var(--color-icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
 }
 
 .terminal-icon {
@@ -354,9 +367,23 @@ body {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
   left: 0;
-  top: 260px;
+  top: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s ease;
   cursor: pointer;
+}
+
+.desktop-windows-icon {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: var(--color-icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
 }
 
 .desktop-windows-icon {
@@ -369,9 +396,23 @@ body {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
   left: 0;
-  top: 389px;
+  top: 192px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s ease;
   cursor: pointer;
+}
+
+.docs-icon {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: var(--color-icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
 }
 
 .docs-icon {
@@ -383,9 +424,24 @@ body {
   position: absolute;
   width: var(--sidebar-width);
   height: var(--sidebar-width);
-  top: 518px;
+  left: 0;
+  top: 256px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s ease;
   cursor: pointer;
+}
+
+.public-icon {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: var(--color-icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
 }
 
 .public-icon {
@@ -400,7 +456,7 @@ body {
 .sidebar-link.active .network {
   background-color: transparent;
   border-right: 1px solid var(--color-text-primary);
-  right: 3px;
+  right: 0;
   left: 0;
   box-sizing: border-box;
 }
@@ -412,7 +468,11 @@ body {
 .sidebar-link.active .docs-icon,
 .sidebar-link.active .public-icon {
   background-color: var(--color-icon-active);
-  left: 32px;
+}
+
+/* Make sidebar components more responsive */
+.sidebar-link.active [class$="-icon"] {
+  background-color: var(--color-icon-active);
 }
 
 /* =========================================
@@ -826,7 +886,7 @@ body {
   z-index: 2;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   padding: 0 var(--spacing-responsive-md);
 }
 
@@ -1207,12 +1267,6 @@ h1:after, button:after {
     width: 12px;
     height: 12px;
   }
-}
-
-/* Make sidebar components more responsive */
-.sidebar-link.active [class$="-icon"] {
-  background-color: var(--color-icon-active);
-  left: clamp(24px, 25%, 32px);
 }
 
 /* Specific page container styling for Terminal and Database pages */
