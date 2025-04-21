@@ -92,3 +92,4 @@ staticwebassets.build.*
 staticwebassets.build.json
 msbuild.*.Microsoft.*
 *.Microsoft.* 
+.fake
