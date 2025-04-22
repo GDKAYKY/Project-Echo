@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "variables" as *;
+
+// Flexbox shorthand
+@mixin flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Base styling for icons
+@mixin icon-base {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background: map.get($colors, icon);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.2s ease;
+}
+
+// Common styling for sidebar items
+@mixin sidebar-item {
+  position: absolute;
+  width: $sidebar-width;
+  height: $sidebar-width;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+// Box shadow
+@mixin box-shadow($opacity: 0.3, $x: 0, $y: 8px, $blur: 24px) {
+  box-shadow: $x $y $blur rgba(0, 0, 0, $opacity);
+}
+
+// Responsive text
+@mixin responsive-text($min, $max) {
+  font-size: clamp($min, 2vw, $max);
+}
+
+// Card styling
+@mixin card {
+  background-color: #1A1A1A;
+  border-radius: $border-radius;
+  padding: map.get($spacing-responsive, md);
+  @include box-shadow(0.5, 0, 5px, 15px);
+} 
