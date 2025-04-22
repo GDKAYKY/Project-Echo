@@ -8,6 +8,7 @@ using Project_Echo.Models;
 
 namespace Project_Echo.Controllers
 {
+    [Route("docs")]
     public class DocumentationController : Controller
     {
         private readonly IHostEnvironment _environment;
@@ -17,7 +18,7 @@ namespace Project_Echo.Controllers
             _environment = environment;
         }
 
-        [HttpGet("/docs/{document}")]
+        [HttpGet("{document?}")]
         public async Task<IActionResult> ViewDocument(string document)
         {
             if (string.IsNullOrEmpty(document))
@@ -54,14 +55,14 @@ namespace Project_Echo.Controllers
         {
             return new List<DocumentationLink>
             {
-                new DocumentationLink { Title = "Documentation Home", Url = "/docs/index" },
-                new DocumentationLink { Title = "Getting Started", Url = "/docs/getting-started" },
-                new DocumentationLink { Title = "User Guide", Url = "/docs/user-guide" },
-                new DocumentationLink { Title = "Features", Url = "/docs/features" },
-                new DocumentationLink { Title = "API Reference", Url = "/docs/api-reference" },
-                new DocumentationLink { Title = "Deployment", Url = "/docs/deployment" },
-                new DocumentationLink { Title = "Development", Url = "/docs/development" },
-                new DocumentationLink { Title = "Troubleshooting", Url = "/docs/troubleshooting" }
+                new DocumentationLink { Title = "Documentation Home", Url = "/index" },
+                new DocumentationLink { Title = "Getting Started", Url = "/getting-started" },
+                new DocumentationLink { Title = "User Guide", Url = "/user-guide" },
+                new DocumentationLink { Title = "Features", Url = "/features" },
+                new DocumentationLink { Title = "API Reference", Url = "/api-reference" },
+                new DocumentationLink { Title = "Deployment", Url = "/deployment" },
+                new DocumentationLink { Title = "Development", Url = "/development" },
+                new DocumentationLink { Title = "Troubleshooting", Url = "/troubleshooting" }
             };
         }
     }

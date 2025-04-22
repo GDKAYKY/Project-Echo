@@ -15,43 +15,48 @@ document.addEventListener('DOMContentLoaded', function() {
         '/Network': ['.dividers .line-6', '.dividers .line-7']
     };
     
+    // Helper function to set divider color
+    function setDividerColor(selector) {
+        const divider = document.querySelector(selector);
+        if (divider) {
+            divider.style.backgroundColor = '#FFFFFF';
+        }
+    }
+    
+    // Helper function to check if link is active
+    function isActivePage(href, path) {
+        return href === path || 
+            (path === '/' && href === '/Index') || 
+            (href === '/' && path === '/Index');
+    }
+    
     // Highlight only the active sidebar link and its corresponding divider
     sidebarLinks.forEach(link => {
         const href = link.getAttribute('href');
-        if (href === currentPath || 
-            (currentPath === '/' && href === '/Index') || 
-            (href === '/' && currentPath === '/Index')) {
-            
-            // Add active class to the link
-            link.classList.add('active');
-            
-            // Highlight the correct divider based on the active page
-            const dividerSelector = pageToDividerMap[href];
-            if (dividerSelector) {
-                if (Array.isArray(dividerSelector)) {
-                    // If it's an array, handle each selector
-                    dividerSelector.forEach(selector => {
-                        const divider = document.querySelector(selector);
-                        if (divider) {
-                            divider.style.backgroundColor = '#FFFFFF';
-                        }
-                    });
-                } else {
-                    // Handle single string selector
-                    const divider = document.querySelector(dividerSelector);
-                    if (divider) {
-                        divider.style.backgroundColor = '#FFFFFF';
-                    }
-                }
+        
+        // Skip non-active links
+        if (!isActivePage(href, currentPath)) {
+            return;
+        }
+        
+        // Add active class to the link
+        link.classList.add('active');
+        
+        // Highlight the correct divider based on the active page
+        const dividerSelector = pageToDividerMap[href];
+        if (dividerSelector) {
+            // Handle array of selectors
+            if (Array.isArray(dividerSelector)) {
+                dividerSelector.forEach(setDividerColor);
+            } else {
+                // Handle single selector
+                setDividerColor(dividerSelector);
             }
-            
-            // If this is the top level page, also highlight the top line
-            if (href === '/' || href === '/Index') {
-                const topLine = document.querySelector('.dividers .line-1');
-                if (topLine) {
-                    topLine.style.backgroundColor = '#FFFFFF';
-                }
-            }
+        }
+        
+        // If this is the top level page, also highlight the top line
+        if (href === '/' || href === '/Index') {
+            setDividerColor('.dividers .line-1');
         }
     });
 
