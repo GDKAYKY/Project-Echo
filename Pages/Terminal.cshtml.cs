@@ -7,13 +7,10 @@ namespace Project_Echo.Pages
     {
         private readonly ILogger<TerminalModel> _logger;
 
-        public TerminalModel(ILogger<TerminalModel> logger)
+        private TerminalModel(ILogger<TerminalModel> logger)
         {
             _logger = logger;
         }
-
-        public void OnGet()
-        {
-        }
+        
     }
 } 

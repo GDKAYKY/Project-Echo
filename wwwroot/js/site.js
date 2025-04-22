@@ -4,16 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     
-    // First reset all dividers to their default colors
-    document.querySelectorAll('.dividers .line-1, .dividers .line-2, .dividers .line-3, .dividers .line-4, .dividers .line-5, .dividers .line-6, .dividers .line-7').forEach(line => {
-        if (line.classList.contains('line-1')) {
-            line.style.backgroundColor = '#5E5E5E'; //top line always grey! unless active
-        } else if (line.classList.contains('line-2')) {
-            line.style.backgroundColor = '#5E5E5E';
-        } else {
-            line.style.backgroundColor = '#5E5E5E';
-        }
-    });
     
     // Map to connect pages with their corresponding divider lines
     const pageToDividerMap = {

@@ -7,13 +7,10 @@ namespace Project_Echo.Pages
     {
         private readonly ILogger<NetworkModel> _logger;
 
-        public NetworkModel(ILogger<NetworkModel> logger)
+        private NetworkModel(ILogger<NetworkModel> logger)
         {
             _logger = logger;
         }
-
-        public void OnGet()
-        {
-        }
+        
     }
 } 

@@ -7,13 +7,10 @@ namespace Project_Echo.Pages
     {
         private readonly ILogger<RemoteAccessModel> _logger;
 
-        public RemoteAccessModel(ILogger<RemoteAccessModel> logger)
+        private RemoteAccessModel(ILogger<RemoteAccessModel> logger)
         {
             _logger = logger;
         }
-
-        public void OnGet()
-        {
-        }
+        
     }
 } 

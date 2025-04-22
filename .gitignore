@@ -84,6 +84,8 @@ ScaffoldingReadMe.txt
 apphosts.exe
 *.csproj.nuget.g.*
 *.AssemblyInfo.cs
+discord.xml
+encodings.xml
 *.AssemblyInfoInputs.*
 *.csproj.CoreCompileInputs.*
 *.csproj.FileListAbsolute.*

@@ -11,15 +11,18 @@ namespace Project_Echo.Pages
         public string? RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-        private readonly ILogger<ErrorModel> _logger;
+        
+        /// <summary>
+        /// Define a Infraestrututa para o logger na pagina de erro
+        /// </summary>
+/*        private readonly ILogger<ErrorModel> _logger;
 
         public ErrorModel(ILogger<ErrorModel> logger)
         {
             _logger = logger;
         }
-
-        public void OnGet()
+*/
+        private void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
