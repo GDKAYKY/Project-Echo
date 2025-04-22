@@ -14,6 +14,17 @@ async Task Main()
     // Add support for controllers
     builder.Services.AddControllersWithViews();
 
+    // Register terminal service
+    builder.Services.AddSingleton<Project_Echo.Services.TerminalService>();
+
+    // Add session state for terminal session
+    builder.Services.AddSession(options =>
+    {
+        options.IdleTimeout = TimeSpan.FromHours(1);
+        options.Cookie.HttpOnly = true;
+        options.Cookie.IsEssential = true;
+    });
+
     var app = builder.Build();
 
 
@@ -29,6 +40,9 @@ async Task Main()
 
     app.UseRouting();
     app.UseAuthorization();
+
+    // Enable session
+    app.UseSession();
 
     app.MapRazorPages();
     // Map controller routes

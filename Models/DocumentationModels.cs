@@ -4,14 +4,14 @@ namespace Project_Echo.Models
 {
     public class DocumentationLink
     {
-        public string Title { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
+        public required string Title { get; set; }
+        public required string Url { get; set; }
     }
 
     public class DocumentationSection
     {
-        public string Title { get; set; } = string.Empty;
-        public List<DocumentationLink> Links { get; set; } = new List<DocumentationLink>();
+        public required string Title { get; set; }
+        public required List<DocumentationLink> Links { get; set; }
     }
 
     public class DocumentationViewModel

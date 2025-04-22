@@ -22,11 +22,85 @@
                     <div class="terminal-title">echo@server:~</div>
                 </div>
                 <div class="terminal-content">
-                    <div class="terminal-line">Last login: @DateTime.Now.ToString("ddd MMM d HH:mm:ss") on ttys001</div>
-                    <div class="terminal-line">Welcome to ECHO Terminal - Type 'help' for available commands</div>
-                    <div class="terminal-line">echo@server:~ $ <span class="terminal-input"></span><span class="underscore blink-underscore">_</span></div>
+                    @foreach (var item in Model.TerminalVM.Session.History)
+                    {
+                        @if (!string.IsNullOrEmpty(item.Command))
+                        {
+                            <div class="terminal-line">echo@server:~ $ @item.Command</div>
+                        }
+                        
+                        @if (!string.IsNullOrEmpty(item.Output))
+                        {
+                            foreach (var line in item.Output.Split(Environment.NewLine))
+                            {
+                                <div class="terminal-line">@line</div>
+                            }
+                        }
+                    }
+                    
+                    <form method="post" id="terminal-form" autocomplete="off">
+                        <div class="terminal-line input-line">
+                            <span class="prompt">echo@server:~ $</span>
+                            <input asp-for="CommandInput" class="terminal-input" autocomplete="off" autofocus />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<style>
+    .terminal-content .input-line {
+        display: flex;
+        align-items: center;
+    }
+    
+    .terminal-content .prompt {
+        color: #ccc;
+        margin-right: 8px;
+    }
+    
+    .terminal-content .terminal-input {
+        background: transparent;
+        border: none;
+        color: #ccc;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        outline: none;
+        width: 100%;
+        caret-color: #fff;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-focus the input field
+            const inputField = document.querySelector('.terminal-input');
+            if (inputField) {
+                inputField.focus();
+            }
+            
+            // Scroll to bottom of terminal
+            const terminalContent = document.querySelector('.terminal-content');
+            if (terminalContent) {
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+            }
+            
+            // Handle form submission
+            const form = document.getElementById('terminal-form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    // Disable the input while form is submitting to prevent duplicate submissions
+                    inputField.disabled = true;
+                    
+                    // Re-enable after a short delay in case there's an error
+                    setTimeout(function() {
+                        inputField.disabled = false;
+                    }, 500);
+                });
+            }
+        });
+    </script>
+} 
