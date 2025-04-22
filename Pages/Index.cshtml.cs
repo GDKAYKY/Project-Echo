@@ -5,9 +5,9 @@ namespace Project_Echo.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        public readonly ILogger<IndexModel> _logger;
 
-        private IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }

@@ -5,9 +5,9 @@ namespace Project_Echo.Pages
 {
     public class NetworkModel : PageModel
     {
-        private readonly ILogger<NetworkModel> _logger;
+        public readonly ILogger<NetworkModel> _logger;
 
-        private NetworkModel(ILogger<NetworkModel> logger)
+        public NetworkModel(ILogger<NetworkModel> logger)
         {
             _logger = logger;
         }

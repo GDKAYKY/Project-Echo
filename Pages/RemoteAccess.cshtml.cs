@@ -5,9 +5,9 @@ namespace Project_Echo.Pages
 {
     public class RemoteAccessModel : PageModel
     {
-        private readonly ILogger<RemoteAccessModel> _logger;
+        public readonly ILogger<RemoteAccessModel> _logger;
 
-        private RemoteAccessModel(ILogger<RemoteAccessModel> logger)
+        public RemoteAccessModel(ILogger<RemoteAccessModel> logger)
         {
             _logger = logger;
         }
