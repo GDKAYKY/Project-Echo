@@ -38,6 +38,9 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+# JetBrains IDE
+.idea/
+
 # NuGet Packages
 *.nupkg
 # NuGet Symbol Packages
@@ -64,6 +67,10 @@ node_modules/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
+
+# obj folder
+obj/
+bin/
 
 # User-specific files
 *.rsuser
