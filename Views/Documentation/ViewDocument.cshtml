@@ -1,10 +1,14 @@
-    @model Project_Echo.Models.MarkdownViewModel
+@model Project_Echo.Models.MarkdownViewModel
+@using Project_Echo.Helpers
 @{
     ViewData["Title"] = Model.DocumentTitle;
 }
 
 <div class="documentation-page">
     <div class="page-container">
+        <div class="breadcrumb-path">
+            <span>Learn</span> / <span>.NET</span> / <span>Azure</span> / <span>Migrar seu aplicativo Web .NET ou serviço para o Serviço de Aplicativo do Azure</span>
+        </div>
         <div class="documentation-viewer">
             <div class="doc-navigation">
                 <div class="filter-bar">
@@ -13,7 +17,12 @@
                 </div>
                 @foreach (var link in Model.NavigationLinks)
                 {
-                    <a href="@link.Url" class="doc-nav-item">@link.Title</a>
+                    string isActiveClass = "";
+                    if (SidebarHelper.IsActivePage(link.Url, Context.Request.Path.Value))
+                    {
+                        isActiveClass = "active";
+                    }
+                    <a href="@link.Url" class="doc-nav-item @isActiveClass">@link.Title</a>
                 }
             </div>
             <div class="doc-content">
@@ -36,19 +45,11 @@
             // Render the markdown content
             document.getElementById('markdown-content').innerHTML = marked.parse(markdownContent);
             
-            // Highlight the current document in the navigation
-            var currentPath = window.location.pathname;
-            var navLinks = document.querySelectorAll('.doc-nav-item');
-            navLinks.forEach(function(link) {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Filter navigation links
+            // Filter navigation links (This part remains client-side)
             var filterInput = document.getElementById('filter-input');
             filterInput.addEventListener('keyup', function() {
                 var filterText = filterInput.value.toLowerCase();
+                var navLinks = document.querySelectorAll('.doc-nav-item');
                 navLinks.forEach(function(link) {
                     var linkText = link.textContent.toLowerCase();
                     if (linkText.includes(filterText)) {
@@ -65,11 +66,11 @@
 <style>
     :root {
         --color-bg-dark: #000000;
-        --color-surface-dark: rgba(44, 44, 44, 0.7);
+        --color-surface-dark: rgba(20, 20, 20, 0.7);
         --color-text-light: #F0F0F0;
         --color-text-medium: #B0B0B0;
         --color-text-dark: #808080;
-        --color-accent-blue: #007ACC;
+        --color-accent-blue: #ffffff3f;
         --color-border-dark: #404040;
         --shadow-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.4);
         --shadow-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -97,6 +98,27 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 var(--spacing-md);
+    }
+
+    .breadcrumb-path {
+        background-color: var(--color-surface-dark);
+        backdrop-filter: blur(8px);
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--border-radius-sm);
+        box-shadow: var(--shadow-elevation-1);
+        margin-bottom: var(--spacing-md);
+        color: var(--color-text-medium);
+        font-size: 0.9em;
+    }
+
+    .breadcrumb-path span {
+        color: var(--color-text-light);
+    }
+
+    .breadcrumb-path span:not(:last-child)::after {
+        content: ' / ';
+        color: var(--color-text-dark);
+        margin: 0 4px;
     }
 
     .documentation-viewer {
@@ -186,6 +208,7 @@
         color: var(--color-text-light);
         line-height: 1.8;
         font-size: 1.05em;
+        overflow-x: auto; /* Add horizontal scrolling for overflowing content */
     }
 
     #markdown-content h1,
@@ -332,6 +355,11 @@
 
         .page-container {
             padding: 0 var(--spacing-sm);
+        }
+
+        .breadcrumb-path {
+            padding: var(--spacing-sm);
+            font-size: 0.85em;
         }
     }
 </style> 
