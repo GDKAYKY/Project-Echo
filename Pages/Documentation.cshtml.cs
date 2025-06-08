@@ -27,8 +27,7 @@ namespace Project_Echo.Pages
         public void OnGet()
         {
             DocViewModel.CurrentUrl = HttpContext.Request.Path;
-            DocViewModel.IsDocsSection = HttpContext.Request.Path.StartsWithSegments("/Documentation/docs") ||
-                                        (HttpContext.Request.Path.Value?.StartsWith("/Documentation/docs/") ?? false);
+            DocViewModel.IsDocsSection = HttpContext.Request.Path.Value?.StartsWith("/Documentation/docs", StringComparison.OrdinalIgnoreCase) ?? false;
             
             DocViewModel.Sections =
             [

@@ -34,23 +34,5 @@ namespace Project_Echo.Controllers
 
             return Json(activePageData);
         }
-
-        // You might add other actions here related to managing or retrieving page state
-        // For example, if you need to update the active page based on user interaction
-        // or specific application events.
-
-        // Example: An action to set the active page (if managing state server-side)
-        // [HttpPost]
-        // public IActionResult SetActivePage([FromBody] ActivePageRequest request)
-        // {
-        //     // Logic to update active page state
-        //     return Ok();
-        // }
-
-        // public class ActivePageRequest
-        // {
-        //     public string Path { get; set; }
-        //     public string Title { get; set; }
-        // }
     }
 } 

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Project_Echo.Models
 {
     public class TerminalCommand

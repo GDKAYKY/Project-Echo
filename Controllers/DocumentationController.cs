@@ -55,54 +55,5 @@ namespace Project_Echo.Controllers
                 new() { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
             ];
         }
-
-        private List<DocumentationSection> GetDocumentationSections()
-        {
-            return
-            [
-                new() {
-                    Title = "Getting Started",
-                    Links =
-                    [
-                        new() { Title = "Introduction to ECHO", Url = "/Documentation/docs/introduction" },
-                        new() { Title = "Installation Guide", Url = "/Documentation/docs/installation" },
-                        new() { Title = "Configuration Options", Url = "/Documentation/docs/configuration" }
-                    ]
-                },
-                new() {
-                    Title = "Features",
-                    Links =
-                    [
-                        new() { Title = "Database Search", Url = "/Documentation/docs/database-search" },
-                        new() { Title = "SSH Terminal", Url = "/Documentation/docs/ssh-terminal" },
-                        new() { Title = "Remote Desktop", Url = "/Documentation/docs/remote-desktop" },
-                        new() { Title = "Network Management", Url = "/Documentation/docs/network-management" }
-                    ]
-                },
-                new() {
-                    Title = "API Reference",
-                    Links =
-                    [
-                        new() { Title = "REST API", Url = "/Documentation/docs/rest-api" },
-                        new() { Title = "GraphQL Schema", Url = "/Documentation/docs/graphql-schema" },
-                        new() { Title = "Authentication", Url = "/Documentation/docs/authentication" }
-                    ]
-                },
-                new() {
-                    Title = "Complete Documentation",
-                    Links =
-                    [
-                        new() { Title = "Documentation Home", Url = "/Documentation/docs/index" },
-                        new() { Title = "Getting Started Guide", Url = "/Documentation/docs/getting-started" },
-                        new() { Title = "User Guide", Url = "/Documentation/docs/user-guide" },
-                        new() { Title = "Feature Reference", Url = "/Documentation/docs/features" },
-                        new() { Title = "API Documentation", Url = "/Documentation/docs/api-reference" },
-                        new() { Title = "Deployment Guide", Url = "/Documentation/docs/deployment" },
-                        new() { Title = "Developer Guide", Url = "/Documentation/docs/development" },
-                        new() { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
-                    ]
-                }
-            ];
-        }
     }
 } 

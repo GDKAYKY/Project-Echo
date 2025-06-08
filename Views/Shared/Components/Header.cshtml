@@ -1,24 +1,24 @@
+@{
+    var title = ViewData["Title"]?.ToString() ?? "Project ECHO";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Project ECHO</title>
+    <title>@title</title>
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/documentation.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;700&family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    @await Html.PartialAsync("Components/Header")
-
-    @await Html.PartialAsync("Components/Sidebar")
-
-    <div class="main-content">
-        <div class="world-map-bg"></div>
-        @RenderBody()
+    <div class="header">
+        <a href="/" class="radar-icon-link">
+            <div class="radar-icon"></div>
+        </a>
+        <a href="/" class="site-name-link">
+            <div class="site-name">ECHO</div>
+        </a>
     </div>
-
-    @await Html.PartialAsync("Components/Scripts")
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html> 
