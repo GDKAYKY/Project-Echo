@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     
-    
     // Map to connect pages with their corresponding divider lines
     const pageToDividerMap = {
         '/': '.dividers .line-3',
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '/Terminal': ['.dividers .line-3', '.dividers .line-4'],
         '/RemoteAccess': ['.dividers .line-4', '.dividers .line-5'],
         '/Documentation': ['.dividers .line-5', '.dividers .line-6'],
+        '/Documentation/docs/': ['.dividers .line-5', '.dividers .line-6'],
         '/Network': ['.dividers .line-6', '.dividers .line-7']
     };
     
@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Helper function to check if link is active
     function isActivePage(href, path) {
+        // For documentation, check if the path starts with /docs/ or is exactly /Documentation
+        if (href === '/Documentation/docs/' || href === '/Documentation/docs/') {
+            return path === '/Documentation' || path.contains('/docs/');
+        }
         return href === path || 
             (path === '/' && href === '/Index') || 
             (href === '/' && path === '/Index');
@@ -34,29 +38,29 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebarLinks.forEach(link => {
         const href = link.getAttribute('href');
         
-        // Skip non-active links
-        if (!isActivePage(href, currentPath)) {
-            return;
-        }
+        // Check if this link is active
+        const isActive = isActivePage(href, currentPath);
         
-        // Add active class to the link
-        link.classList.add('active');
-        
-        // Highlight the correct divider based on the active page
-        const dividerSelector = pageToDividerMap[href];
-        if (dividerSelector) {
-            // Handle array of selectors
-            if (Array.isArray(dividerSelector)) {
-                dividerSelector.forEach(setDividerColor);
-            } else {
-                // Handle single selector
-                setDividerColor(dividerSelector);
+        // Add active class to the link if it's active
+        if (isActive) {
+            link.classList.add('active');
+            
+            // Only set divider colors for active pages
+            const dividerSelector = pageToDividerMap[href];
+            if (dividerSelector) {
+                // Handle array of selectors
+                if (Array.isArray(dividerSelector)) {
+                    dividerSelector.forEach(setDividerColor);
+                } else {
+                    // Handle single selector
+                    setDividerColor(dividerSelector);
+                }
             }
-        }
-        
-        // If this is the top level page, also highlight the top line
-        if (href === '/' || href === '/Index') {
-            setDividerColor('.dividers .line-1');
+            
+            // If this is the top level page, also highlight the top line
+            if (href === '/' || href === '/Index') {
+                setDividerColor('.dividers .line-1');
+            }
         }
     });
 
@@ -553,4 +557,4 @@ MiB Swap:   2048.0 total,   2047.8 free,      0.2 used.   6374.8 avail Mem
             });
         }
     });
-}); 
+});

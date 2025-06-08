@@ -27,8 +27,8 @@ namespace Project_Echo.Pages
         public void OnGet()
         {
             DocViewModel.CurrentUrl = HttpContext.Request.Path;
-            DocViewModel.IsDocsSection = HttpContext.Request.Path.StartsWithSegments("/docs") ||
-                                         HttpContext.Request.Path.Value?.Contains("docs") == true;
+            DocViewModel.IsDocsSection = HttpContext.Request.Path.StartsWithSegments("/Documentation/docs") ||
+                                        (HttpContext.Request.Path.Value?.StartsWith("/Documentation/docs/") ?? false);
             
             DocViewModel.Sections =
             [
@@ -37,9 +37,9 @@ namespace Project_Echo.Pages
                     Title = "Getting Started",
                     Links =
                     [
-                        new DocumentationLink { Title = "Introduction to ECHO", Url = "#" },
-                        new DocumentationLink { Title = "Installation Guide", Url = "#" },
-                        new DocumentationLink { Title = "Configuration Options", Url = "#" }
+                        new DocumentationLink { Title = "Introduction to ECHO", Url = "/Documentation/docs/introduction" },
+                        new DocumentationLink { Title = "Installation Guide", Url = "/Documentation/docs/installation" },
+                        new DocumentationLink { Title = "Configuration Options", Url = "/Documentation/docs/configuration" }
                     ]
                 },
 
@@ -48,10 +48,10 @@ namespace Project_Echo.Pages
                     Title = "Features",
                     Links =
                     [
-                        new DocumentationLink { Title = "Database Search", Url = "#" },
-                        new DocumentationLink { Title = "SSH Terminal", Url = "#" },
-                        new DocumentationLink { Title = "Remote Desktop", Url = "#" },
-                        new DocumentationLink { Title = "Network Management", Url = "#" }
+                        new DocumentationLink { Title = "Database Search", Url = "/Documentation/docs/features/database-search" },
+                        new DocumentationLink { Title = "SSH Terminal", Url = "/Documentation/docs/features/ssh-terminal" },
+                        new DocumentationLink { Title = "Remote Desktop", Url = "/Documentation/docs/features/remote-desktop" },
+                        new DocumentationLink { Title = "Network Management", Url = "/Documentation/docs/features/network-management" }
                     ]
                 },
 
@@ -60,9 +60,9 @@ namespace Project_Echo.Pages
                     Title = "API Reference",
                     Links =
                     [
-                        new DocumentationLink { Title = "REST API", Url = "#" },
-                        new DocumentationLink { Title = "GraphQL Schema", Url = "#" },
-                        new DocumentationLink { Title = "Authentication", Url = "#" }
+                        new DocumentationLink { Title = "REST API", Url = "/Documentation/docs/api/rest" },
+                        new DocumentationLink { Title = "GraphQL Schema", Url = "/Documentation/docs/api/graphql" },
+                        new DocumentationLink { Title = "Authentication", Url = "/Documentation/docs/api/authentication" }
                     ]
                 },
 
@@ -71,14 +71,14 @@ namespace Project_Echo.Pages
                     Title = "Complete Documentation",
                     Links =
                     [
-                        new DocumentationLink { Title = "Documentation Home", Url = "/docs/index" },
-                        new DocumentationLink { Title = "Getting Started Guide", Url = "/docs/getting-started" },
-                        new DocumentationLink { Title = "User Guide", Url = "/docs/user-guide" },
-                        new DocumentationLink { Title = "Feature Reference", Url = "/docs/features" },
-                        new DocumentationLink { Title = "API Documentation", Url = "/docs/api-reference" },
-                        new DocumentationLink { Title = "Deployment Guide", Url = "/docs/deployment" },
-                        new DocumentationLink { Title = "Developer Guide", Url = "/docs/development" },
-                        new DocumentationLink { Title = "Troubleshooting", Url = "/docs/troubleshooting" }
+                        new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/docs/index" },
+                        new DocumentationLink { Title = "Getting Started Guide", Url = "/Documentation/docs/getting-started" },
+                        new DocumentationLink { Title = "User Guide", Url = "/Documentation/docs/user-guide" },
+                        new DocumentationLink { Title = "Feature Reference", Url = "/Documentation/docs/features" },
+                        new DocumentationLink { Title = "API Documentation", Url = "/Documentation/docs/api-reference" },
+                        new DocumentationLink { Title = "Deployment Guide", Url = "/Documentation/docs/deployment" },
+                        new DocumentationLink { Title = "Developer Guide", Url = "/Documentation/docs/development" },
+                        new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
                     ]
                 }
             ];

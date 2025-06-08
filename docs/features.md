@@ -7,6 +7,7 @@ This document provides a detailed overview of Project ECHO's features.
 The Database Search module offers powerful SQL querying capabilities with an intuitive interface.
 
 ### Key Features
+
 - Support for multiple database types (MySQL, PostgreSQL, SQL Server, Oracle, SQLite)
 - Query history with save and recall functionality
 - Syntax highlighting for SQL
@@ -16,6 +17,7 @@ The Database Search module offers powerful SQL querying capabilities with an int
 - Database schema browser
 
 ### Technical Specifications
+
 - Connection pooling for optimal performance
 - Connection encryption for secure database access
 - Transaction support
@@ -27,6 +29,7 @@ The Database Search module offers powerful SQL querying capabilities with an int
 The SSH Terminal provides secure shell access to remote systems directly from your browser.
 
 ### Key Features
+
 - Secure connections via SSH protocol
 - Support for SSH key authentication
 - Multiple simultaneous connections
@@ -36,6 +39,7 @@ The SSH Terminal provides secure shell access to remote systems directly from yo
 - Session recording and playback
 
 ### Technical Specifications
+
 - Full terminal emulation (xterm-compatible)
 - Support for ANSI color codes
 - Configurable terminal size
@@ -48,6 +52,7 @@ The SSH Terminal provides secure shell access to remote systems directly from yo
 The Remote Access module enables remote desktop connections to various systems.
 
 ### Key Features
+
 - Support for RDP, VNC, and proprietary protocols
 - Multi-monitor support
 - Clipboard sharing
@@ -57,6 +62,7 @@ The Remote Access module enables remote desktop connections to various systems.
 - Bandwidth optimization
 
 ### Technical Specifications
+
 - Encrypted connections
 - Auto-scaling resolution
 - Color depth adjustment
@@ -69,6 +75,7 @@ The Remote Access module enables remote desktop connections to various systems.
 The Documentation module provides access to comprehensive system documentation.
 
 ### Key Features
+
 - Categorized documentation library
 - Full-text search
 - Document version history
@@ -77,6 +84,7 @@ The Documentation module provides access to comprehensive system documentation.
 - Code snippets with syntax highlighting
 
 ### Technical Specifications
+
 - Markdown rendering
 - Documentation caching
 - Access control based on user roles
@@ -88,6 +96,7 @@ The Documentation module provides access to comprehensive system documentation.
 The Network module offers detailed network analysis and monitoring tools.
 
 ### Key Features
+
 - Real-time network statistics
 - Traffic visualization
 - Device discovery
@@ -96,6 +105,7 @@ The Network module offers detailed network analysis and monitoring tools.
 - Network topology mapping
 
 ### Technical Specifications
+
 - Support for SNMP monitoring
 - Bandwidth usage tracking
 - Latency monitoring
@@ -106,6 +116,7 @@ The Network module offers detailed network analysis and monitoring tools.
 ## Cross-Cutting Features
 
 ### Security
+
 - End-to-end encryption
 - Role-based access control
 - Two-factor authentication
@@ -114,6 +125,7 @@ The Network module offers detailed network analysis and monitoring tools.
 - IP-based access restrictions
 
 ### User Interface
+
 - Dark theme optimized for long sessions
 - Responsive design for various screen sizes
 - Keyboard shortcuts for common operations
@@ -122,6 +134,7 @@ The Network module offers detailed network analysis and monitoring tools.
 - Localization support
 
 ### Performance
+
 - Asynchronous operations for responsive UI
 - Data caching
 - Optimized resource loading
