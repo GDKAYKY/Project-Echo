@@ -6,7 +6,10 @@
 
 <div class="documentation-page">
     <div class="page-container">
-            <span>Documentation</span><span>@Model.DocumentTitle</span>
+        <div class="breadcrumb-path">
+            <span>Documentation</span>
+            <span>@Model.DocumentTitle</span>
+        </div>
         <div class="documentation-viewer">
             <div class="doc-navigation">
                 <div class="filter-bar">
@@ -33,7 +36,6 @@
         </div>
     </div>
 </div>
-<styles src="site.css" />
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

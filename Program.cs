@@ -1,3 +1,5 @@
+using Project_Echo.Services.Navigation;
+
 // Make the program async
 await Main();
 
@@ -24,6 +26,8 @@ async Task Main()
         options.Cookie.HttpOnly = true;
         options.Cookie.IsEssential = true;
     });
+
+    builder.Services.AddScoped<ISidebarService, SidebarService>();
 
     var app = builder.Build();
 

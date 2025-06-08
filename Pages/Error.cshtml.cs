@@ -15,14 +15,7 @@ namespace Project_Echo.Pages
         /// <summary>
         /// Define a Infraestrututa para o logger na pagina de erro
         /// </summary>
-/*        private readonly ILogger<ErrorModel> _logger;
-
-        public ErrorModel(ILogger<ErrorModel> logger)
-        {
-            _logger = logger;
-        }
-*/
-        private void OnGet()
+        public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }

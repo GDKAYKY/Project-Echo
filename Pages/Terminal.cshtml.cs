@@ -2,26 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_Echo.Models;
 using Project_Echo.Services;
-using System;
 
 namespace Project_Echo.Pages
 {
-    public class TerminalModel : PageModel
+    public class TerminalModel(TerminalService terminalService) : PageModel
     {
-        private readonly ILogger<TerminalModel> _logger;
-        private readonly TerminalService _terminalService;
+        private readonly TerminalService _terminalService = terminalService;
         
-        public TerminalViewModel TerminalVM { get; private set; }
+        public TerminalViewModel TerminalVM { get; private set; } = new();
         
         [BindProperty]
         public string CommandInput { get; set; } = "";
-        
-        public TerminalModel(ILogger<TerminalModel> logger, TerminalService terminalService)
-        {
-            _logger = logger;
-            _terminalService = terminalService;
-            TerminalVM = new TerminalViewModel();
-        }
         
         public void OnGet()
         {
@@ -74,7 +65,7 @@ namespace Project_Echo.Pages
                 // Initialize session
                 var sessionJson = TempData["TerminalSession"] as string;
                 TerminalVM.Session = !string.IsNullOrEmpty(sessionJson)
-                    ? System.Text.Json.JsonSerializer.Deserialize<TerminalSession>(sessionJson)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TerminalSession>(sessionJson) ?? new TerminalSession()
                     : new TerminalSession();
                 
                 // Clear the terminal if requested
@@ -85,7 +76,7 @@ namespace Project_Echo.Pages
                 else
                 {
                     // Process command
-                    var response = _terminalService.ProcessCommand(TerminalVM.Session, CommandInput);
+                    _terminalService.ProcessCommand(TerminalVM.Session, CommandInput);
                 }
                 
                 // Save session for next request

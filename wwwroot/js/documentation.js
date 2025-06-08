@@ -1,3 +1,45 @@
+// Helper functions
+function resetCopyButton(button) {
+    button.textContent = 'Copy';
+}
+
+function handleCopySuccess(button) {
+    button.textContent = 'Copied!';
+    setTimeout(() => resetCopyButton(button), 2000);
+}
+
+function handleCopyError(button) {
+    button.textContent = 'Failed to copy';
+    setTimeout(() => resetCopyButton(button), 2000);
+}
+
+function copyCodeToClipboard(block, button) {
+    navigator.clipboard.writeText(block.textContent)
+        .then(() => handleCopySuccess(button))
+        .catch(err => {
+            console.error('Failed to copy text: ', err);
+            handleCopyError(button);
+        });
+}
+
+function createCopyButton(block) {
+    const button = document.createElement('button');
+    button.className = 'copy-button';
+    button.textContent = 'Copy';
+    button.addEventListener('click', () => copyCodeToClipboard(block, button));
+    block.parentNode.style.position = 'relative';
+    block.parentNode.appendChild(button);
+}
+
+function addLineNumbers(block) {
+    const lines = block.innerHTML.split('\n');
+    const numberedLines = lines.map((line, index) => 
+        `<span class="line-number">${index + 1}</span>${line}`
+    ).join('\n');
+    block.innerHTML = numberedLines;
+}
+
+// Main initialization
 document.addEventListener('DOMContentLoaded', function() {
     try {
         // Configure marked with security options
@@ -60,29 +102,7 @@ function generateTableOfContents() {
 
 function addCopyButtonsToCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
-    codeBlocks.forEach(block => {
-        const button = document.createElement('button');
-        button.className = 'copy-button';
-        button.textContent = 'Copy';
-        button.addEventListener('click', () => {
-            navigator.clipboard.writeText(block.textContent)
-                .then(() => {
-                    button.textContent = 'Copied!';
-                    setTimeout(() => {
-                        button.textContent = 'Copy';
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Failed to copy text: ', err);
-                    button.textContent = 'Failed to copy';
-                    setTimeout(() => {
-                        button.textContent = 'Copy';
-                    }, 2000);
-                });
-        });
-        block.parentNode.style.position = 'relative';
-        block.parentNode.appendChild(button);
-    });
+    codeBlocks.forEach(createCopyButton);
 }
 
 function highlightCodeBlocks() {
@@ -94,10 +114,6 @@ function highlightCodeBlocks() {
         }
         
         // Add line numbers
-        const lines = block.innerHTML.split('\n');
-        const numberedLines = lines.map((line, index) => 
-            `<span class="line-number">${index + 1}</span>${line}`
-        ).join('\n');
-        block.innerHTML = numberedLines;
+        addLineNumbers(block);
     });
 } 

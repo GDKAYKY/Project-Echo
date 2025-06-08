@@ -9,21 +9,34 @@ namespace Project_Echo.Services
     {
         private readonly Dictionary<string, Func<TerminalSession, string[], string>> _commands;
         private const int MaxHistoryItems = 100;
+        private const string HelpText = @"Available commands:
+  help        - Display this help message
+  clear       - Clear the terminal screen
+  echo [text] - Display a line of text
+  pwd         - Print working directory
+  ls          - List directory contents
+  cd [dir]    - Change directory
+  whoami      - Display current user
+  date        - Display current date and time
+  history     - Show command history
+  cat [file]  - Show file contents";
+        private const string DirectoryListing = @"Documents/  Downloads/  Pictures/  Music/  Videos/
+config.ini  readme.md   .bashrc   .hidden";
 
         public TerminalService()
         {
             _commands = new Dictionary<string, Func<TerminalSession, string[], string>>(StringComparer.OrdinalIgnoreCase)
             {
-                ["help"] = (session, args) => GetHelpText(),
+                ["help"] = (session, args) => HelpText,
                 ["clear"] = (session, args) => string.Empty, // Clear is handled differently in the view
                 ["echo"] = (session, args) => string.Join(" ", args, 1, Math.Max(0, args.Length - 1)),
                 ["pwd"] = (session, args) => session.CurrentDirectory,
-                ["ls"] = (session, args) => ListDirectory(session, args),
+                ["ls"] = (session, args) => DirectoryListing,
                 ["cd"] = (session, args) => ChangeDirectory(session, args),
                 ["whoami"] = (session, args) => "echo",
                 ["date"] = (session, args) => DateTime.Now.ToString(),
                 ["history"] = (session, args) => GetHistory(session),
-                ["cat"] = (session, args) => ShowFileContents(session, args)
+                ["cat"] = (session, args) => ShowFileContents(args)
             };
         }
 
@@ -77,29 +90,7 @@ namespace Project_Echo.Services
             return response;
         }
 
-        private string GetHelpText()
-        {
-            return @"Available commands:
-  help        - Display this help message
-  clear       - Clear the terminal screen
-  echo [text] - Display a line of text
-  pwd         - Print working directory
-  ls          - List directory contents
-  cd [dir]    - Change directory
-  whoami      - Display current user
-  date        - Display current date and time
-  history     - Show command history
-  cat [file]  - Show file contents";
-        }
-
-        private string ListDirectory(TerminalSession session, string[] args)
-        {
-            // In a real implementation, this would list actual directory contents
-            return @"Documents/  Downloads/  Pictures/  Music/  Videos/
-config.ini  readme.md   .bashrc   .hidden";
-        }
-
-        private string ChangeDirectory(TerminalSession session, string[] args)
+        private static string ChangeDirectory(TerminalSession session, string[] args)
         {
             if (args.Length < 2)
             {
@@ -131,7 +122,7 @@ config.ini  readme.md   .bashrc   .hidden";
             }
             
             // Simulate directory change (in a real implementation, would validate the directory exists)
-            if (newDir.StartsWith("/"))
+            if (newDir.StartsWith('/'))
             {
                 session.CurrentDirectory = newDir;
             }
@@ -143,7 +134,7 @@ config.ini  readme.md   .bashrc   .hidden";
             return $"Changed directory to {session.CurrentDirectory}";
         }
 
-        private string GetHistory(TerminalSession session)
+        private static string GetHistory(TerminalSession session)
         {
             if (session.History.Count == 0)
             {
@@ -159,7 +150,7 @@ config.ini  readme.md   .bashrc   .hidden";
             return string.Join(Environment.NewLine, lines);
         }
 
-        private string ShowFileContents(TerminalSession session, string[] args)
+        private static string ShowFileContents(string[] args)
         {
             if (args.Length < 2)
             {

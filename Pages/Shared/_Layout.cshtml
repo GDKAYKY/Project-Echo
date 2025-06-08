@@ -52,7 +52,7 @@
         </a>
         
         <!-- DOCUMENTATION -->
-        <a href="/Documentation" class="sidebar-link @(currentPage == "/Documentation" ? "active" : "")">
+        <a href="/Documentation" class="sidebar-link @(Project_Echo.Helpers.SidebarHelper.IsActivePage("/Documentation", Context.Request.Path.Value) ? "active" : "")">
             <div class="documentation">
                 <div class="docs-icon"></div>
             </div>
