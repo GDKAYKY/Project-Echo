@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 using Project_Echo.Models;
 
 namespace Project_Echo.Controllers
 {
-    [Route("docs")]
+    [Route("Documentation/docs")]
     public class DocumentationController : Controller
     {
         private readonly IHostEnvironment _environment;
@@ -47,22 +42,75 @@ namespace Project_Echo.Controllers
                 NavigationLinks = GetNavigationLinks()
             };
             
-            // Pass the view model to the view
-            return View("ViewDocument", viewModel);
+            // Explicitly specify the full path to the view
+            return View("~/Views/Documentation/ViewDocument.cshtml", viewModel);
         }
 
         private List<DocumentationLink> GetNavigationLinks()
         {
             return new List<DocumentationLink>
             {
-                new DocumentationLink { Title = "Documentation Home", Url = "/index" },
-                new DocumentationLink { Title = "Getting Started", Url = "/getting-started" },
-                new DocumentationLink { Title = "User Guide", Url = "/user-guide" },
-                new DocumentationLink { Title = "Features", Url = "/features" },
-                new DocumentationLink { Title = "API Reference", Url = "/api-reference" },
-                new DocumentationLink { Title = "Deployment", Url = "/deployment" },
-                new DocumentationLink { Title = "Development", Url = "/development" },
-                new DocumentationLink { Title = "Troubleshooting", Url = "/troubleshooting" }
+                new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/docs/index" },
+                new DocumentationLink { Title = "Getting Started", Url = "/Documentation/docs/getting-started" },
+                new DocumentationLink { Title = "User Guide", Url = "/Documentation/docs/user-guide" },
+                new DocumentationLink { Title = "Features", Url = "/Documentation/docs/features" },
+                new DocumentationLink { Title = "API Reference", Url = "/Documentation/docs/api-reference" },
+                new DocumentationLink { Title = "Deployment", Url = "/Documentation/docs/deployment" },
+                new DocumentationLink { Title = "Development", Url = "/Documentation/docs/development" },
+                new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
+            };
+        }
+
+        private List<DocumentationSection> GetDocumentationSections()
+        {
+            return new List<DocumentationSection>
+            {
+                new DocumentationSection
+                {
+                    Title = "Getting Started",
+                    Links = new List<DocumentationLink>
+                    {
+                        new DocumentationLink { Title = "Introduction to ECHO", Url = "/Documentation/docs/introduction" },
+                        new DocumentationLink { Title = "Installation Guide", Url = "/Documentation/docs/installation" },
+                        new DocumentationLink { Title = "Configuration Options", Url = "/Documentation/docs/configuration" }
+                    }
+                },
+                new DocumentationSection
+                {
+                    Title = "Features",
+                    Links = new List<DocumentationLink>
+                    {
+                        new DocumentationLink { Title = "Database Search", Url = "/Documentation/docs/database-search" },
+                        new DocumentationLink { Title = "SSH Terminal", Url = "/Documentation/docs/ssh-terminal" },
+                        new DocumentationLink { Title = "Remote Desktop", Url = "/Documentation/docs/remote-desktop" },
+                        new DocumentationLink { Title = "Network Management", Url = "/Documentation/docs/network-management" }
+                    }
+                },
+                new DocumentationSection
+                {
+                    Title = "API Reference",
+                    Links = new List<DocumentationLink>
+                    {
+                        new DocumentationLink { Title = "REST API", Url = "/Documentation/docs/rest-api" },
+                        new DocumentationLink { Title = "GraphQL Schema", Url = "/Documentation/docs/graphql-schema" },
+                        new DocumentationLink { Title = "Authentication", Url = "/Documentation/docs/authentication" }
+                    }
+                },
+                new DocumentationSection
+                {
+                    Title = "Complete Documentation",
+                    Links = new List<DocumentationLink>
+                    {
+                        new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/docs/index" },
+                        new DocumentationLink { Title = "Getting Started Guide", Url = "/Documentation/docs/getting-started" },
+                        new DocumentationLink { Title = "User Guide", Url = "/Documentation/docs/user-guide" },
+                        new DocumentationLink { Title = "Feature Reference", Url = "/Documentation/docs/features" },
+                        new DocumentationLink { Title = "API Documentation", Url = "/Documentation/docs/api-reference" },
+                        new DocumentationLink { Title = "Deployment Guide", Url = "/Documentation/docs/deployment" },
+                        new DocumentationLink { Title = "Developer Guide", Url = "/Documentation/docs/development" },
+                        new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
+                    }
+                }
             };
         }
     }

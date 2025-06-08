@@ -14,18 +14,21 @@ This guide provides information for developers working on Project ECHO, includin
 ### Getting Started
 
 1. **Clone the repository**:
-   ```
+
+   ```pt
    git clone https://github.com/yourusername/Project-Echo.git
    cd Project-Echo
    ```
 
 2. **Restore dependencies**:
-   ```
+
+   ```pt
    dotnet restore
    ```
 
 3. **Run the application**:
-   ```
+
+   ```pt
    dotnet run
    ```
 
@@ -39,7 +42,7 @@ Project ECHO follows a clean architecture approach, separating concerns into dis
 
 ### High-Level Architecture
 
-```
+```pt
 Project-Echo/
 ├── Pages/               # Razor Pages (UI)
 ├── Models/              # Data models
@@ -72,6 +75,7 @@ Project-Echo/
 - Use async/await for asynchronous operations
 
 Example:
+
 ```csharp
 /// <summary>
 /// Retrieves connection information for the specified database.
@@ -97,6 +101,7 @@ public async Task<DatabaseConnection> GetConnectionAsync(string connectionId)
 - Organize related styles together
 
 Example:
+
 ```css
 /* Block component */
 .terminal {
@@ -123,6 +128,7 @@ Example:
 - Prefer const/let over var
 
 Example:
+
 ```javascript
 // Initialize terminal connection
 const initTerminal = async (connectionId) => {
@@ -180,7 +186,7 @@ PRs should include:
 
 ### Running Tests
 
-```
+```pt
 dotnet test
 ```
 

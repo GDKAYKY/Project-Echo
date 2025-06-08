@@ -6,23 +6,27 @@
 <div class="documentation-page">
     <div class="page-container">
         <div class="documentation-viewer">
-            <div class="doc-content">
-                <div id="markdown-content">
-                    <!-- Markdown content will be rendered here -->
-                </div>
-            </div>
             <div class="doc-navigation">
+                <div class="filter-bar">
+                    <i class="fas fa-filter filter-icon"></i>
+                    <input type="text" id="filter-input" placeholder="Filtrar por título">
+                </div>
                 @foreach (var link in Model.NavigationLinks)
                 {
                     <a href="@link.Url" class="doc-nav-item">@link.Title</a>
                 }
             </div>
+            <div class="doc-content">
+                <div id="markdown-content">
+                    <!-- Markdown content will be rendered here -->
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<styles src="site.css" />
 
 @section Scripts {
-    <!-- Add Markdown parsing library -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -40,158 +44,267 @@
                     link.classList.add('active');
                 }
             });
+
+            // Filter navigation links
+            var filterInput = document.getElementById('filter-input');
+            filterInput.addEventListener('keyup', function() {
+                var filterText = filterInput.value.toLowerCase();
+                navLinks.forEach(function(link) {
+                    var linkText = link.textContent.toLowerCase();
+                    if (linkText.includes(filterText)) {
+                        link.style.display = '';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
         });
     </script>
 }
 
 <style>
-    .documentation-viewer {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: var(--spacing-responsive-lg);
-        margin-top: var(--spacing-responsive-lg);
+    :root {
+        --color-bg-dark: #000000;
+        --color-surface-dark: rgba(44, 44, 44, 0.7);
+        --color-text-light: #F0F0F0;
+        --color-text-medium: #B0B0B0;
+        --color-text-dark: #808080;
+        --color-accent-blue: #007ACC;
+        --color-border-dark: #404040;
+        --shadow-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.4);
+        --shadow-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.6);
+        --border-radius-sm: 4px;
+        --spacing-xs: 4px;
+        --spacing-sm: 8px;
+        --spacing-md: 16px;
+        --spacing-lg: 24px;
+        --font-family-sans: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+        --font-family-mono: 'Cascadia Code', 'Fira Code', 'Consolas', 'monospace';
     }
-    
-    .doc-content {
-        flex: 1;
-        background-color: var(--color-surface);
-        border-radius: var(--border-radius);
-        padding: var(--spacing-responsive-lg);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-        max-height: calc(100vh - 250px);
-    }
-    
-    .doc-navigation {
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-responsive-sm);
-    }
-    
-    .doc-nav-item {
-        padding: var(--spacing-responsive-sm);
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        border-radius: var(--border-radius);
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    
-    .doc-nav-item:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: var(--color-text-primary);
-    }
-    
-    .doc-nav-item.active {
-        background-color: rgba(255, 255, 255, 0.15);
-        color: var(--color-text-primary);
-        font-weight: 500;
-    }
-    
-    /* Markdown content styling */
-    #markdown-content {
-        color: var(--color-text-secondary);
+
+    body {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        font-family: var(--font-family-sans);
         line-height: 1.6;
     }
-    
+
+    .documentation-page {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .page-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-md);
+    }
+
+    .documentation-viewer {
+        display: flex;
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+    }
+
+    .doc-navigation {
+        width: 280px;
+        flex-shrink: 0;
+        background-color: var(--color-surface-dark);
+        backdrop-filter: blur(8px);
+        border-radius: var(--border-radius-sm);
+        box-shadow: var(--shadow-elevation-1);
+        padding: var(--spacing-md) var(--spacing-sm);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: calc(100vh - 100px); /* Adjust based on header height */
+    }
+
+    .filter-bar {
+        display: flex;
+        align-items: center;
+        background-color: var(--color-bg-dark);
+        border-radius: var(--border-radius-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--color-border-dark);
+    }
+
+    .filter-bar input {
+        flex: 1;
+        background: none;
+        border: none;
+        color: var(--color-text-light);
+        padding: 0;
+        margin-left: var(--spacing-sm);
+        outline: none;
+        font-size: 0.9em;
+    }
+
+    .filter-bar input::placeholder {
+        color: var(--color-text-dark);
+    }
+
+    .filter-icon {
+        color: var(--color-text-dark);
+        font-size: 0.9em;
+    }
+
+    .doc-nav-item {
+        padding: var(--spacing-sm) var(--spacing-md);
+        color: var(--color-text-medium);
+        text-decoration: none;
+        border-radius: var(--border-radius-sm);
+        transition: background-color 0.2s ease, color 0.2s ease;
+        font-size: 0.95em;
+    }
+
+    .doc-nav-item:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: var(--color-text-light);
+    }
+
+    .doc-nav-item.active {
+        background-color: var(--color-accent-blue);
+        color: #FFFFFF;
+        font-weight: 600;
+        box-shadow: var(--shadow-elevation-1);
+    }
+
+    .doc-content {
+        flex: 1;
+        background-color: var(--color-surface-dark);
+        backdrop-filter: blur(8px);
+        border-radius: var(--border-radius-sm);
+        box-shadow: var(--shadow-elevation-2);
+        padding: var(--spacing-lg);
+        overflow-y: auto;
+        max-height: calc(100vh - 100px); /* Adjust based on header height */
+    }
+
+    /* Markdown content styling */
+    #markdown-content {
+        color: var(--color-text-light);
+        line-height: 1.8;
+        font-size: 1.05em;
+    }
+
     #markdown-content h1,
     #markdown-content h2,
     #markdown-content h3,
     #markdown-content h4,
     #markdown-content h5,
     #markdown-content h6 {
-        color: var(--color-text-primary);
-        margin-top: var(--spacing-responsive-md);
-        margin-bottom: var(--spacing-responsive-sm);
+        color: var(--color-text-light);
+        margin-top: var(--spacing-lg);
+        margin-bottom: var(--spacing-sm);
+        line-height: 1.2;
     }
-    
+
     #markdown-content h1 {
-        font-size: 2.2rem;
-        border-bottom: 1px solid var(--color-border);
-        padding-bottom: var(--spacing-responsive-sm);
+        font-size: 2.4em;
+        border-bottom: 1px solid var(--color-border-dark);
+        padding-bottom: var(--spacing-sm);
     }
-    
+
     #markdown-content h2 {
-        font-size: 1.8rem;
-        border-bottom: 1px solid var(--color-border);
-        padding-bottom: var(--spacing-responsive-xs);
+        font-size: 2em;
+        border-bottom: 1px solid var(--color-border-dark);
+        padding-bottom: var(--spacing-xs);
     }
-    
+
     #markdown-content h3 {
-        font-size: 1.5rem;
+        font-size: 1.6em;
     }
-    
+
     #markdown-content h4 {
-        font-size: 1.3rem;
+        font-size: 1.3em;
     }
-    
+
     #markdown-content p {
-        margin-bottom: var(--spacing-responsive-md);
+        margin-bottom: var(--spacing-md);
     }
-    
+
     #markdown-content ul,
     #markdown-content ol {
-        margin-bottom: var(--spacing-responsive-md);
-        padding-left: var(--spacing-responsive-md);
+        margin-bottom: var(--spacing-md);
+        padding-left: var(--spacing-lg);
     }
-    
+
     #markdown-content li {
-        margin-bottom: var(--spacing-responsive-xs);
+        margin-bottom: var(--spacing-xs);
     }
-    
+
     #markdown-content code {
         font-family: var(--font-family-mono);
         background-color: rgba(0, 0, 0, 0.3);
-        padding: 2px 5px;
-        border-radius: 3px;
+        padding: 2px 6px;
+        border-radius: var(--border-radius-sm);
+        font-size: 0.9em;
     }
-    
+
     #markdown-content pre {
-        background-color: rgba(0, 0, 0, 0.3);
-        padding: var(--spacing-responsive-md);
-        border-radius: var(--border-radius);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-sm);
         overflow-x: auto;
-        margin-bottom: var(--spacing-responsive-md);
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--color-border-dark);
     }
-    
+
     #markdown-content pre code {
         background-color: transparent;
         padding: 0;
     }
-    
+
     #markdown-content a {
-        color: #4dabf7;
+        color: var(--color-accent-blue);
         text-decoration: none;
+        transition: color 0.2s ease;
     }
-    
+
     #markdown-content a:hover {
         text-decoration: underline;
+        color: #60BFFF;
     }
-    
+
     #markdown-content blockquote {
-        border-left: 4px solid var(--color-border);
-        padding-left: var(--spacing-responsive-md);
+        border-left: 4px solid var(--color-accent-blue);
+        padding-left: var(--spacing-md);
         margin-left: 0;
-        margin-bottom: var(--spacing-responsive-md);
-        color: var(--color-text-muted);
+        margin-bottom: var(--spacing-md);
+        color: var(--color-text-dark);
+        background-color: rgba(0, 122, 204, 0.1); /* Light blue background for quotes */
+        border-radius: var(--border-radius-sm);
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
     }
-    
+
     #markdown-content table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: var(--spacing-responsive-md);
+        margin-bottom: var(--spacing-md);
+        box-shadow: var(--shadow-elevation-1);
+        border-radius: var(--border-radius-sm);
+        overflow: hidden; /* Ensures rounded corners */
     }
-    
+
     #markdown-content th,
     #markdown-content td {
-        border: 1px solid var(--color-border);
-        padding: var(--spacing-responsive-sm);
+        border: 1px solid var(--color-border-dark);
+        padding: var(--spacing-sm) var(--spacing-md);
+        text-align: left;
     }
-    
+
     #markdown-content th {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        font-weight: 600;
     }
-    
+
+    #markdown-content tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.1); /* Subtle stripe for table rows */
+    }
+
     /* Responsive adjustments */
     @@media (max-width: 768px) {
         .documentation-viewer {
@@ -201,19 +314,24 @@
         .doc-navigation {
             width: 100%;
             order: -1;
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin-bottom: var(--spacing-responsive-md);
+            max-height: 250px; /* Limit height on mobile */
         }
         
+        .filter-bar {
+            margin-bottom: var(--spacing-sm);
+        }
+
         .doc-nav-item {
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
+            padding: var(--spacing-xs) var(--spacing-md);
+            text-align: left;
         }
         
         .doc-content {
             max-height: none;
+        }
+
+        .page-container {
+            padding: 0 var(--spacing-sm);
         }
     }
 </style> 
