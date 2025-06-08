@@ -7,12 +7,14 @@
 <div class="documentation-page">
     <div class="page-container">
         <div class="breadcrumb-path">
-            <span>Learn</span> / <span>.NET</span> / <span>Azure</span> / <span>Migrar seu aplicativo Web .NET ou serviço para o Serviço de Aplicativo do Azure</span>
+            <span>Documentation</span><span>@Model.DocumentTitle</span>
         </div>
         <div class="documentation-viewer">
             <div class="doc-navigation">
                 <div class="filter-bar">
-                    <i class="fas fa-filter filter-icon"></i>
+                    <svg class="filter-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
                     <input type="text" id="filter-input" placeholder="Filtrar por título">
                 </div>
                 @foreach (var link in Model.NavigationLinks)
@@ -138,13 +140,21 @@
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        max-height: calc(100vh - 100px); /* Adjust based on header height */
+        max-height: calc(100vh - 100px);
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    .doc-navigation::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
     }
 
     .filter-bar {
         display: flex;
         align-items: center;
-        background-color: var(--color-bg-dark);
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         border-radius: var(--border-radius-sm);
         padding: var(--spacing-xs) var(--spacing-sm);
         margin-bottom: var(--spacing-md);
@@ -200,7 +210,13 @@
         box-shadow: var(--shadow-elevation-2);
         padding: var(--spacing-lg);
         overflow-y: auto;
-        max-height: calc(100vh - 100px); /* Adjust based on header height */
+        max-height: calc(100vh - 100px);
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    .doc-content::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
     }
 
     /* Markdown content styling */
@@ -361,5 +377,36 @@
             padding: var(--spacing-sm);
             font-size: 0.85em;
         }
+    }
+
+    /* Custom Scrollbar Styling */
+    .doc-navigation::-webkit-scrollbar,
+    .doc-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .doc-navigation::-webkit-scrollbar-track,
+    .doc-content::-webkit-scrollbar-track {
+        background: var(--color-surface-dark);
+        border-radius: 4px;
+    }
+
+    .doc-navigation::-webkit-scrollbar-thumb,
+    .doc-content::-webkit-scrollbar-thumb {
+        background: var(--color-accent-blue);
+        border-radius: 4px;
+        transition: background 0.2s ease;
+    }
+
+    .doc-navigation::-webkit-scrollbar-thumb:hover,
+    .doc-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Firefox scrollbar styling */
+    .doc-navigation,
+    .doc-content {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent-blue) var(--color-surface-dark);
     }
 </style> 

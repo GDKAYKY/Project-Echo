@@ -14,14 +14,13 @@ namespace Project_Echo.Helpers
         private static readonly List<SidebarLinkInfo> _sidebarLinks =
         [
             // Place more specific paths first, especially for documentation
-            new SidebarLinkInfo { Href = "/Documentation/docs/", DividerSelectors = [".dividers .line-5", ".dividers .line-6"] },
             new SidebarLinkInfo { Href = "/Documentation", DividerSelectors = [".dividers .line-5", ".dividers .line-6"] },
             new SidebarLinkInfo { Href = "/Terminal", DividerSelectors = [".dividers .line-3", ".dividers .line-4"] },
             new SidebarLinkInfo { Href = "/RemoteAccess", DividerSelectors = [".dividers .line-4", ".dividers .line-5"] },
             new SidebarLinkInfo { Href = "/Network", DividerSelectors = [".dividers .line-6", ".dividers .line-7"] },
             new SidebarLinkInfo { Href = "/Index", DividerSelectors = [".dividers .line-2", ".dividers .line-3"] },
-            new SidebarLinkInfo { Href = "/", DividerSelectors = [".dividers .line-3"] }
-        ];
+            new SidebarLinkInfo { Href = "/", DividerSelectors = [".dividers .line-3", ".dividers .line-2"] }
+        ];  
 
         /// <summary>
         /// Determines if a given sidebar link's Href is active based on the current page path.
@@ -50,12 +49,12 @@ namespace Project_Echo.Helpers
 
             // 3. Special handling for documentation links (both general /documentation and specific /documentation/docs)
             // If the sidebar link is related to documentation, check if the current path falls within the docs section.
-            if (sidebarHref == "/documentation" || sidebarHref == "/documentation/docs")
+            if (sidebarHref?.ToLowerInvariant() == "/documentation")
             {
-                // Activates if the current path is /documentation, /docs, or starts with /docs/
+                // Activates if the current path is /documentation, /documentation/docs, or starts with /documentation/docs/
                 return currentPath == "/documentation" || 
-                       currentPath == "/docs" || 
-                       currentPath.StartsWith("/docs/");
+                       currentPath == "/documentation/docs" || 
+                       currentPath.StartsWith("/documentation/docs/");
             }
 
             return false;
@@ -74,9 +73,15 @@ namespace Project_Echo.Helpers
 
             // Find the active link based on the IsActivePage logic
             var activeLink = _sidebarLinks.FirstOrDefault(link => IsActivePage(link.Href, normalizedPath));
-            if (activeLink != null && (activeLink.Href == "/Documentation/docs/" || activeLink.Href == "/Documentation"))
+
+            // Special handling for documentation pages
+            if (activeLink != null && (activeLink.Href?.ToLowerInvariant() == "/documentation" || 
+                normalizedPath.StartsWith("/documentation/docs/")))
+            {
+                activeLink.DividerSelectors = [".dividers .line-5", ".dividers .line-6"];
+            }
             // Special handling for the line-1 divider for the root/index page
-            if (activeLink != null && (activeLink.Href == "/" || activeLink.Href == "/Index"))
+            else if (activeLink != null && (activeLink.Href == "/" || activeLink.Href == "/Index"))
             {
                 if (activeLink.DividerSelectors == null)
                 {
