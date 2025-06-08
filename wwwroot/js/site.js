@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '/Index': ['.dividers .line-2', '.dividers .line-3'],
         '/Terminal': ['.dividers .line-3', '.dividers .line-4'],
         '/RemoteAccess': ['.dividers .line-4', '.dividers .line-5'],
-        '/Documentation': ['.dividers .line-5', '.dividers .line-6'],
         '/Network': ['.dividers .line-6', '.dividers .line-7']
     };
     
