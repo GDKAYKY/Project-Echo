@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Project_Echo.Helpers
 {
     public class SidebarLinkInfo
@@ -49,7 +46,7 @@ namespace Project_Echo.Helpers
 
             // 3. Special handling for documentation links (both general /documentation and specific /documentation/docs)
             // If the sidebar link is related to documentation, check if the current path falls within the docs section.
-            if (sidebarHref?.ToLowerInvariant() == "/documentation")
+            if (string.Equals(sidebarHref, "/documentation", StringComparison.OrdinalIgnoreCase))
             {
                 // Activates if the current path is /documentation, /documentation/docs, or starts with /documentation/docs/
                 return currentPath == "/documentation" || 
@@ -78,7 +75,8 @@ namespace Project_Echo.Helpers
             if (activeLink != null && (activeLink.Href?.ToLowerInvariant() == "/documentation" || 
                 normalizedPath.StartsWith("/documentation/docs/")))
             {
-                activeLink.DividerSelectors = [".dividers .line-5", ".dividers .line-6"];
+                // Ensure we have a new list of divider selectors for documentation
+                activeLink.DividerSelectors = new List<string> { ".dividers .line-5", ".dividers .line-6" };
             }
             // Special handling for the line-1 divider for the root/index page
             else if (activeLink != null && (activeLink.Href == "/" || activeLink.Href == "/Index"))

@@ -86,6 +86,16 @@
     transition: background-color 0.2s ease;
   }
   
+  .line-1.active,
+  .line-2.active,
+  .line-3.active,
+  .line-4.active,
+  .line-5.active,
+  .line-6.active,
+  .line-7.active {
+    background-color: color(text-primary);
+  }
+  
   .line-2 { top: 64px; }
   .line-3 { top: 64px; }
   .line-4 { top: 128px; }
