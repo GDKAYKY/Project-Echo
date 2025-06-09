@@ -76,8 +76,8 @@
   .line-3,
   .line-4,
   .line-5,
-  .line-6,
-  .line-7 {
+  .line-6
+   {
     position: absolute;
     right: 0;
     width: $sidebar-width;
@@ -91,17 +91,16 @@
   .line-3.active,
   .line-4.active,
   .line-5.active,
-  .line-6.active,
-  .line-7.active {
-    background-color: color(text-primary);
+  .line-6.active
+   {
+    background-color: #FFFFFF !important;
   }
   
   .line-2 { top: 64px; }
-  .line-3 { top: 64px; }
-  .line-4 { top: 128px; }
-  .line-5 { top: 192px; }
-  .line-6 { top: 256px; }
-  .line-7 { top: 320px; }
+  .line-3 { top: 128px; }
+  .line-4 { top: 192px; }
+  .line-5 { top: 256px; }
+  .line-6 { top: 320px; }
 }
 
 // Main Content

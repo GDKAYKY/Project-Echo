@@ -8,15 +8,15 @@ namespace Project_Echo.Helpers
 
     public static class SidebarHelper
     {
-        private static readonly List<SidebarLinkInfo> _sidebarLinks =
+        private readonly static List<SidebarLinkInfo> _sidebarLinks =
         [
-            // Place more specific paths first, especially for documentation
-            new SidebarLinkInfo { Href = "/Documentation", DividerSelectors = [".dividers .line-5", ".dividers .line-6"] },
-            new SidebarLinkInfo { Href = "/Terminal", DividerSelectors = [".dividers .line-3", ".dividers .line-4"] },
-            new SidebarLinkInfo { Href = "/RemoteAccess", DividerSelectors = [".dividers .line-4", ".dividers .line-5"] },
-            new SidebarLinkInfo { Href = "/Network", DividerSelectors = [".dividers .line-6", ".dividers .line-7"] },
-            new SidebarLinkInfo { Href = "/Index", DividerSelectors = [".dividers .line-2", ".dividers .line-3"] },
-            new SidebarLinkInfo { Href = "/", DividerSelectors = [".dividers .line-3", ".dividers .line-2"] }
+            // Ordered by appearance in the sidebar (top to bottom)
+            new SidebarLinkInfo { Href = "/", DividerSelectors = [".dividers .line-1", ".dividers .line-2"] }, // Home/Root (line-1 is top, line-2 is below Database Search)
+            new SidebarLinkInfo { Href = "/Index", DividerSelectors = [".dividers .line-2", ".dividers .line-3"] }, // Database Search
+            new SidebarLinkInfo { Href = "/Terminal", DividerSelectors = [".dividers .line-2", ".dividers .line-3"] }, // Terminal
+            new SidebarLinkInfo { Href = "/RemoteAccess", DividerSelectors = [".dividers .line-3", ".dividers .line-4"] }, // Remote Access
+            new SidebarLinkInfo { Href = "/Documentation", DividerSelectors = [".dividers .line-4", ".dividers .line-5"] }, // Documentation
+            new SidebarLinkInfo { Href = "/Network", DividerSelectors = [".dividers .line-6", ".dividers .line-5"] } // Network (only line-6 as line-7 is removed)
         ];  
 
         /// <summary>
