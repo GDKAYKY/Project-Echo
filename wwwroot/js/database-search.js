@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchQuery = document.getElementById('search-query');
     const searchResults = document.getElementById('search-results');
     const databaseSelect = document.getElementById('database-select');
+    const openUploadPopupBtn = document.getElementById('open-upload-popup');
+    const uploadPopup = document.getElementById('upload-popup');
+    const closePopupBtn = uploadPopup?.querySelector('.close-popup');
 
     if (searchBtn && searchQuery && searchResults) {
         searchBtn.addEventListener('click', function() {
@@ -24,6 +27,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 fetchAndDisplayTables(databaseId);
             }
         });
+
+        // Handle popup opening and closing
+        if (openUploadPopupBtn && uploadPopup && closePopupBtn) {
+            openUploadPopupBtn.addEventListener('click', function() {
+                uploadPopup.style.display = 'flex'; // Show the popup
+            });
+
+            closePopupBtn.addEventListener('click', function() {
+                uploadPopup.style.display = 'none'; // Hide the popup
+            });
+
+            // Close popup when clicking outside the content
+            window.addEventListener('click', function(event) {
+                if (event.target === uploadPopup) {
+                    uploadPopup.style.display = 'none';
+                }
+            });
+        }
 
         async function performSearch() {
             const query = searchQuery.value.trim();

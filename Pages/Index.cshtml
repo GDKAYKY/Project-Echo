@@ -11,7 +11,39 @@
             <p class="subheading">Search Anyone,Anywhere,Anytime</p>
         </div>
 
-        <!-- Database Upload Section -->
+        <!-- Upload Database Button in Header -->
+        <div class="header-buttons">
+            
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-area">
+            <div class="database-select">
+                <select id="database-select" required>
+                    <option value="">Select Database</option>
+                    @foreach (var conn in Model.ViewModel.Connections)
+                    {
+                        <option value="@conn.Id">@conn.Name (@conn.Type)</option>
+                    }
+                </select>
+            </div>
+            <div class="search-input">
+                <input type="text" id="search-query" placeholder="Enter SQL query...">
+            </div>
+            <div class="search-button">
+                <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
+            </div>
+        </div>
+        <div class="search-results" id="search-results" style="display: none;">
+            <!-- Results will be populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Upload Database Popup Structure -->
+<div id="upload-popup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
         <div class="database-upload-section">
             <h2>Upload Database</h2>
             <form method="post" enctype="multipart/form-data" class="upload-form">
@@ -42,28 +74,6 @@
                     <button type="submit" class="upload-btn">Upload Database<span class="underscore">_</span></button>
                 </div>
             </form>
-        </div>
-
-        <!-- Search Section -->
-        <div class="search-area">
-            <div class="database-select">
-                <select id="database-select" required>
-                    <option value="">Select Database</option>
-                    @foreach (var conn in Model.ViewModel.Connections)
-                    {
-                        <option value="@conn.Id">@conn.Name (@conn.Type)</option>
-                    }
-                </select>
-            </div>
-            <div class="search-input">
-                <input type="text" id="search-query" placeholder="Enter SQL query...">
-            </div>
-            <div class="search-button">
-                <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
-            </div>
-        </div>
-        <div class="search-results" id="search-results" style="display: none;">
-            <!-- Results will be populated by JavaScript -->
         </div>
     </div>
 </div>

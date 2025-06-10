@@ -1,10 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Project_Echo.Models;
 using Project_Echo.Services;
-using System.Data;
-using System.Data.Common;
 
 namespace Project_Echo.Controllers
 {
