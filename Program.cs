@@ -1,4 +1,7 @@
 using Project_Echo.Services.Navigation;
+using Project_Echo.Services;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 // Make the program async
 await Main();
@@ -12,7 +15,9 @@ async Task Main()
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
     // Add services to the container.
-    builder.Services.AddRazorPages();
+    builder.Services.AddRazorPages()
+        .AddRazorRuntimeCompilation();
+
     // Add support for controllers
     builder.Services.AddControllersWithViews();
 
@@ -29,8 +34,28 @@ async Task Main()
 
     builder.Services.AddScoped<ISidebarService, SidebarService>();
 
-    var app = builder.Build();
+    // Configure file upload size limits
+    builder.Services.Configure<IISServerOptions>(options =>
+    {
+        options.MaxRequestBodySize = 300 * 1024 * 1024; // 300 MB
+    });
 
+    builder.Services.Configure<KestrelServerOptions>(options =>
+    {
+        options.Limits.MaxRequestBodySize = 300 * 1024 * 1024; // 300 MB
+    });
+
+    builder.Services.Configure<FormOptions>(options =>
+    {
+        options.MultipartBodyLengthLimit = 300 * 1024 * 1024; // 300 MB
+    });
+
+    // Register database service
+    builder.Services.AddScoped<IDatabaseService, DatabaseService>();
+    builder.Services.AddScoped<IDatabaseQueryService, DatabaseQueryService>();
+    builder.Services.AddScoped<IDatabaseTypeDetector, DatabaseTypeDetector>();
+
+    var app = builder.Build();
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())

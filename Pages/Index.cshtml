@@ -10,40 +10,60 @@
             <h1>Database Search<span class="underscore">_</span></h1>
             <p class="subheading">Search Anyone,Anywhere,Anytime</p>
         </div>
+
+        <!-- Database Upload Section -->
+        <div class="database-upload-section">
+            <h2>Upload Database</h2>
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                <div class="form-group">
+                    <label for="dbName">Database Name</label>
+                    <input type="text" id="dbName" name="UploadModel.Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dbType">Database Type</label>
+                    <select id="dbType" name="UploadModel.Type" required>
+                        <option value="">Select Database Type</option>
+                        <option value="MySQL">MySQL</option>
+                        <option value="PostgreSQL">PostgreSQL</option>
+                        <option value="SQLServer">SQL Server</option>
+                        <option value="Oracle">Oracle</option>
+                        <option value="SQLite">SQLite</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dbFile">Database File</label>
+                    <input type="file" id="dbFile" name="UploadModel.DatabaseFile" accept=".db,.sql,.bak,.dmp">
+                </div>
+                <div class="form-group">
+                    <label for="connectionString">Connection String (Optional)</label>
+                    <input type="text" id="connectionString" name="UploadModel.ConnectionString" placeholder="Server=localhost;Database=mydb;...">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="upload-btn">Upload Database<span class="underscore">_</span></button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Search Section -->
         <div class="search-area">
+            <div class="database-select">
+                <select id="database-select" required>
+                    <option value="">Select Database</option>
+                    @foreach (var conn in Model.ViewModel.Connections)
+                    {
+                        <option value="@conn.Id">@conn.Name (@conn.Type)</option>
+                    }
+                </select>
+            </div>
             <div class="search-input">
-                <input type="text" id="search-query" placeholder="Enter search query...">
+                <input type="text" id="search-query" placeholder="Enter SQL query...">
             </div>
             <div class="search-button">
                 <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
             </div>
         </div>
         <div class="search-results" id="search-results" style="display: none;">
-            <h2>Search Results</h2>
-            <div class="result-item">
-                <div class="result-title">John Doe</div>
-                <div class="result-details">
-                    <p><strong>Location:</strong> New York, USA</p>
-                    <p><strong>Last Seen:</strong> Today, 10:45 AM</p>
-                    <p><strong>Status:</strong> Active</p>
-                </div>
-            </div>
-            <div class="result-item">
-                <div class="result-title">Jane Smith</div>
-                <div class="result-details">
-                    <p><strong>Location:</strong> London, UK</p>
-                    <p><strong>Last Seen:</strong> Yesterday, 03:22 PM</p>
-                    <p><strong>Status:</strong> Inactive</p>
-                </div>
-            </div>
-            <div class="result-item">
-                <div class="result-title">Robert Johnson</div>
-                <div class="result-details">
-                    <p><strong>Location:</strong> Tokyo, Japan</p>
-                    <p><strong>Last Seen:</strong> 2023-04-18, 08:15 AM</p>
-                    <p><strong>Status:</strong> Active</p>
-                </div>
-            </div>
+            <!-- Results will be populated by JavaScript -->
         </div>
     </div>
 </div>

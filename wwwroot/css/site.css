@@ -1,0 +1,129 @@
+/* Database Upload Section */
+.database-upload-section {
+    background: var(--background-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.database-upload-section h2 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.upload-form label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.upload-form input[type="text"],
+.upload-form select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.upload-form input[type="file"] {
+    padding: 8px 0;
+    color: var(--text-primary);
+}
+
+.upload-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+}
+
+.upload-btn:hover {
+    background: var(--accent-color-hover);
+}
+
+.upload-btn .underscore {
+    color: var(--accent-color-light);
+}
+
+/* Database Selection */
+.database-select {
+    margin-bottom: 15px;
+}
+
+.database-select select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Results Table */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--background-primary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.results-table th,
+.results-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.results-table th {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.results-table tr:hover {
+    background: var(--background-hover);
+}
+
+.results-table td {
+    color: var(--text-secondary);
+}
+
+/* Execution Info */
+.execution-info {
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--background-secondary);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.execution-info p {
+    margin: 5px 0;
+} 
