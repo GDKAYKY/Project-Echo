@@ -94,8 +94,6 @@
     cursor: pointer;
 }
 
-
-
 /* Results Table */
 .results-table {
     font-family: 'Jetbrains Mono', sans-serif;
@@ -131,8 +129,6 @@
     color: var(--text-primary);
 }   
 
-
-
 /* Execution Info */
 .execution-info {
     margin-top: 15px;
@@ -145,4 +141,43 @@
 
 .execution-info p {
     margin: 5px 0;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--color-surface-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* Overlay quando sidebar está ativa */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
 } 

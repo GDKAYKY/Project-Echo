@@ -58,12 +58,75 @@ a:hover {
 }
 
 .header {
-    height: 64px;
-    position: absolute;
-    background: #1e1e1e;
-    z-index: 10;
     display: flex;
     align-items: center;
+    padding: 15px 20px;
+    background: var(--color-surface-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1000;
+}
+
+.hamburger-menu {
+    background: var(--accent-color-light);
+    border: 0px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    height: 20px;
+    width: 20px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu span {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu::before {
+    top: 4px;
+}
+
+.hamburger-menu::after {
+    bottom: 4px;
+}
+
+.hamburger-menu span {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Animação do menu quando ativo */
+.hamburger-menu.active::before {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.hamburger-menu.active::after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.hamburger-menu.active span {
+    opacity: 0;
+}
+
+.hamburger-menu:hover::before,
+.hamburger-menu:hover::after,
+.hamburger-menu:hover span {
+    background: var(--accent-color-hover);
 }
 
 .radar-icon {
@@ -96,17 +159,14 @@ a:hover {
     width: 64px;
     height: calc(100vh - 64px);
     left: 0;
+    visibility: hidden;
     top: 64px;
     z-index: 5;
 }
 
-.sidebar-base {
-    position: absolute;
-    width: 64px;
-    height: 100%;
-    left: 0;
-    bottom: 0;
-    background: #1e1e1e;
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .dividers .line-1,
