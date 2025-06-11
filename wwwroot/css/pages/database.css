@@ -6,6 +6,7 @@
     --border-color: #5E5E5E;
     --medium-grey: #2a2a2a;
     --light-grey: #444;
+    --color-surface-dark: rgba(20, 20, 20, 0.7);
     --accent-color: #CFCFCF;
     --accent-color-hover: #FFFFFF;
     --accent-color-light: #cfcfcf80;
@@ -13,19 +14,24 @@
 
 /* Icon Upload Button */
 .icon-upload-btn {
-    background: none;
-    color: var(--light-grey);
+    background: var(--accent-color-light);
+    margin-left: auto;
+    margin-right: 20px;
+    font-display: none;
     border-bottom: 2px solid var(--accent-color);
     border: 0px;
     padding: 10px 15px;
-    font-size: 1.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
-    position: relative;
-    size: 45px; /* Ensure it's a perfect circle */
     display: flex;
-    justify-content: center;
+    height: 20px;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    box-sizing: content-box;
+    width: 20px;
     align-items: center;
+    mask-image: url("../images/database-upload.svg");
 }
 
 .icon-upload-btn:hover {
@@ -38,7 +44,7 @@
     position: fixed;
     z-index: 1000;
     left: 0;
-    top: 100%-64px;
+    top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -55,10 +61,8 @@
 }
 
 .popup-content {
-    background: var(--search-background);
     margin: auto;
     padding: 20px;
-    border: 1px solid var(--search-border);
     border-radius: 8px;
     width: 80%;
     max-width: 500px;
@@ -90,14 +94,20 @@
     cursor: pointer;
 }
 
+
+
 /* Results Table */
 .results-table {
+    font-family: 'Jetbrains Mono', sans-serif;
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background: var(--dark-grey);
-    border-radius: 4px;
-    overflow: hidden;
+    border: 1px solid var(--border-color);
+    overflow: auto;
+    background-color: var(--color-surface-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
 }
 
 .results-table th,
@@ -114,11 +124,11 @@
 }
 
 .results-table tr:hover {
-    background: var(--background-hover);
+    background: var(--light-grey);
 }
 
 .results-table td {
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }   
 
 

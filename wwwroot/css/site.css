@@ -58,16 +58,12 @@ a:hover {
 }
 
 .header {
-    position: absolute;
     height: 64px;
-    left: 0;
-    right: 0;
-    top: 0;
+    position: absolute;
     background: #1e1e1e;
     z-index: 10;
     display: flex;
     align-items: center;
-    padding-inline: clamp(16px, 3vw, 32px);
 }
 
 .radar-icon {
@@ -295,18 +291,6 @@ a:hover {
     transition: background-color .2s ease;
     cursor: pointer;
     top: 0;
-}
-
-.database-search-icon {
-    position: static;
-    width: 32px;
-    height: 32px;
-    background: #7e7e7e;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    transition: background-color .2s ease;
-    mask-image: url("../images/database-search-icon.svg");
 }
 
 .ssh-terminal {
