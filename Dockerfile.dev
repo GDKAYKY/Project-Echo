@@ -1,0 +1,29 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0
+
+WORKDIR /app
+
+# Create directory for Data Protection keys
+RUN mkdir -p /root/.aspnet/DataProtection-Keys
+
+# Configure NuGet
+ENV NUGET_PACKAGES=/root/.nuget/packages
+RUN mkdir -p /root/.nuget/packages
+
+# Copy csproj and restore dependencies
+COPY ["Project-Echo.csproj", "./"]
+RUN dotnet nuget locals all --clear && \
+    dotnet restore --packages /root/.nuget/packages
+
+# Copy the rest of the code
+COPY . .
+
+# Expose ports
+EXPOSE 8080
+EXPOSE 443
+
+# Set environment variables
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:8080
+
+# Run the app with watch
+ENTRYPOINT ["dotnet", "watch", "run"] 

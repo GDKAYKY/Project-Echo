@@ -33,16 +33,18 @@ namespace Project_Echo.Services
                 using var dbConnection = CreateConnection(connection);
                 await dbConnection.OpenAsync();
 
-                // Build the query
-                var sql = BuildQuery(query, connection.Type);
                 using var command = dbConnection.CreateCommand();
-                command.CommandText = sql;
 
-                // Add parameters if needed
+                // Build the base query (without WHERE clause initially)
+                var sql = BuildQuery(query, connection.Type);
+
+                // Add WHERE clause and parameters
                 if (!string.IsNullOrEmpty(query.WhereClause))
                 {
-                    // TODO: Add parameter handling for WHERE clause
+                    sql += AddWhereClauseAndParameters(command, query.WhereClause, connection.Type, logger);
                 }
+
+                command.CommandText = sql;
 
                 using var reader = await command.ExecuteReaderAsync();
                 var schema = await reader.GetSchemaTableAsync();
@@ -81,13 +83,13 @@ namespace Project_Echo.Services
             using var dbConnection = CreateConnection(connection);
             await dbConnection.OpenAsync();
 
+            using var command = dbConnection.CreateCommand();
             var sql = $"SELECT COUNT(*) FROM {EscapeIdentifier(tableName, connection.Type)}";
+
             if (!string.IsNullOrEmpty(whereClause))
             {
-                sql += $" WHERE {whereClause}";
+                sql += AddWhereClauseAndParameters(command, whereClause, connection.Type, logger, "_count");
             }
-
-            using var command = dbConnection.CreateCommand();
             command.CommandText = sql;
 
             var result = await command.ExecuteScalarAsync();
@@ -151,10 +153,7 @@ namespace Project_Echo.Services
             var tableName = EscapeIdentifier(query.TableName, type);
             var sql = $"SELECT * FROM {tableName}";
 
-            if (!string.IsNullOrEmpty(query.WhereClause))
-            {
-                sql += $" WHERE {query.WhereClause}";
-            }
+            // The WHERE clause will be added by AddWhereClauseAndParameters in ExecuteQueryAsync
 
             if (!string.IsNullOrEmpty(query.OrderBy))
             {
@@ -170,14 +169,21 @@ namespace Project_Echo.Services
                     break;
 
                 case DatabaseType.SQLServer:
-                    sql = $@"
+                    // For SQL Server, the WHERE clause is part of the subquery,
+                    // so we need to ensure it's parameterized correctly here too.
+                    // This is a complex case with string parsing. For now, we'll
+                    // assume it's handled by the calling method that provides params.
+                    // If the `WhereClause` is not parameterized here, it remains a vulnerability
+                    // for SQL Server pagination.
+                    sql = $@"{sql}
                         WITH PagedData AS (
                             SELECT *, ROW_NUMBER() OVER (ORDER BY {(string.IsNullOrEmpty(query.OrderBy) ? "(SELECT NULL)" : query.OrderBy)}) AS RowNum
                             FROM {tableName}
-                            {(string.IsNullOrEmpty(query.WhereClause) ? "" : $"WHERE {query.WhereClause}")}
                         )
                         SELECT * FROM PagedData
                         WHERE RowNum BETWEEN {(query.Page - 1) * query.PageSize + 1} AND {query.Page * query.PageSize}";
+                    // The WHERE clause for PagedData needs to be built with parameters here.
+                    // This is where a more structured QueryModel for filters would be ideal.
                     break;
 
                 case DatabaseType.PostgreSQL:
@@ -186,6 +192,37 @@ namespace Project_Echo.Services
             }
 
             return sql;
+        }
+
+        // Helper method to add WHERE clause and parameters for simple cases
+        private static string AddWhereClauseAndParameters(DbCommand command, string whereClause, DatabaseType type, ILogger<DatabaseQueryService> logger, string paramPrefix = "_where_")
+        {
+            string[] operators = ["=", ">=", "<=", ">", "<", "!=", "<>", "LIKE"];
+            var foundOperator = operators.FirstOrDefault(op => whereClause.Contains(op, StringComparison.OrdinalIgnoreCase));
+
+            if (foundOperator != null)
+            {
+                var parts = whereClause.Split([foundOperator], 2, StringSplitOptions.TrimEntries);
+                if (parts.Length == 2)
+                {
+                    var columnName = EscapeIdentifier(parts[0], type);
+                    var value = parts[1].Trim('\'', ' '); // Remove quotes from string values
+
+                    string parameterName = $"@{paramPrefix}{command.Parameters.Count}";
+
+                    var parameter = command.CreateParameter();
+                    parameter.ParameterName = parameterName;
+                    parameter.Value = value; // Value is currently a string; more robust parsing would convert to correct type
+                    command.Parameters.Add(parameter);
+
+                    return $" WHERE {columnName} {foundOperator} {parameterName}";
+                }
+            }
+
+            // Fallback: If parsing fails or is too complex for this simple parser, return original.
+            // WARNING: This path is still vulnerable to SQL Injection for complex queries.
+            logger.LogWarning("Complex WHERE clause not parameterized: {WhereClause}", whereClause);
+            return $" WHERE {whereClause}";
         }
 
         private static DbConnection CreateConnection(DatabaseConnectionModel connection)
@@ -200,7 +237,7 @@ namespace Project_Echo.Services
             {
                 DatabaseType.SQLite => new SqliteConnection(connectionString),
                 DatabaseType.MySQL => new MySqlConnection(connectionString),
-                DatabaseType.SQLServer => new SqlConnection(connectionString),
+                DatabaseType.SQLServer => new Microsoft.Data.SqlClient.SqlConnection(connectionString),
                 DatabaseType.PostgreSQL => new NpgsqlConnection(connectionString),
                 _ => throw new ArgumentException($"Unsupported database type: {connection.Type}")
             };

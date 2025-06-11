@@ -1,16 +1,8 @@
-using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
 using Npgsql;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Project_Echo.Models;
-using System.Linq;
 
 namespace Project_Echo.Services
 {
@@ -24,15 +16,6 @@ namespace Project_Echo.Services
 
     public class DatabaseTypeDetector : IDatabaseTypeDetector
     {
-        private readonly ILogger<DatabaseTypeDetector> _logger;
-        private readonly IWebHostEnvironment _environment;
-
-        public DatabaseTypeDetector(ILogger<DatabaseTypeDetector> logger, IWebHostEnvironment environment)
-        {
-            _logger = logger;
-            _environment = environment;
-        }
-
         public async Task<DatabaseType> DetectTypeAsync(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
@@ -164,19 +147,19 @@ namespace Project_Echo.Services
             return tables;
         }
 
-        private DbConnection CreateConnection(string connectionString, DatabaseType type)
+        private static DbConnection CreateConnection(string connectionString, DatabaseType type)
         {
             return type switch
             {
                 DatabaseType.SQLite => new SqliteConnection(connectionString),
                 DatabaseType.MySQL => new MySqlConnection(connectionString),
-                DatabaseType.SQLServer => new SqlConnection(connectionString),
+                DatabaseType.SQLServer => new Microsoft.Data.SqlClient.SqlConnection(connectionString),
                 DatabaseType.PostgreSQL => new NpgsqlConnection(connectionString),
                 _ => throw new ArgumentException($"Unsupported database type: {type}")
             };
         }
 
-        private bool IsSQLiteFile(byte[] header)
+        private static bool IsSQLiteFile(byte[] header)
         {
             // SQLite files start with "SQLite format 3\0"
             var sqliteSignature = new byte[] { 0x53, 0x51, 0x4C, 0x69, 0x74, 0x65, 0x20, 0x66, 0x6F, 0x72, 0x6D, 0x61, 0x74, 0x20, 0x33, 0x00 };
@@ -184,14 +167,14 @@ namespace Project_Echo.Services
                    header.Take(sqliteSignature.Length).SequenceEqual(sqliteSignature);
         }
 
-        private bool IsMySQLFile(byte[] header)
+        private static bool IsMySQLFile(byte[] header)
         {
             // MySQL files start with a specific header
             // This is a simplified check - you might want to add more validation
             return header.Length >= 4 && header[0] == 0xFE && header[1] == 0xFE && header[2] == 0xFE && header[3] == 0xFE;
         }
 
-        private bool IsSQLServerFile(byte[] header)
+        private static bool IsSQLServerFile(byte[] header)
         {
             // SQL Server files start with a specific header
             // This is a simplified check - you might want to add more validation
@@ -200,7 +183,7 @@ namespace Project_Echo.Services
                    header[4] == 0x00 && header[5] == 0x01;
         }
 
-        private bool IsPostgreSQLFile(byte[] header)
+        private static bool IsPostgreSQLFile(byte[] header)
         {
             // PostgreSQL files start with a specific header
             // This is a simplified check - you might want to add more validation

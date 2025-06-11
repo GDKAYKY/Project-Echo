@@ -12,8 +12,8 @@ namespace Project_Echo.Services.Navigation
     {
         public List<SidebarItem> GetSidebarItems(string currentPath)
         {
-            return new List<SidebarItem>
-            {
+            return
+            [
                 new SidebarItem
                 {
                     Href = "/",
@@ -49,7 +49,7 @@ namespace Project_Echo.Services.Navigation
                     IconType = "public-icon",
                     IsActive = SidebarHelper.IsActivePage("/Network", currentPath)
                 }
-            };
+            ];
         }
     }
 } 

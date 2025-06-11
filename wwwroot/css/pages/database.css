@@ -1,0 +1,33 @@
+:root {
+    --black: #000000;
+    --dark-grey: #1E1E1E;
+    --text-primary: #FFF;
+    --text-secondary: #ddd;
+    --border-color: #5E5E5E;
+    --medium-grey: #2a2a2a;
+    --light-grey: #444;
+    --accent-color: #CFCFCF;
+    --accent-color-hover: #FFFFFF;
+    --accent-color-light: #cfcfcf80;
+}
+
+/* Icon Upload Button */
+.icon-upload-btn {
+    background: none;
+    color: var(--light-grey);
+    border-bottom: 2px solid var(--accent-color);
+    border: 0px;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+    size: 45px; /* Ensure it's a perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-upload-btn:hover {
+    color: var(--accent-color-hover);
+}

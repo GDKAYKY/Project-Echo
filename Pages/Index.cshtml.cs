@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_Echo.Models;
 using Project_Echo.Services;
-using System.ComponentModel.DataAnnotations;
 
 namespace Project_Echo.Pages
 {

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Echo.Models;
-using System.IO;
 using System.Text.Json;
 
 namespace Project_Echo.Services
@@ -15,8 +14,6 @@ namespace Project_Echo.Services
 
     public class DatabaseService : IDatabaseService
     {
-        private readonly IWebHostEnvironment _environment;
-        private readonly IConfiguration _configuration;
         private readonly string _uploadPath;
         private readonly List<DatabaseConnection> _connections = new();
         private readonly string _connectionsFilePath;
@@ -24,9 +21,7 @@ namespace Project_Echo.Services
 
         public DatabaseService(IWebHostEnvironment environment, IConfiguration configuration, ILogger<DatabaseService> logger)
         {
-            _environment = environment;
-            _configuration = configuration;
-            _uploadPath = _configuration["DatabaseStoragePath"]!;
+            _uploadPath = configuration["DatabaseStoragePath"]!;
             _connectionsFilePath = Path.Combine(_uploadPath, "connections.json");
             
             // Ensure upload directory exists
@@ -76,7 +71,7 @@ namespace Project_Echo.Services
                 switch (model.Type)
                 {
                     case DatabaseType.MySQL:
-                        builder.UseMySql(model.ConnectionString, ServerVersion.AutoDetect(model.ConnectionString));
+                        builder.UseMySql(model.ConnectionString, await ServerVersion.AutoDetectAsync(model.ConnectionString));
                         break;
                     case DatabaseType.PostgreSQL:
                         builder.UseNpgsql(model.ConnectionString);
@@ -123,7 +118,7 @@ namespace Project_Echo.Services
                 switch (connection.Type)
                 {
                     case DatabaseType.MySQL:
-                        builder.UseMySql(connection.Host, ServerVersion.AutoDetect(connection.Host));
+                        builder.UseMySql(connection.Host, await ServerVersion.AutoDetectAsync(connection.Host));
                         break;
                     case DatabaseType.PostgreSQL:
                         builder.UseNpgsql(connection.Host);
