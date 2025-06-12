@@ -17,6 +17,7 @@ html {
 }
 
 @media (min-width: 768px) {
+    
     html {
         font-size: 16px;
     }   
@@ -433,17 +434,92 @@ a:hover {
     font-weight: 500;
 }
 
+.selection-box {
+    width: 100%;
+    background-color: var(--color-surface-dark);
+    color: var(--text-secondary);
+    max-width: fit-content;
+    flex-grow: 1;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 30px 0 10px;
+    height: calc(search-input - 0px);
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 1em auto, 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.selection-box:focus {
+    outline: none;
+    border-color: #ddd;
+    box-shadow: 0 0 0 2px rgba(207, 207, 207, .3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.selection-box:focus-visible {
+    outline: 2px solid #ddd;
+    outline-offset: 2px;
+}
+
+.selection-box option {
+    background-color: var(--dark-grey);
+    color: var(--text-secondary);
+    padding: 10px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.database-select {
+    width: 100%;
+    background-color: var(--color-surface-dark);
+    color: var(--text-secondary);
+    max-width: fit-content;
+    flex-grow: 1;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 30px 0 10px;
+    height: 64px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 1em auto, 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    background: #2a2a2a;
-    border: 2px solid #444;
+    background: rgba(20, 20, 20, 0.7);
+    border: 2px solid #5E5E5E;
     border-radius: 8px;
     color: #fff;
     font-family: "Inter", sans-serif;
     font-size: 16px;
     transition: border-color .2s ease, box-shadow .2s ease;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .form-group input:focus,
@@ -473,33 +549,6 @@ a:hover {
     justify-content: flex-start;
     margin-top: 30px;
 }
-
-.selection-box {
-    width: 100%;
-    background-color: var(--color-surface-dark);
-    color: var(--text-secondary);
-    max-width: fit-content;
-    flex-grow: 1;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    padding: 0 30px 0 10px;
-    height: 77.45px;
-    font-size: 16px;
-    font-family: "Inter", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 0.7em top 50%, 0 0;
-    background-size: 1em auto, 100%;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
 .search-input {
     flex-grow: 1;
     max-width: 500px;
@@ -1040,6 +1089,10 @@ a:hover {
     .doc-link {
         transition: none;
     }
+    
+    .selection-box {
+        transition: none;
+    }
 }
 
 @media print {
@@ -1108,10 +1161,20 @@ a:hover {
     }
     
     .main-content {
-        left: 0;
+        left: 64px;
         width: 100%;
         padding-left: clamp(16px, 3vw, 32px);
         padding-right: clamp(16px, 3vw, 32px);
+    }
+
+    .popout-overlay {
+        left: 64px;
+        top: 64px;
+        margin: 64px;
+        width: 100%;
+        max-width: 1200px;
+        padding: clamp(16px, 3vw, 32px);
+        margin: 0 auto;
     }
     
     .database-search,

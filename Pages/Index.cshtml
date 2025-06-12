@@ -6,6 +6,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/pages/database.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 }
 
 <div class="database-search">
@@ -17,16 +18,16 @@
 
         <!-- Search Section -->
         <div class="search-area">
-                <select id="database-select" class="selection-box" required>
+            <div class="search-input">
+                <input type="text" id="search-query" placeholder="Enter SQL query...">
+            </div>
+            <select id="database-select" required class="database-select">
                     <option value="">Select Database</option>
                     @foreach (var conn in Model.ViewModel.Connections)
                     {
                         <option value="@conn.Id">@conn.Name (@conn.Type)</option>
                     }
-                </select>
-            <div class="search-input">
-                <input type="text" id="search-query" placeholder="Enter SQL query...">
-            </div>
+            </select>
             <div class="search-button">
                 <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
             </div>
@@ -50,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dbType">Database Type</label>
-                    <select id="dbType" name="UploadModel.Type" required>
+                    <select id="dbType" name="UploadModel.Type"required class="selection-box">
                         <option value="">Select Database Type</option>
                         <option value="MySQL">MySQL</option>
                         <option value="PostgreSQL">PostgreSQL</option>
@@ -61,7 +62,13 @@
                 </div>
                 <div class="form-group">
                     <label for="dbFile">Database File</label>
-                    <input type="file" id="dbFile" name="UploadModel.DatabaseFile" accept=".db,.sql,.bak,.dmp">
+                    <div class="drag-drop-area" id="drag-drop-area">
+                        <p>Arraste e solte o arquivo aqui, ou</p>
+                        <label for="dbFile" class="file-upload-label">
+                            <span id="file-name">Escolher arquivo</span>
+                            <input type="file" id="dbFile" name="UploadModel.DatabaseFile" accept=".db,.sql,.bak,.dmp">
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="connectionString">Connection String (Optional)</label>

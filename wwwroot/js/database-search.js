@@ -32,18 +32,73 @@ document.addEventListener('DOMContentLoaded', function() {
         if (openUploadPopupBtn && uploadPopup && closePopupBtn) {
             openUploadPopupBtn.addEventListener('click', function() {
                 uploadPopup.style.display = 'flex'; // Show the popup
+                openUploadPopupBtn.classList.add('active'); // Add active class
             });
 
             closePopupBtn.addEventListener('click', function() {
                 uploadPopup.style.display = 'none'; // Hide the popup
+                openUploadPopupBtn.classList.remove('active'); // Remove active class
             });
 
             // Close popup when clicking outside the content
             window.addEventListener('click', function(event) {
                 if (event.target === uploadPopup) {
                     uploadPopup.style.display = 'none';
+                    openUploadPopupBtn.classList.remove('active'); // Remove active class
                 }
             });
+        }
+
+        // Drag and Drop functionality
+        const dragDropArea = document.getElementById('drag-drop-area');
+        const dbFile = document.getElementById('dbFile');
+        const fileNameSpan = document.getElementById('file-name'); // Get the span for displaying file name
+
+        if (dragDropArea && dbFile && fileNameSpan) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            dragDropArea.addEventListener('drop', handleDrop, false);
+
+            // Listen for changes on the file input (e.g., when a file is selected via the button)
+            dbFile.addEventListener('change', function() {
+                if (dbFile.files.length > 0) {
+                    fileNameSpan.textContent = dbFile.files[0].name;
+                } else {
+                    fileNameSpan.textContent = 'Escolher arquivo'; // Reset if no file is selected
+                }
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            function highlight() {
+                dragDropArea.classList.add('highlight');
+            }
+
+            function unhighlight() {
+                dragDropArea.classList.remove('highlight');
+            }
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files.length > 0) {
+                    dbFile.files = files; // Assign the dropped file to the input
+                    fileNameSpan.textContent = files[0].name; // Display the dropped file name
+                }
+            }
         }
 
         async function performSearch() {
