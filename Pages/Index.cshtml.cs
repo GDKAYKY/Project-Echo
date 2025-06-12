@@ -7,8 +7,8 @@ namespace Project_Echo.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IDatabaseService _databaseService;
         private readonly ILogger<IndexModel> _logger;
+        private readonly IDatabaseService _databaseService;
 
         public IndexModel(IDatabaseService databaseService, ILogger<IndexModel> logger)
         {
@@ -21,6 +21,7 @@ namespace Project_Echo.Pages
 
         public async Task OnGetAsync()
         {
+            ViewData["ShowUploadButton"] = true;
             // Load existing database connections
             ViewModel.Connections = await _databaseService.GetConnectionsAsync();
         }

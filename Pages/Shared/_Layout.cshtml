@@ -9,9 +9,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ECHO</title>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/pages/database.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@100&display=swap" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     @{
@@ -25,7 +25,7 @@
         <a href="/" class="site-name-link">
             <div class="site-name">ECHO</div>
         </a>
-        @if (currentPage == "/Index" || currentPage == "/")
+        @if (ViewData["ShowUploadButton"] != null && (bool)ViewData["ShowUploadButton"])
         {
             <button type="button" id="open-upload-popup" class="icon-upload-btn" aria-label="Upload Database">&#x2B;</button>
         }
@@ -40,7 +40,7 @@
             <div class="sql-query">
                 <div class="database-search-icon"></div>
             </div>
-        </a>
+        </a>    
         
         <!-- SSH TERMINAL -->
         <a asp-page="/Terminal" class="sidebar-link @(currentPage == "/Terminal" ? "active" : "")">

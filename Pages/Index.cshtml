@@ -4,6 +4,10 @@
     ViewData["Title"] = "Database Search";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/database.css" asp-append-version="true" />
+}
+
 <div class="database-search">
     <div class="page-container">
         <div class="page-title">
@@ -11,22 +15,15 @@
             <p class="subheading">Search Anyone,Anywhere,Anytime</p>
         </div>
 
-        <!-- Upload Database Button in Header -->
-        <div class="header-buttons">
-            
-        </div>
-
         <!-- Search Section -->
         <div class="search-area">
-            <div class="database-select">
-                <select id="database-select" required>
+                <select id="database-select" class="selection-box" required>
                     <option value="">Select Database</option>
                     @foreach (var conn in Model.ViewModel.Connections)
                     {
                         <option value="@conn.Id">@conn.Name (@conn.Type)</option>
                     }
                 </select>
-            </div>
             <div class="search-input">
                 <input type="text" id="search-query" placeholder="Enter SQL query...">
             </div>

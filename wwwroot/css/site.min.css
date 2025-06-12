@@ -1,3 +1,17 @@
+:root {
+    --black: #000000;
+    --dark-grey: #1E1E1E;
+    --text-primary: #FFF;
+    --text-secondary: #ddd;
+    --border-color: #5E5E5E;
+    --medium-grey: #2a2a2a;
+    --light-grey: #444;
+    --color-surface-dark: rgba(20, 20, 20, 0.7);
+    --accent-color: #CFCFCF;
+    --accent-color-hover: #FFFFFF;
+    --accent-color-light: #cfcfcf80;
+}
+
 html {
     font-size: 14px;
 }
@@ -5,7 +19,7 @@ html {
 @media (min-width: 768px) {
     html {
         font-size: 16px;
-    }
+    }   
 }
 
 body {
@@ -458,6 +472,32 @@ a:hover {
     width: 100%;
     justify-content: flex-start;
     margin-top: 30px;
+}
+
+.selection-box {
+    width: 100%;
+    background-color: var(--color-surface-dark);
+    color: var(--text-secondary);
+    max-width: fit-content;
+    flex-grow: 1;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 30px 0 10px;
+    height: 77.45px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 1em auto, 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .search-input {
