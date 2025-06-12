@@ -2,6 +2,7 @@ using Project_Echo.Services.Navigation;
 using Project_Echo.Services;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
 
 // Make the program async
 await Main();
@@ -13,6 +14,11 @@ async Task Main()
     // Configure port for Render
     var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+    // Configure database storage path
+    var databaseStoragePath = Environment.GetEnvironmentVariable("DatabaseStoragePath") ?? 
+                            Path.Combine(builder.Environment.ContentRootPath, "database_storage");
+    builder.Configuration["DatabaseStoragePath"] = databaseStoragePath;
 
     // Add services to the container.
     builder.Services.AddRazorPages()
@@ -32,6 +38,7 @@ async Task Main()
         options.Cookie.IsEssential = true;
     });
 
+    // Register navigation services
     builder.Services.AddScoped<ISidebarService, SidebarService>();
 
     // Configure file upload size limits
@@ -50,10 +57,15 @@ async Task Main()
         options.MultipartBodyLengthLimit = 300 * 1024 * 1024; // 300 MB
     });
 
-    // Register database service
+    // Register database services
     builder.Services.AddScoped<IDatabaseService, DatabaseService>();
     builder.Services.AddScoped<IDatabaseQueryService, DatabaseQueryService>();
     builder.Services.AddScoped<IDatabaseTypeDetector, DatabaseTypeDetector>();
+
+    // Add logging
+    builder.Logging.ClearProviders();
+    builder.Logging.AddConsole();
+    builder.Logging.AddDebug();
 
     var app = builder.Build();
 
