@@ -11,6 +11,7 @@
     <title>@ViewData["Title"] - ECHO</title>
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@100&display=swap" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     @{
@@ -24,6 +25,10 @@
         <a href="/" class="site-name-link">
             <div class="site-name">ECHO</div>
         </a>
+        @if (ViewData["ShowUploadButton"] != null && (bool)ViewData["ShowUploadButton"])
+        {
+            <button type="button" id="open-upload-popup" class="icon-upload-btn" aria-label="Upload Database"></button>
+        }
     </div>
 
     <!-- Sidebar -->
@@ -35,7 +40,7 @@
             <div class="sql-query">
                 <div class="database-search-icon"></div>
             </div>
-        </a>
+        </a>    
         
         <!-- SSH TERMINAL -->
         <a asp-page="/Terminal" class="sidebar-link @(currentPage == "/Terminal" ? "active" : "")">

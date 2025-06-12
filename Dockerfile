@@ -5,8 +5,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["Project-Echo.csproj", "."]
-RUN dotnet restore "Project-Echo.csproj"
+COPY ["Project-Echo.csproj", "Project-Echo/"]
+WORKDIR /src/Project-Echo
+RUN dotnet restore
 COPY . .
 RUN dotnet build "Project-Echo.csproj" -c Release -o /app/build
 

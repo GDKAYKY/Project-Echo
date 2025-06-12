@@ -3,12 +3,18 @@ using Project_Echo.Models;
 
 namespace Project_Echo.Controllers
 {
-    [Route("Documentation/docs")]
+    [Route("Documentation")]
     public class DocumentationController(IHostEnvironment environment) : Controller
     {
         private readonly IHostEnvironment _environment = environment;
 
-        [HttpGet("{document?}")]
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return RedirectToAction("ViewDocument", new { document = "index" });
+        }
+
+        [HttpGet("docs/{document?}")]
         public async Task<IActionResult> ViewDocument(string document)
         {
             if (string.IsNullOrEmpty(document))

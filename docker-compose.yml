@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8443:443"
+    volumes:
+      - database_storage:/app/database_storage
+      - dataprotection_keys:/root/.aspnet/DataProtection-Keys
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseStoragePath=/app/database_storage
+    depends_on:
+      - mysql
+      - postgres
+      - sqlserver
+
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+      - "8443:443"
+    volumes:
+      - .:/app
+      - database_storage:/app/database_storage
+      - dataprotection_keys:/root/.aspnet/DataProtection-Keys
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseStoragePath=/app/database_storage
+    depends_on:
+      - mysql
+      - postgres
+      - sqlserver
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=echodb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_DB=echodb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SqlServerPassword123!
+      - MSSQL_AGENT_ENABLED=false
+      - MSSQL_PID=Developer
+      - MSSQL_TCP_PORT=1433
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    command: /opt/mssql/bin/sqlservr
+    mem_limit: 2GB
+    cpus: 2.0
+
+volumes:
+  database_storage:
+  mysql_data:
+  postgres_data:
+  sqlserver_data:
+  dataprotection_keys: 
