@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: project-echo
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: DatabaseStoragePath
+        value: /app/database_storage
+    disk:
+      name: database-storage
+      mountPath: /app/database_storage
+      sizeGB: 1 
