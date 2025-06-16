@@ -25,7 +25,7 @@
         <a href="/" class="site-name-link">
             <div class="site-name">ECHO</div>
         </a>
-        @if (ViewData["ShowUploadButton"] != null && (bool)ViewData["ShowUploadButton"])
+        @if (ViewData["ShowUploadButton"] is bool showUpload && showUpload)
         {
             <button type="button" id="open-upload-popup" class="icon-upload-btn" aria-label="Upload Database"></button>
         }

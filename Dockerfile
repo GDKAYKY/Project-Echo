@@ -8,14 +8,19 @@ WORKDIR /src
 COPY ["Project-Echo.csproj", "./"]
 RUN dotnet restore
 COPY . .
+# Copy docs to the correct location
+COPY docs/ /src/Project-Echo/docs/
 RUN dotnet build "Project-Echo.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Project-Echo.csproj" -c Release -o /app/publish
+# Ensure docs directory is included in publish
+RUN dotnet publish "Project-Echo.csproj" -c Release -o /app/publish /p:IncludeContentInSingleFile=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Copy documentation files from the build stage
+COPY --from=build /src/Project-Echo/docs /app/docs
 # Ensure docs directory exists and has correct permissions
-RUN mkdir -p /app/docs && chmod -R 755 /app/docs
+RUN chmod -R 755 /app/docs
 ENTRYPOINT ["dotnet", "Project-Echo.dll"] 

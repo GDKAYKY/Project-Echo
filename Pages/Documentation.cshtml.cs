@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_Echo.Models;
-using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace Project_Echo.Pages
 {
@@ -27,7 +25,7 @@ namespace Project_Echo.Pages
         public void OnGet()
         {
             DocViewModel.CurrentUrl = HttpContext.Request.Path;
-            DocViewModel.IsDocsSection = HttpContext.Request.Path.Value?.StartsWith("/Documentation/docs", StringComparison.OrdinalIgnoreCase) ?? false;
+            DocViewModel.IsDocsSection = HttpContext.Request.Path.Value?.StartsWith("/Documentation", StringComparison.OrdinalIgnoreCase) ?? false;
             
             DocViewModel.Sections =
             [
@@ -36,9 +34,9 @@ namespace Project_Echo.Pages
                     Title = "Getting Started",
                     Links =
                     [
-                        new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/docs/index" },
-                        new DocumentationLink { Title = "Getting Started Guide", Url = "/Documentation/docs/getting-started" },
-                        new DocumentationLink { Title = "User Guide", Url = "/Documentation/docs/user-guide" }
+                        new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/index" },
+                        new DocumentationLink { Title = "Getting Started Guide", Url = "/Documentation/getting-started" },
+                        new DocumentationLink { Title = "User Guide", Url = "/Documentation/user-guide" }
                     ]
                 },
 
@@ -47,8 +45,8 @@ namespace Project_Echo.Pages
                     Title = "Features & API",
                     Links =
                     [
-                        new DocumentationLink { Title = "Features Overview", Url = "/Documentation/docs/features" },
-                        new DocumentationLink { Title = "API Reference", Url = "/Documentation/docs/api-reference" }
+                        new DocumentationLink { Title = "Features Overview", Url = "/Documentation/features" },
+                        new DocumentationLink { Title = "API Reference", Url = "/Documentation/api-reference" }
                     ]
                 },
 
@@ -57,9 +55,9 @@ namespace Project_Echo.Pages
                     Title = "Development & Deployment",
                     Links =
                     [
-                        new DocumentationLink { Title = "Development Guide", Url = "/Documentation/docs/development" },
-                        new DocumentationLink { Title = "Deployment Guide", Url = "/Documentation/docs/deployment" },
-                        new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
+                        new DocumentationLink { Title = "Development Guide", Url = "/Documentation/development" },
+                        new DocumentationLink { Title = "Deployment Guide", Url = "/Documentation/deployment" },
+                        new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
                     ]
                 }
             ];

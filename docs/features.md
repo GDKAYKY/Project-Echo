@@ -2,142 +2,145 @@
 
 This document provides a detailed overview of Project ECHO's features.
 
-## Database Search
+## Database Management
 
-The Database Search module offers powerful SQL querying capabilities with an intuitive interface.
-
-### Key Features
-
-- Support for multiple database types (MySQL, PostgreSQL, SQL Server, Oracle, SQLite)
-- Query history with save and recall functionality
-- Syntax highlighting for SQL
-- Query results export (CSV, JSON, Excel)
-- Customizable query templates
-- Query parameter binding for safe execution
-- Database schema browser
-
-### Technical Specifications
-
-- Connection pooling for optimal performance
-- Connection encryption for secure database access
-- Transaction support
-- Query timeout configuration
-- Result set pagination
-
-## SSH Terminal
-
-The SSH Terminal provides secure shell access to remote systems directly from your browser.
+The Database Management module provides SQL querying capabilities with a modern interface.
 
 ### Key Features
 
-- Secure connections via SSH protocol
-- Support for SSH key authentication
-- Multiple simultaneous connections
-- Command history with search
-- Custom terminal themes
-- Tab completion
-- Session recording and playback
+- Support for multiple database types:
+  - MySQL
+  - PostgreSQL
+  - SQL Server
+- Query interface with syntax highlighting
+- Connection management
+- Query history
+- Basic query execution
 
 ### Technical Specifications
 
-- Full terminal emulation (xterm-compatible)
-- Support for ANSI color codes
-- Configurable terminal size
-- Connection timeout handling
-- Automatic reconnection
-- Shell environment customization
+- Connection pooling
+- Basic transaction support
+- Query timeout handling
+- Result display
+
+## Terminal Access
+
+The Terminal module provides SSH terminal access to remote systems.
+
+### Key Features
+
+- SSH terminal integration
+- Basic command execution
+- Session management
+- Output display
+- Simple command history
+
+### Technical Specifications
+
+- Basic terminal emulation
+- Connection handling
+- Session timeout management
+- Basic error handling
 
 ## Remote Access
 
-The Remote Access module enables remote desktop connections to various systems.
+The Remote Access module enables remote desktop connections.
 
 ### Key Features
 
-- Support for RDP, VNC, and proprietary protocols
-- Multi-monitor support
-- Clipboard sharing
-- File transfer capabilities
-- Session recording
-- Connection presets
-- Bandwidth optimization
+- Remote desktop connections
+- Basic system monitoring
+- Connection status display
+- Simple resource management
 
 ### Technical Specifications
 
-- Encrypted connections
-- Auto-scaling resolution
-- Color depth adjustment
-- Performance monitoring
-- Automatic reconnection
-- Configurable compression settings
+- Basic connection handling
+- Session management
+- Simple error handling
+- Connection status monitoring
 
-## Documentation
+## Network Monitoring
 
-The Documentation module provides access to comprehensive system documentation.
+The Network module provides basic network monitoring capabilities.
 
 ### Key Features
 
-- Categorized documentation library
-- Full-text search
-- Document version history
-- Interactive examples
-- PDF export
-- Code snippets with syntax highlighting
+- Network traffic visualization
+- Connection status monitoring
+- Basic performance metrics
+- Resource utilization display
 
 ### Technical Specifications
 
-- Markdown rendering
-- Documentation caching
-- Access control based on user roles
-- Automatic updates
-- Cross-referencing between documents
-
-## Network
-
-The Network module offers detailed network analysis and monitoring tools.
-
-### Key Features
-
-- Real-time network statistics
-- Traffic visualization
-- Device discovery
+- Basic network statistics
 - Connection monitoring
-- Protocol analysis
-- Network topology mapping
+- Simple alert system
+- Basic performance tracking
+
+## File Management
+
+The File Management module handles file uploads and storage.
+
+### Key Features
+
+- File upload support (up to 300MB)
+- Basic file storage
+- Simple access control
+- File download capabilities
 
 ### Technical Specifications
 
-- Support for SNMP monitoring
-- Bandwidth usage tracking
-- Latency monitoring
-- Packet capture capabilities
-- Alert system for network anomalies
-- Historical data with trend analysis
+- File size validation
+- Basic security checks
+- Storage management
+- Download handling
 
-## Cross-Cutting Features
+## User Interface
 
-### Security
+### Design
+- Modern, dark-themed interface
+- Responsive design
+- Intuitive navigation
+- Clean, minimalist layout
 
-- End-to-end encryption
-- Role-based access control
-- Two-factor authentication
-- Audit logging
-- Session timeout management
-- IP-based access restrictions
+### Features
+- Easy-to-use menus
+- Clear status indicators
+- Simple error messages
+- Basic keyboard shortcuts
 
-### User Interface
+## System Requirements
 
-- Dark theme optimized for long sessions
-- Responsive design for various screen sizes
-- Keyboard shortcuts for common operations
-- Customizable layout
-- Accessibility features
-- Localization support
+### Server
+- .NET 9.0 SDK
+- Docker support (optional)
+- Minimum 4GB RAM
+- 50MB disk space
 
-### Performance
+### Client
+- Modern web browser
+- JavaScript enabled
+- Minimum 2GB RAM
+- Stable internet connection
 
-- Asynchronous operations for responsive UI
-- Data caching
-- Optimized resource loading
-- Background processing for intensive operations
-- Connection pooling
-- Lazy loading of UI components 
+## Deployment Options
+
+### Local Development
+- Hot reload support
+- Development environment
+- Debug capabilities
+- Local database support
+
+### Docker Deployment
+- Containerized setup
+- Multi-container support
+- Production configuration
+- Development configuration
+
+### Render Deployment
+- Cloud hosting
+- Automatic scaling
+- SSL support
+- Easy deployment 

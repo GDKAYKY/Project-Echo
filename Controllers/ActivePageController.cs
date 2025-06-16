@@ -5,7 +5,7 @@ namespace Project_Echo.Controllers
     public class ActivePageController : Controller
     {
         // In a real application, this mapping would come from a dedicated document service or database.
-        private static readonly Dictionary<string, string> _documentMap = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> _documentMap = new()
         {
             { "/documentation/sampledocument", "Sample Active Page" },
             { "/documentation/anotherdocument", "Another Great Document" },

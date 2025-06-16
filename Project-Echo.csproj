@@ -29,6 +29,7 @@
   <ItemGroup>
     <Content Include="docs\**\*.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 

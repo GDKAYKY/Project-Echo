@@ -4,13 +4,13 @@ Welcome to the documentation for Project ECHO, a sophisticated web application f
 
 ## Table of Contents
 
-- [Getting Started](getting-started.md)
-- [User Guide](user-guide.md)
-- [Features](features.md)
-- [API Reference](api-reference.md)
-- [Deployment Guide](deployment.md)
-- [Development Guide](development.md)
-- [Troubleshooting](troubleshooting.md)
+- [Getting Started](/Documentation/getting-started)
+- [User Guide](/Documentation/user-guide)
+- [Features](/Documentation/features)
+- [API Reference](/Documentation/api-reference)
+- [Deployment](/Documentation/deployment)
+- [Development](/Documentation/development)
+- [Troubleshooting](/Documentation/troubleshooting)
 
 ## About Project ECHO
 

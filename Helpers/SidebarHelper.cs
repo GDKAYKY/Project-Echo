@@ -47,14 +47,11 @@ namespace Project_Echo.Helpers
                 return true;
             }
 
-            // 3. Special handling for documentation links (both general /documentation and specific /documentation/docs)
-            // If the sidebar link is related to documentation, check if the current path falls within the docs section.
+            // 3. Special handling for documentation links
             if (sidebarHref?.ToLowerInvariant() == "/documentation")
             {
-                // Activates if the current path is /documentation, /documentation/docs, or starts with /documentation/docs/
                 return currentPath == "/documentation" || 
-                       currentPath == "/documentation/docs" || 
-                       currentPath.StartsWith("/documentation/docs/");
+                       currentPath.StartsWith("/documentation/");
             }
 
             return false;
@@ -76,7 +73,7 @@ namespace Project_Echo.Helpers
 
             // Special handling for documentation pages
             if (activeLink != null && (activeLink.Href?.ToLowerInvariant() == "/documentation" || 
-                normalizedPath.StartsWith("/documentation/docs/")))
+                normalizedPath.StartsWith("/documentation/")))
             {
                 activeLink.DividerSelectors = [".dividers .line-5", ".dividers .line-6"];
             }

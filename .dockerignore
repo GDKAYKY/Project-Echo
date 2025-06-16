@@ -35,7 +35,6 @@ docker-compose*
 
 # Documentation
 README.md
-docs/
 *.md
 
 # Environment files

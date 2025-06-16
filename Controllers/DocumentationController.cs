@@ -19,10 +19,11 @@ namespace Project_Echo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            _logger.LogInformation("Documentation index requested");
             return RedirectToAction("ViewDocument", new { document = "index" });
         }
 
-        [HttpGet("docs/{document?}")]
+        [HttpGet("{document?}")]
         public async Task<IActionResult> ViewDocument(string document)
         {
             if (string.IsNullOrEmpty(document))
@@ -46,6 +47,7 @@ namespace Project_Echo.Controllers
             {
                 // Read the markdown content
                 string markdownContent = await System.IO.File.ReadAllTextAsync(docPath);
+                _logger.LogInformation("Successfully loaded documentation file: {DocPath}", docPath);
                 
                 // Create view model with initialized properties
                 var viewModel = new MarkdownViewModel
@@ -69,14 +71,14 @@ namespace Project_Echo.Controllers
         {
             return
             [
-                new() { Title = "Documentation Home", Url = "/Documentation/docs/index" },
-                new() { Title = "Getting Started", Url = "/Documentation/docs/getting-started" },
-                new() { Title = "User Guide", Url = "/Documentation/docs/user-guide" },
-                new() { Title = "Features", Url = "/Documentation/docs/features" },
-                new() { Title = "API Reference", Url = "/Documentation/docs/api-reference" },
-                new() { Title = "Deployment", Url = "/Documentation/docs/deployment" },
-                new() { Title = "Development", Url = "/Documentation/docs/development" },
-                new() { Title = "Troubleshooting", Url = "/Documentation/docs/troubleshooting" }
+                new() { Title = "Documentation Home", Url = "/Documentation/index" },
+                new() { Title = "Getting Started", Url = "/Documentation/getting-started" },
+                new() { Title = "User Guide", Url = "/Documentation/user-guide" },
+                new() { Title = "Features", Url = "/Documentation/features" },
+                new() { Title = "API Reference", Url = "/Documentation/api-reference" },
+                new() { Title = "Deployment", Url = "/Documentation/deployment" },
+                new() { Title = "Development", Url = "/Documentation/development" },
+                new() { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
             ];
         }
     }
