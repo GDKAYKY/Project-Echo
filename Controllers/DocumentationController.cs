@@ -4,9 +4,9 @@ using Project_Echo.Models;
 namespace Project_Echo.Controllers
 {
     [Route("Documentation")]
-    public class DocumentationController(IHostEnvironment environment) : Controller
+    public class DocumentationController(IWebHostEnvironment environment) : Controller
     {
-        private readonly IHostEnvironment _environment = environment;
+        private readonly IWebHostEnvironment _environment = environment;
 
         [HttpGet]
         public IActionResult Index()
