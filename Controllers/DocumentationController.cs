@@ -1,12 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Project_Echo.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Project_Echo.Controllers
 {
     [Route("Documentation")]
-    public class DocumentationController(IWebHostEnvironment environment) : Controller
+    public class DocumentationController : Controller
     {
-        private readonly IWebHostEnvironment _environment = environment;
+        private readonly IWebHostEnvironment _environment;
+        private readonly ILogger<DocumentationController> _logger;
+
+        public DocumentationController(IWebHostEnvironment environment, ILogger<DocumentationController> logger)
+        {
+            _environment = environment;
+            _logger = logger;
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -26,25 +34,35 @@ namespace Project_Echo.Controllers
             document = Path.GetFileNameWithoutExtension(document);
             
             string docPath = Path.Combine(_environment.ContentRootPath, "docs", $"{document}.md");
+            _logger.LogInformation("Attempting to load documentation from path: {DocPath}", docPath);
             
             if (!System.IO.File.Exists(docPath))
             {
+                _logger.LogWarning("Documentation file not found at path: {DocPath}", docPath);
                 return NotFound();
             }
 
-            // Read the markdown content
-            string markdownContent = await System.IO.File.ReadAllTextAsync(docPath);
-            
-            // Create view model with initialized properties
-            var viewModel = new MarkdownViewModel
+            try
             {
-                DocumentTitle = char.ToUpper(document[0]) + document.Substring(1).Replace("-", " "),
-                MarkdownContent = markdownContent,
-                NavigationLinks = GetNavigationLinks()
-            };
-            
-            // Explicitly specify the full path to the view
-            return View("~/Views/Documentation/ViewDocument.cshtml", viewModel);
+                // Read the markdown content
+                string markdownContent = await System.IO.File.ReadAllTextAsync(docPath);
+                
+                // Create view model with initialized properties
+                var viewModel = new MarkdownViewModel
+                {
+                    DocumentTitle = char.ToUpper(document[0]) + document.Substring(1).Replace("-", " "),
+                    MarkdownContent = markdownContent,
+                    NavigationLinks = GetNavigationLinks()
+                };
+                
+                // Explicitly specify the full path to the view
+                return View("~/Views/Documentation/ViewDocument.cshtml", viewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error reading documentation file: {DocPath}", docPath);
+                return StatusCode(500, "Error loading documentation");
+            }
         }
 
         private List<DocumentationLink> GetNavigationLinks()
