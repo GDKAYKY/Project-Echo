@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const reader = new FileReader();
         reader.onload = function(e) {
-            const base64 = e.target.result;
+            const base64 = String(e.target.result);
             encodeBase64Text.value = base64;
             encodePreview.innerHTML = `<img src="${base64}" class="preview-image" alt="Preview">`;
             showFileInfo(encodeFileInfo, file);
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Decode functionality
     decodeTextarea.addEventListener('input', () => {
-        const base64 = decodeTextarea.value.trim();
+        const base64 = String(decodeTextarea.value.trim());
         if (!base64) {
             decodePreview.innerHTML = '';
             decodeFileInfo.innerHTML = '';
@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             return btoa(atob(str.split(',')[1] || str)) === (str.split(',')[1] || str);
         } catch (err) {
+            console.error("Base64 validation error:", err);
             return false;
         }
     }

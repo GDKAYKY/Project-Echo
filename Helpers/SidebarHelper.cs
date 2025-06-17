@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Project_Echo.Helpers
 {
     public class SidebarLinkInfo
@@ -48,7 +45,7 @@ namespace Project_Echo.Helpers
             }
 
             // 3. Special handling for documentation links
-            if (sidebarHref?.ToLowerInvariant() == "/documentation")
+            if (sidebarHref.Equals("/documentation", StringComparison.InvariantCultureIgnoreCase))
             {
                 return currentPath == "/documentation" || 
                        currentPath.StartsWith("/documentation/");
