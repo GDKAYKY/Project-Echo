@@ -14,6 +14,7 @@
 
 html {
     font-size: 14px;
+    color: var(--text-secondary)    ;
 }
 
 @media (min-width: 768px) {
@@ -173,6 +174,7 @@ a:hover {
     top: 64px;
     left: 64px;
     right: 0;
+    padding-left: 0px;
     bottom: 0;
     overflow: auto;
     z-index: 1;
@@ -180,12 +182,11 @@ a:hover {
 
 .main-content:has(.terminal-page) {
     width: 100%;
-    left: 0;
 }
 
 .world-map-bg {
     position: absolute;
-    margin: auto;
+    left: 0;
     width: 100%;
     height: 100%;
     background-image: url("../images/world-map-dots.png");
@@ -196,8 +197,7 @@ a:hover {
 
 .page-container {
     width: 100%;
-    max-width: 1200px;
-    padding: 64px 0 0 64px;
+    padding: 64px;
     margin: 0;
     box-sizing: border-box;
 }
@@ -637,7 +637,6 @@ a:hover {
 
 .database-search .page-container {
     width: 100%;
-    max-width: 1200px;
     margin: 0;
     align-self: flex-start;
 }
@@ -687,7 +686,7 @@ a:hover {
     font-size: clamp(36px, 5vw, 64px);
     line-height: 1.2;
     letter-spacing: -0.02em;
-    color: #ddd;
+    color: var(--text-secondary);
     margin: 0;
     text-align: left;
     position: relative;
@@ -733,7 +732,6 @@ a:hover {
 
 .terminal-page .page-container {
     width: 100%;
-    max-width: 1200px;
     margin: 0;
     align-self: flex-start;
 }
@@ -903,7 +901,6 @@ a:hover {
 .documentation-page .page-container,
 .network-page .page-container {
     width: 100%;
-    max-width: 1200px;
     padding-top: clamp(24px, 5vw, 48px);
 }
 
@@ -1111,7 +1108,7 @@ a:hover {
     
     .main-content {
         position: static;
-        width: 100%;
+        width: auto;
         height: auto;
         overflow: visible;
     }
@@ -1163,7 +1160,6 @@ a:hover {
     .main-content {
         left: 64px;
         width: 100%;
-        padding-left: clamp(16px, 3vw, 32px);
         padding-right: clamp(16px, 3vw, 32px);
     }
 
@@ -1179,12 +1175,15 @@ a:hover {
     
     .database-search,
     .terminal-page {
-        position: absolute;
-        left: 0;
+        position: absolute; 
         width: 100%;
+        left: 0px;
+        top: 0px;
         align-items: flex-start;
     }
-    
+    .terminal-page{
+        right: -64px;
+    }
     .page-container {
         padding: clamp(16px, 3vw, 32px);
         margin: 0;
