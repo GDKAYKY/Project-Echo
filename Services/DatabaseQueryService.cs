@@ -50,9 +50,7 @@ namespace Project_Echo.Services
                 var schema = await reader.GetSchemaTableAsync();
                 if (schema != null)
                 {
-                    result.Columns = schema.AsEnumerable()
-                        .Select(row => row["ColumnName"].ToString() ?? string.Empty)
-                        .ToList();
+                    result.Columns = [.. schema.AsEnumerable().Select(row => row["ColumnName"].ToString() ?? string.Empty)];
                 }
 
                 var rows = new List<object[]>();
@@ -121,9 +119,7 @@ namespace Project_Echo.Services
                 var schema = await reader.GetSchemaTableAsync();
                 if (schema != null)
                 {
-                    result.Columns = schema.AsEnumerable()
-                        .Select(row => row["ColumnName"].ToString() ?? string.Empty)
-                        .ToList();
+                    result.Columns = [.. schema.AsEnumerable().Select(row => row["ColumnName"].ToString() ?? string.Empty)];
                 }
 
                 var rows = new List<object[]>();

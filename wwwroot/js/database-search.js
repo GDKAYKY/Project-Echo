@@ -31,20 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle popup opening and closing
         if (openUploadPopupBtn && uploadPopup && closePopupBtn) {
             openUploadPopupBtn.addEventListener('click', function() {
-                uploadPopup.style.display = 'flex'; // Show the popup
-                openUploadPopupBtn.classList.add('active'); // Add active class
+                uploadPopup.style.display = 'flex';
+                openUploadPopupBtn.classList.add('active');
             });
 
             closePopupBtn.addEventListener('click', function() {
-                uploadPopup.style.display = 'none'; // Hide the popup
-                openUploadPopupBtn.classList.remove('active'); // Remove active class
+                uploadPopup.style.display = 'none';
+                openUploadPopupBtn.classList.remove('active');
             });
 
-            // Close popup when clicking outside the content
             window.addEventListener('click', function(event) {
                 if (event.target === uploadPopup) {
                     uploadPopup.style.display = 'none';
-                    openUploadPopupBtn.classList.remove('active'); // Remove active class
+                    openUploadPopupBtn.classList.remove('active');
                 }
             });
         }
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Drag and Drop functionality
         const dragDropArea = document.getElementById('drag-drop-area');
         const dbFile = document.getElementById('dbFile');
-        const fileNameSpan = document.getElementById('file-name'); // Get the span for displaying file name
+        const fileNameSpan = document.getElementById('file-name');
 
         if (dragDropArea && dbFile && fileNameSpan) {
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -69,36 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             dragDropArea.addEventListener('drop', handleDrop, false);
 
-            // Listen for changes on the file input (e.g., when a file is selected via the button)
             dbFile.addEventListener('change', function() {
                 if (dbFile.files.length > 0) {
                     fileNameSpan.textContent = dbFile.files[0].name;
                 } else {
-                    fileNameSpan.textContent = 'Escolher arquivo'; // Reset if no file is selected
+                    fileNameSpan.textContent = 'Escolher arquivo';
                 }
             });
-
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-
-            function highlight() {
-                dragDropArea.classList.add('highlight');
-            }
-
-            function unhighlight() {
-                dragDropArea.classList.remove('highlight');
-            }
-
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                if (files.length > 0) {
-                    dbFile.files = files; // Assign the dropped file to the input
-                    fileNameSpan.textContent = files[0].name; // Display the dropped file name
-                }
-            }
         }
 
         async function performSearch() {
@@ -139,6 +115,45 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        async function fetchAndDisplayTables(connectionId) {
+            try {
+                const response = await fetch(`/api/database/tables/${connectionId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch table names');
+                }
+                const data = await response.json();
+                if (data.success && data.data.tables) {
+                    const tableNames = data.data.tables.join(', ');
+                    alert(`Tables in selected database: ${tableNames}`);
+                }
+            } catch (error) {
+                console.error('Error fetching tables:', error);
+                alert('Error fetching tables: ' + error.message);
+            }
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight() {
+            dragDropArea.classList.add('highlight');
+        }
+
+        function unhighlight() {
+            dragDropArea.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                dbFile.files = files;
+                fileNameSpan.textContent = files[0].name;
+            }
+        }
+
         function displayResults(data) {
             if (!data.success) {
                 alert('Error: ' + data.error.message);
@@ -151,6 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (results.rows.length === 0) {
                 html += '<p>No results found</p>';
             } else {
+                // Check if there's a BASE64 column
+                const base64ColumnIndex = results.columns.findIndex(col => col.toUpperCase() === 'BASE64');
+                const hasBase64Column = base64ColumnIndex !== -1;
+
                 // Create table header
                 html += '<table class="results-table">';
                 html += '<thead><tr>';
@@ -163,8 +182,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 html += '<tbody>';
                 results.rows.forEach(row => {
                     html += '<tr>';
-                    row.forEach(cell => {
-                        html += `<td>${cell ?? ''}</td>`;
+                    row.forEach((cell, index) => {
+                        if (hasBase64Column && index === base64ColumnIndex && cell) {
+                            // Display image for BASE64 column
+                            html += `<td class="base64-cell">
+                                <div class="base64-preview">
+                                    <img src="data:image/png;base64,${cell}" alt="Base64 Image" 
+                                         onerror="this.style.display='none'" 
+                                         onclick="showFullImage(this.src)" />
+                                </div>
+                            </td>`;
+                        } else {
+                            html += `<td>${cell ?? ''}</td>`;
+                        }
                     });
                     html += '</tr>';
                 });
@@ -175,28 +205,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Rows returned: ${results.rowCount}</p>
                     <p>Execution time: ${results.executionTime.toFixed(2)}s</p>
                 </div>`;
+
+                // Add image preview modal if we have BASE64 data
+                if (hasBase64Column) {
+                    html += `
+                    <div id="imagePreviewModal" class="modal">
+                        <span class="close-modal">&times;</span>
+                        <img class="modal-content" id="previewImage">
+                    </div>`;
+                }
             }
 
             searchResults.innerHTML = html;
             searchResults.style.display = 'block';
             searchResults.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
 
-    async function fetchAndDisplayTables(connectionId) {
-        try {
-            const response = await fetch(`/api/database/tables/${connectionId}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch table names');
+            // Add modal event listeners if modal exists
+            const modal = document.getElementById('imagePreviewModal');
+            if (modal) {
+                const closeBtn = modal.querySelector('.close-modal');
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                }
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
             }
-            const data = await response.json();
-            if (data.success && data.data.tables) {
-                const tableNames = data.data.tables.join(', ');
-                alert(`Tables in selected database: ${tableNames}`);
-            }
-        } catch (error) {
-            console.error('Error fetching tables:', error);
-            alert('Error fetching tables: ' + error.message);
+        }
+
+        // Function to show full image in modal
+        function showFullImage(src) {
+            const modal = document.getElementById('imagePreviewModal');
+            const modalImg = document.getElementById('previewImage');
+            modal.style.display = "block";
+            modalImg.src = src;
         }
     }
 }); 
