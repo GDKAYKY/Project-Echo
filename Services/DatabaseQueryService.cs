@@ -53,15 +53,7 @@ namespace Project_Echo.Services
                     result.Columns = [.. schema.AsEnumerable().Select(row => row["ColumnName"].ToString() ?? string.Empty)];
                 }
 
-                var rows = new List<object[]>();
-                while (await reader.ReadAsync())
-                {
-                    var values = new object[reader.FieldCount];
-                    reader.GetValues(values);
-                    rows.Add(values);
-                }
-
-                result.Rows = rows;
+                result.Rows = await ReadDataFromReader(reader);
                 result.TotalRows = await GetTotalRowsAsync(query.TableName, query.WhereClause, connection);
                 result.TotalPages = (int)Math.Ceiling(result.TotalRows / (double)query.PageSize);
                 result.ExecutionTime = (DateTime.UtcNow - startTime).TotalSeconds;
@@ -122,16 +114,8 @@ namespace Project_Echo.Services
                     result.Columns = [.. schema.AsEnumerable().Select(row => row["ColumnName"].ToString() ?? string.Empty)];
                 }
 
-                var rows = new List<object[]>();
-                while (await reader.ReadAsync())
-                {
-                    var values = new object[reader.FieldCount];
-                    reader.GetValues(values);
-                    rows.Add(values);
-                }
-
-                result.Rows = rows;
-                result.RowCount = rows.Count; // Set rowCount for raw queries
+                result.Rows = await ReadDataFromReader(reader);
+                result.RowCount = result.Rows.Count; // Set rowCount for raw queries
                 result.ExecutionTime = (DateTime.UtcNow - startTime).TotalSeconds;
             }
             catch (Exception ex)
@@ -249,6 +233,18 @@ namespace Project_Echo.Services
                 DatabaseType.PostgreSQL => $"\"{identifier}\"",
                 _ => identifier
             };
+        }
+
+        private static async Task<List<object[]>> ReadDataFromReader(DbDataReader reader)
+        {
+            var rows = new List<object[]>();
+            while (await reader.ReadAsync())
+            {
+                var values = new object[reader.FieldCount];
+                reader.GetValues(values);
+                rows.Add(values);
+            }
+            return rows;
         }
     }
 } 
