@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Base64.js loaded successfully');
+    
     // Elements
     const encodeUploadArea = document.getElementById('encode-upload-area');
     const encodeFileInput = document.getElementById('encode-file-input');
@@ -12,44 +14,104 @@ document.addEventListener('DOMContentLoaded', function() {
     const decodeCopyBtn = document.getElementById('decode-copy');
     const decodeFileInfo = document.getElementById('decode-file-info');
 
+    // Debug: Check if elements are found
+    console.log('encodeUploadArea:', encodeUploadArea);
+    console.log('encodeFileInput:', encodeFileInput);
+    console.log('encodePreview:', encodePreview);
+    console.log('encodeCopyBtn:', encodeCopyBtn);
+    console.log('encodeBase64Text:', encodeBase64Text);
+    console.log('encodeFileInfo:', encodeFileInfo);
+
     // Encode functionality
-    encodeUploadArea.addEventListener('click', () => encodeFileInput.click());
-    
-    encodeUploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        encodeUploadArea.classList.add('dragover');
-    });
+    if (encodeUploadArea && encodeFileInput) {
+        console.log('Setting up encode event listeners');
+        
+        encodeUploadArea.addEventListener('click', () => {
+            console.log('Upload area clicked');
+            encodeFileInput.click();
+        });
+        
+        encodeUploadArea.addEventListener('dragover', (e) => {
+            console.log('Drag over detected');
+            e.preventDefault();
+            encodeUploadArea.classList.add('dragover');
+        });
 
-    encodeUploadArea.addEventListener('dragleave', () => {
-        encodeUploadArea.classList.remove('dragover');
-    });
+        encodeUploadArea.addEventListener('dragleave', () => {
+            console.log('Drag leave detected');
+            encodeUploadArea.classList.remove('dragover');
+        });
 
-    encodeUploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        encodeUploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        if (file) handleFileUpload(file);
-    });
+        encodeUploadArea.addEventListener('drop', (e) => {
+            console.log('File dropped');
+            e.preventDefault();
+            encodeUploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                console.log('File dropped:', file.name);
+                handleFileUpload(file);
+            }
+        });
 
-    encodeFileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) handleFileUpload(file);
-    });
+        encodeFileInput.addEventListener('change', (e) => {
+            console.log('File input changed');
+            const file = e.target.files[0];
+            if (file) {
+                console.log('File selected:', file.name);
+                handleFileUpload(file);
+            }
+        });
+    } else {
+        console.error('Required encode elements not found');
+    }
 
-    function handleFileUpload(file) {
+    async function handleFileUpload(file) {
+        console.log('handleFileUpload called with file:', file);
+        
         if (!file.type.startsWith('image/')) {
+            console.error('Invalid file type:', file.type);
             showError(encodeFileInfo, 'Please upload an image file');
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const base64 = e.target.result;
-            encodeBase64Text.value = base64;
-            encodePreview.innerHTML = `<img src="${base64}" class="preview-image" alt="Preview">`;
-            showFileInfo(encodeFileInfo, file);
-        };
-        reader.readAsDataURL(file);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            showLoading(encodeFileInfo, 'Processing...');
+            console.log('Sending request to /api/base64/encode');
+            
+            const response = await fetch('/api/base64/encode', {
+                method: 'POST',
+                body: formData
+            });
+
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Response error:', errorText);
+                let errorData;
+                try {
+                    errorData = JSON.parse(errorText);
+                } catch (e) {
+                    errorData = { error: errorText };
+                }
+                throw new Error(errorData.error || 'Failed to encode image');
+            }
+
+            const result = await response.json();
+            console.log('Success result:', result);
+            
+            encodeBase64Text.value = result.dataUrl;
+            encodePreview.innerHTML = `<img src="${result.dataUrl}" class="preview-image" alt="Preview">`;
+            showFileInfo(encodeFileInfo, file, result.sizeFormatted);
+            
+        } catch (error) {
+            console.error('Error in handleFileUpload:', error);
+            showError(encodeFileInfo, error.message);
+        }
     }
 
     encodeCopyBtn.addEventListener('click', () => {
@@ -57,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Decode functionality
-    decodeTextarea.addEventListener('input', () => {
+    decodeTextarea.addEventListener('input', debounce(async () => {
         const base64 = decodeTextarea.value.trim();
         if (!base64) {
             decodePreview.innerHTML = '';
@@ -66,30 +128,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            if (!isValidBase64(base64)) {
-                throw new Error('Invalid Base64 string');
-            }
+            showLoading(decodeFileInfo, 'Validating...');
+            
+            const response = await fetch('/api/base64/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ base64Data: base64 })
+            });
 
-            decodePreview.innerHTML = `<img src="${base64}" class="preview-image" alt="Preview">`;
-            showSuccess(decodeFileInfo, 'Valid Base64 image');
+            const result = await response.json();
+            
+            if (result.isValid) {
+                decodePreview.innerHTML = `<img src="${base64}" class="preview-image" alt="Preview">`;
+                showSuccess(decodeFileInfo, `Valid Base64 image (${result.sizeFormatted})`);
+            } else {
+                showError(decodeFileInfo, result.error || 'Invalid Base64 string');
+                decodePreview.innerHTML = '';
+            }
         } catch (error) {
-            showError(decodeFileInfo, error.message);
+            showError(decodeFileInfo, 'Failed to validate Base64');
             decodePreview.innerHTML = '';
         }
-    });
+    }, 500));
 
     decodeCopyBtn.addEventListener('click', () => {
         copyToClipboard(decodeTextarea.value, decodeCopyBtn);
     });
 
     // Utility functions
-    function showFileInfo(container, file) {
-        const size = formatFileSize(file.size);
+    function showFileInfo(container, file, sizeFormatted) {
         container.innerHTML = `
             <p><strong>Name:</strong> ${file.name}</p>
             <p><strong>Type:</strong> ${file.type}</p>
-            <p><strong>Size:</strong> ${size}</p>
+            <p><strong>Size:</strong> ${sizeFormatted}</p>
         `;
+    }
+
+    function showLoading(container, message) {
+        container.innerHTML = `<div class="loading">${message}</div>`;
     }
 
     function showError(container, message) {
@@ -122,19 +200,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
-
-    function isValidBase64(str) {
-        try {
-            return btoa(atob(str.split(',')[1] || str)) === (str.split(',')[1] || str);
-        } catch (err) {
-            return false;
-        }
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 }); 
