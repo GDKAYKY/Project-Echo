@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Function to show full image in modal
-        function showFullImage(src) {
+        window.showFullImage = function(src) {
             const modal = document.getElementById('imagePreviewModal');
             const modalImg = document.getElementById('previewImage');
             modal.style.display = "block";

@@ -49,6 +49,7 @@ namespace ProjectEcho.Controllers
                         mimeType = file.ContentType,
                         fileName = file.FileName,
                         size = file.Length,
+                        sizeFormatted = FormatBytes(file.Length),
                         dataUrl = $"data:{file.ContentType};base64,{base64String}"
                     });
                 }
