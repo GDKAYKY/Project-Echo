@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchBtn = document.getElementById('search-btn');
     const searchQuery = document.getElementById('search-query');
     const searchResults = document.getElementById('search-results');
-    const databaseSelect = document.getElementById('database-select');
+    const customDatabaseInput = document.getElementById('custom-database-value');
     const openUploadPopupBtn = document.getElementById('open-upload-popup');
     const uploadPopup = document.getElementById('upload-popup');
     const closePopupBtn = uploadPopup?.querySelector('.close-popup');
@@ -21,12 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        databaseSelect.addEventListener('change', function() {
-            const databaseId = databaseSelect?.value;
-            if (databaseId) {
-                fetchAndDisplayTables(databaseId);
-            }
-        });
+        if (customDatabaseInput) {
+            customDatabaseInput.addEventListener('change', function() {
+                const databaseId = customDatabaseInput.value;
+                if (databaseId) {
+                    fetchAndDisplayTables(databaseId);
+                }
+            });
+        }
 
         // Handle popup opening and closing
         if (openUploadPopupBtn && uploadPopup && closePopupBtn) {
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async function performSearch() {
             const query = searchQuery.value.trim();
-            const databaseId = databaseSelect?.value;
+            const databaseId = customDatabaseInput?.value;
             
             if (!query) {
                 alert('Please enter a search query');

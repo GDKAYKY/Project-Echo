@@ -21,13 +21,31 @@
             <div class="search-input">
                 <input type="text" id="search-query" placeholder="Enter SQL query...">
             </div>
-            <select id="database-select" required class="database-select">
-                    <option value="">Select Database</option>
+            <!-- Custom Dropdown Test -->
+            <div id="custom-database-dropdown" class="custom-dropdown" tabindex="0">
+                <div class="custom-dropdown-selected">Select Database</div>
+                <ul class="custom-dropdown-list" style="display:none;">
+                    <li data-value="">Select Database</li>
                     @foreach (var conn in Model.ViewModel.Connections)
                     {
-                        <option value="@conn.Id">@conn.Name (@conn.Type)</option>
+                        <li data-value="@conn.Id">
+                            @if (conn.Type.ToString() == "MySQL") {
+                                <span class="db-icon material-icon">@Html.Raw("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='#b0b0b0' stroke-width='2' viewBox='0 0 24 24'><path d='M4 17v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2' /><ellipse cx='12' cy='7' rx='8' ry='4' /></svg>")</span>
+                            } else if (conn.Type.ToString() == "PostgreSQL") {
+                                <span class="db-icon material-icon">@Html.Raw("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='#b0b0b0' stroke-width='2' viewBox='0 0 24 24'><path d='M12 20c4.42 0 8-1.79 8-4V8' /><ellipse cx='12' cy='7' rx='8' ry='4' /><path d='M4 8v8c0 2.21 3.58 4 8 4' /><circle cx='8' cy='12' r='1.5'/><circle cx='16' cy='12' r='1.5'/></svg>")</span>
+                            } else if (conn.Type.ToString() == "SQLServer") {
+                                <span class="db-icon material-icon">@Html.Raw("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='#b0b0b0' stroke-width='2' viewBox='0 0 24 24'><path d='M12 20c4.42 0 8-1.79 8-4V8' /><ellipse cx='12' cy='7' rx='8' ry='4' /><path d='M4 8v8c0 2.21 3.58 4 8 4' /><rect x='6' y='10' width='12' height='4' rx='2'/></svg>")</span>
+                            } else if (conn.Type.ToString() == "Oracle") {
+                                <span class="db-icon material-icon">@Html.Raw("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='#b0b0b0' stroke-width='2' viewBox='0 0 24 24'><path d='M7 17v-2c0-2.21 2.91-4 6.5-4S20 12.79 20 15v2' /><ellipse cx='12' cy='7' rx='8' ry='4' /></svg>")</span>
+                            } else if (conn.Type.ToString() == "SQLite") {
+                                <span class="db-icon material-icon">@Html.Raw("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='#b0b0b0' stroke-width='2' viewBox='0 0 24 24'><rect x='4' y='6' width='16' height='12' rx='4'/><circle cx='8' cy='12' r='2'/></svg>")</span>
+                            }
+                            @conn.Name (@conn.Type)
+                        </li>
                     }
-            </select>
+                </ul>
+                <input type="hidden" id="custom-database-value" name="CustomDatabaseId" value="">
+            </div>
             <div class="search-button">
                 <button type="button" id="search-btn">Search<span class="underscore">_</span></button>
             </div>
@@ -84,4 +102,5 @@
 
 @section Scripts {
     <script src="~/js/database-search.js" asp-append-version="true"></script>
+    <script src="~/js/custom-database-dropdown.js" asp-append-version="true"></script>
 } 

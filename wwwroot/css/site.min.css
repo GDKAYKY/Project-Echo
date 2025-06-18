@@ -14,7 +14,9 @@
 
 html {
     font-size: 14px;
-    color: var(--text-secondary)    ;
+    color: var(--text-secondary);
+    scrollbar-width: thin;
+    scrollbar-color: hsla(0,0%,100%,.2) rgba(0,0,0,.3);
 }
 
 @media (min-width: 768px) {
@@ -33,6 +35,8 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: hsla(0,0%,100%,.2) rgba(0,0,0,.3);
 }
 
 @keyframes blink-animation {
@@ -141,6 +145,16 @@ a:hover {
     height: 1px;
     background-color: #5e5e5e;
     transition: background-color .2s ease;
+}
+
+.line-1.active,
+.line-2.active,
+.line-3.active,
+.line-4.active,
+.line-5.active,
+.line-6.active,
+.line-7.active {
+    background-color: #fff!important;
 }
 
 .dividers .line-2 {
@@ -282,7 +296,6 @@ a:hover {
 .sidebar-link.active .remote-access,
 .sidebar-link.active .documentation,
 .sidebar-link.active .network {
-    background-color: rgba(0, 0, 0, 0);
     border-right: 1px solid #fff;
     right: 0;
     left: 0;
@@ -488,12 +501,14 @@ a:hover {
     max-width: fit-content;
     flex-grow: 1;
     border: 2px solid var(--border-color);
-    border-radius: 4px;
-    padding: 0 30px 0 10px;
-    height: 64px;
+    border-radius: 8px;
+    padding: clamp(16px, 3vw, 32px) clamp(24px, 5vw, 48px);
+    height: 76px;
+    gap: 8px;
     font-size: 16px;
     font-family: "Inter", sans-serif;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     -webkit-appearance: none;
@@ -505,12 +520,62 @@ a:hover {
     background-size: 1em auto, 100%;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.database-select:focus {
+    border-color: #ddd;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: translateY(-1px);
+}
+
+.database-select:hover {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.database-select option {
+    background-color: #00000044 !important;
+    color: var(--text-secondary);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 10px;
+    backdrop-filter: blur(12px);    
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.2s ease;
+}
+
+.database-select option:hover {
+    background-color: var(--medium-grey) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: scale(1.02);
+}
+
+.database-select option:checked {
+    background-color: #7e7e7e4e !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
+    padding: 12px;  
     background: rgba(20, 20, 20, 0.7);
     border: 2px solid #5E5E5E;
     border-radius: 8px;
@@ -670,7 +735,7 @@ a:hover {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0;
-    gap: clamp(16px, 3vw, 32px);
+    gap: clamp(8px, 3vw, 8px);
     width: 100%;
     max-width: 844px;
     height: auto;
@@ -717,7 +782,6 @@ a:hover {
 }
 
 .terminal-page {
-    position: fixed;
     z-index: 2;
     top: 64px;
     left: 64px;
@@ -1117,16 +1181,6 @@ a:hover {
         padding: 1cm;
     }
     
-    .page-title h1,
-    .page-title .subheading,
-    .content,
-    .feature-list,
-    .contact-form,
-    .login-form,
-    .result-title,
-    .result-details {
-        color: #000;
-    }
 }
 
 @media (max-width: 1024px) {
@@ -1274,4 +1328,145 @@ a:hover {
 .main-content:has(.terminal-page),
 .main-content:has(.database-search) {
     background-color: rgba(0, 0, 0, 0);
+}
+
+.custom-dropdown {
+    padding: clamp(16px, 3vw, 32px) clamp(24px, 5vw, 48px);
+    height: 76px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text-secondary);
+    background: var(--color-surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    z-index: 20;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    width: 100%;
+    background-color: var(--color-surface-dark);
+    color: var(--text-secondary);
+    max-width: fit-content;
+    flex-grow: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    user-select: none;
+}
+.custom-dropdown:focus, .custom-dropdown.open {
+    border-color: 1px #ddd;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+.custom-dropdown-selected {
+    padding: 18px 32px 18px 16px;
+    border-radius: 8px;
+    background: transparent;
+    user-select: none;
+    position: relative;
+}
+.custom-dropdown-selected:after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.custom-dropdown-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    background: var(--color-surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    animation: dropdown-fade-in 0.18s;
+}
+@keyframes dropdown-fade-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.custom-dropdown-list li {
+    padding: 16px 24px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    margin: 2px 6px;
+    user-select: none;
+}
+.custom-dropdown-list li:hover, .custom-dropdown-list li.active {
+    background: var(--medium-grey);
+    color: #fff;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.custom-dropdown-list li.selected {
+    background: var(--accent-color-light);
+    color: #000;
+}
+
+.custom-dropdown-list::-webkit-scrollbar {
+    width: 10px;
+}
+.custom-dropdown-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .3);
+}
+.custom-dropdown-list::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 5px;
+}
+.custom-dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: hsla(0, 0%, 100%, .3);
+}
+
+.db-icon.material-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    opacity: 0.7;
+    filter: grayscale(0.5) brightness(0.8);
+    vertical-align: middle;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .3);
+}
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 100%, .2);
+    border-radius: 5px;
+}
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+    background: hsla(0, 0%, 100%, .3);
 }

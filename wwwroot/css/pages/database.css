@@ -66,12 +66,14 @@
 
 
 .popup-content {
+    padding-top: 64px;
     margin: auto;
     padding: 20px;
     border-radius: 8px;
     width: 80%;
     max-width: 500px;
-    position: relative;
+    background-color: var(--color-surface-dark);
+    position-anchor: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

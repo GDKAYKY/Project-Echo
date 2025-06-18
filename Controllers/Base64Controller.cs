@@ -156,14 +156,14 @@ namespace ProjectEcho.Controllers
 
     public class Base64DecodeRequest
     {
-        public string Base64Data { get; set; }
+        public string? Base64Data { get; set; }
         public string? MimeType { get; set; }
         public string? FileName { get; set; }
     }
 
     public class Base64ValidateRequest
     {
-        public string Base64Data { get; set; }
+        public string? Base64Data { get; set; }
     }
 }
 
