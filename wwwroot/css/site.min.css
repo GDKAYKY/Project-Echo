@@ -698,6 +698,7 @@ a:hover {
     align-items: flex-start;
     justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0);
+    background: transparent !important;
 }
 
 .database-search .page-container {
@@ -1402,8 +1403,6 @@ a:hover {
     margin: 0;
     list-style: none;
     z-index: 100;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     animation: dropdown-fade-in 0.18s;
 }
 @keyframes dropdown-fade-in {

@@ -205,9 +205,9 @@
 .results-table {
     font-family: 'Jetbrains Mono', sans-serif;
     width: 100%;
+    border-radius: 8px;
     border-collapse: collapse;
     margin: 20px 0;
-    border: 1px solid var(--border-color);
     overflow: auto;
     background-color: var(--color-surface-dark);
     backdrop-filter: blur(12px);
@@ -220,12 +220,23 @@
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.results-table th:last-child,
+.results-table td:last-child {
+    border-right: none;
+}
+
+.results-table tr:last-child td {
+    border-bottom: none;
 }
 
 .results-table th {
     background: var(--background-grey);
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 300;
+    font-family: "Inter", sans-serif;
 }
 
 .results-table tr:hover {
