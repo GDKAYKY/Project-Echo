@@ -17,8 +17,6 @@
     background: var(--accent-color-light);
     margin-left: auto;
     margin-right: 20px;
-    text-rendering: none;
-    border-bottom: 2px solid var(--accent-color);
     border: 0px;
     padding: 10px 15px;
     cursor: pointer;
@@ -35,7 +33,7 @@
 }
 
 .icon-upload-btn:hover {
-    color: var(--accent-color-hover);
+    background-color: var(--accent-color-hover);
 }
 
 .icon-upload-btn.active {
@@ -67,14 +65,14 @@
 
 .popup-content {
     padding-top: 64px;
-    margin: auto;
+    margin: 128px;
     padding: 20px;
     border-radius: 8px;
     width: 80%;
     max-width: 500px;
     background-color: var(--color-surface-dark);
-    position-anchor: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .popup-content h2 {
@@ -99,15 +97,6 @@
     color: var(--text-primary);
     text-decoration: none;
     cursor: pointer;
-}
-
-
-.upload-btn:hover {
-    background-color: var(--accent-color-hover);
-}
-
-.upload-btn:active {
-    transform: translateY(1px);
 }
 
 .upload-btn:focus {
@@ -138,7 +127,6 @@
     gap: 8px;
     padding: clamp(16px, 3vw, 32px);
     background: var(--accent-color);
-    size: 50%;
     border: none;
     border-radius: 8px;
     color: var(--black);
@@ -149,6 +137,9 @@
     transition: background-color .2s ease, transform .1s ease;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+.upload-btn:hover {
+    
 }
 
 /* File Upload Button */
@@ -205,7 +196,6 @@
 .results-table {
     font-family: 'Jetbrains Mono', sans-serif;
     width: 100%;
-    border-radius: 8px;
     border-collapse: collapse;
     margin: 20px 0;
     overflow: auto;

@@ -591,13 +591,10 @@ a:hover {
 .form-group textarea:focus {
     outline: none;
     border-color: #ddd;
-    box-shadow: 0 0 0 2px rgba(207, 207, 207, .3);
 }
-
-.form-group input:focus-visible,
-.form-group textarea:focus-visible {
-    outline: 2px solid #ddd;
-    outline-offset: 2px;
+.form-group input:hover{
+    outline: none;
+    border-color: #ddd;
 }
 
 .form-group textarea {
@@ -1455,7 +1452,6 @@ a:hover {
     filter: grayscale(0.5) brightness(0.8);
     vertical-align: middle;
 }
-
 html::-webkit-scrollbar, body::-webkit-scrollbar {
     width: 10px;
 }

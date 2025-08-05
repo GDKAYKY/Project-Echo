@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Echo.Models;
 using System.Text.Json;
-
 namespace Project_Echo.Services
 {
     public interface IDatabaseService
@@ -121,7 +120,10 @@ namespace Project_Echo.Services
                         builder.UseMySql(connection.Host, await ServerVersion.AutoDetectAsync(connection.Host));
                         break;
                     case DatabaseType.PostgreSQL:
-                        builder.UseNpgsql(connection.Host);
+                        // O correto seria:
+                        builder.UseNpgsql(connection.Host, npgsqlOptionsAction => {
+                            // Configurações adicionais se necessário
+                        });
                         break;
                     case DatabaseType.SQLServer:
                         builder.UseSqlServer(connection.Host);
@@ -177,4 +179,4 @@ namespace Project_Echo.Services
             }
         }
     }
-} 
+}
