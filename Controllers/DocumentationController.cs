@@ -2,84 +2,83 @@ using Microsoft.AspNetCore.Mvc;
 using Project_Echo.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Project_Echo.Controllers
+namespace Project_Echo.Controllers;
+
+[Route("Documentation")]
+public class DocumentationController : Controller
 {
-    [Route("Documentation")]
-    public class DocumentationController : Controller
+    private readonly IWebHostEnvironment _environment;
+    private readonly ILogger<DocumentationController> _logger;
+
+    public DocumentationController(IWebHostEnvironment environment, ILogger<DocumentationController> logger)
     {
-        private readonly IWebHostEnvironment _environment;
-        private readonly ILogger<DocumentationController> _logger;
+        _environment = environment;
+        _logger = logger;
+    }
 
-        public DocumentationController(IWebHostEnvironment environment, ILogger<DocumentationController> logger)
+    [HttpGet]
+    public IActionResult Index()
+    {
+        _logger.LogInformation("Documentation index requested");
+        return RedirectToAction("ViewDocument", new { document = "index" });
+    }
+
+    [HttpGet("{document?}")]
+    public async Task<IActionResult> ViewDocument(string document)
+    {
+        if (string.IsNullOrEmpty(document))
         {
-            _environment = environment;
-            _logger = logger;
+            document = "index";
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            _logger.LogInformation("Documentation index requested");
-            return RedirectToAction("ViewDocument", new { document = "index" });
-        }
-
-        [HttpGet("{document?}")]
-        public async Task<IActionResult> ViewDocument(string document)
-        {
-            if (string.IsNullOrEmpty(document))
-            {
-                document = "index";
-            }
-
-            // Sanitize input to prevent directory traversal
-            document = Path.GetFileNameWithoutExtension(document);
+        // Sanitize input to prevent directory traversal
+        document = Path.GetFileNameWithoutExtension(document);
             
-            string docPath = Path.Combine(_environment.ContentRootPath, "docs", $"{document}.md");
-            _logger.LogInformation("Attempting to load documentation from path: {DocPath}", docPath);
+        string docPath = Path.Combine(_environment.ContentRootPath, "docs", $"{document}.md");
+        _logger.LogInformation("Attempting to load documentation from path: {DocPath}", docPath);
             
-            if (!System.IO.File.Exists(docPath))
-            {
-                _logger.LogWarning("Documentation file not found at path: {DocPath}", docPath);
-                return NotFound();
-            }
-
-            try
-            {
-                // Read the markdown content
-                string markdownContent = await System.IO.File.ReadAllTextAsync(docPath);
-                _logger.LogInformation("Successfully loaded documentation file: {DocPath}", docPath);
-                
-                // Create view model with initialized properties
-                var viewModel = new MarkdownViewModel
-                {
-                    DocumentTitle = char.ToUpper(document[0]) + document.Substring(1).Replace("-", " "),
-                    MarkdownContent = markdownContent,
-                    NavigationLinks = GetNavigationLinks()
-                };
-                
-                // Explicitly specify the full path to the view
-                return View("~/Views/Documentation/ViewDocument.cshtml", viewModel);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error reading documentation file: {DocPath}", docPath);
-                return StatusCode(500, "Error loading documentation");
-            }
+        if (!System.IO.File.Exists(docPath))
+        {
+            _logger.LogWarning("Documentation file not found at path: {DocPath}", docPath);
+            return NotFound();
         }
 
-        private List<DocumentationLink> GetNavigationLinks()
+        try
         {
-            return
-            [
-                new() { Title = "Documentation Home", Url = "/Documentation/index" },
-                new() { Title = "Getting Started", Url = "/Documentation/getting-started" },
-                new() { Title = "User Guide", Url = "/Documentation/user-guide" },
-                new() { Title = "Features", Url = "/Documentation/features" },
-                new() { Title = "API Reference", Url = "/Documentation/api-reference" },
-                new() { Title = "Deployment", Url = "/Documentation/deployment" },
-                new() { Title = "Development", Url = "/Documentation/development" },
-                new() { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
-            ];
+            // Read the markdown content
+            string markdownContent = await System.IO.File.ReadAllTextAsync(docPath);
+            _logger.LogInformation("Successfully loaded documentation file: {DocPath}", docPath);
+                
+            // Create view model with initialized properties
+            var viewModel = new MarkdownViewModel
+            {
+                DocumentTitle = char.ToUpper(document[0]) + document.Substring(1).Replace("-", " "),
+                MarkdownContent = markdownContent,
+                NavigationLinks = GetNavigationLinks()
+            };
+                
+            // Explicitly specify the full path to the view
+            return View("~/Views/Documentation/ViewDocument.cshtml", viewModel);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error reading documentation file: {DocPath}", docPath);
+            return StatusCode(500, "Error loading documentation");
         }
     }
-} 
+
+    private List<DocumentationLink> GetNavigationLinks()
+    {
+        return
+        [
+            new() { Title = "Documentation Home", Url = "/Documentation/index" },
+            new() { Title = "Getting Started", Url = "/Documentation/getting-started" },
+            new() { Title = "User Guide", Url = "/Documentation/user-guide" },
+            new() { Title = "Features", Url = "/Documentation/features" },
+            new() { Title = "API Reference", Url = "/Documentation/api-reference" },
+            new() { Title = "Deployment", Url = "/Documentation/deployment" },
+            new() { Title = "Development", Url = "/Documentation/development" },
+            new() { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
+        ];
+    }
+}
