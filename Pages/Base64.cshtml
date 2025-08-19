@@ -37,11 +37,25 @@
 
                 <div id="encode-file-info" class="file-info"></div>
 
-                <textarea id="encode-base64-text" class="textarea" readonly placeholder="Base64 string will appear here..."></textarea>
+                <div class="base64-text-container">
+                    <div id="encode-base64-placeholder" class="base64-placeholder hidden">
+                        <i class="fas fa-eye"></i>
+                        <p>Base64 string is ready. Click "Show Base64" to view it.</p>
+                    </div>
+                    <textarea id="encode-base64-text" class="textarea" readonly placeholder="Base64 string will appear here..."></textarea>
+                </div>
                 
-                <button id="encode-copy" class="btn">
-                    <i class="fas fa-copy"></i> Copy Base64
-                </button>
+                <div class="button-group">
+                    <button id="encode-toggle-base64" class="btn">
+                        <i class="fas fa-eye"></i> Show Base64
+                    </button>
+                    <button id="encode-copy" class="btn">
+                        <i class="fas fa-copy"></i> Copy Base64
+                    </button>
+                    <button id="encode-download" class="btn">
+                        <i class="fas fa-download"></i> Download as TXT
+                    </button>
+                </div>
             </div>
 
             <!-- Decode Section -->
@@ -69,4 +83,4 @@
 
 @section Scripts {
     <script src="~/js/base64.js" asp-append-version="true"></script>
-} 
+}

@@ -36,6 +36,7 @@
     overflow: hidden;
     padding: 25px;
     border: 2px solid var(--border-color);
+    backdrop-filter: blur(5px);
 }
 
 .section h2 {
@@ -51,6 +52,7 @@
     border: 3px dashed var(--border-color);
     border-radius: 10px;
     padding: 40px;
+    margin-bottom: 20px; 
     text-align: center;
     background: var(--color-surface);
     transition: all 0.3s ease;
@@ -89,8 +91,7 @@
 }
 
 .upload-area p {
-    pointer-events: none;
-    margin: 0;
+    pointer-events: none;;
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
@@ -107,8 +108,8 @@
 }
 
 .btn {
-    background: var(--color-surface-dark);
-    color: var(--text-primary);
+    background: #ddd;
+    color: black;
     border: none;
     padding: 12px 25px;
     border-radius: 8px;
@@ -120,8 +121,51 @@
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    color: var(--text-primary-hover);
+    background: var(--text-primary-hover);
+    transform:scale(1.05);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.button-group .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+.base64-text-container {
+    position: relative;
+    margin: 15px 0;
+}
+
+.base64-placeholder {
+    background: var(--color-surface);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.base64-placeholder i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.base64-placeholder p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .btn:disabled {
@@ -147,7 +191,11 @@
     outline: none;
     border-color: var(--accent-color);
 }
-
+.textarea:hover {
+    outline: none;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
 .preview-area {
     background: var(--color-surface);
     border: 2px solid var(--border-color);
@@ -172,7 +220,7 @@
     border-radius: 8px;
     padding: 15px;
     margin: 15px 0;
-    border-left: 4px solid var(--accent-color);
+
 }
 
 .file-info p {

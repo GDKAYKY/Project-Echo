@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const encodeFileInput = document.getElementById('encode-file-input');
     const encodePreview = document.getElementById('encode-preview');
     const encodeCopyBtn = document.getElementById('encode-copy');
+    const encodeDownloadBtn = document.getElementById('encode-download');
+    const encodeToggleBtn = document.getElementById('encode-toggle-base64');
     const encodeBase64Text = document.getElementById('encode-base64-text');
+    const encodeBase64Placeholder = document.getElementById('encode-base64-placeholder');
     const encodeFileInfo = document.getElementById('encode-file-info');
     
     const decodeTextarea = document.getElementById('decode-base64-text');
@@ -108,6 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
             encodePreview.innerHTML = `<img src="${result.dataUrl}" class="preview-image" alt="Preview">`;
             showFileInfo(encodeFileInfo, file, result.sizeFormatted);
             
+            // Show placeholder instead of textarea by default
+            encodeBase64Placeholder.classList.remove('hidden');
+            encodeBase64Text.classList.add('hidden');
+            encodeToggleBtn.innerHTML = '<i class="fas fa-eye"></i> Show Base64';
+            
         } catch (error) {
             console.error('Error in handleFileUpload:', error);
             showError(encodeFileInfo, error.message);
@@ -116,6 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     encodeCopyBtn.addEventListener('click', () => {
         copyToClipboard(encodeBase64Text.value, encodeCopyBtn);
+    });
+
+    encodeDownloadBtn.addEventListener('click', () => {
+        downloadBase64AsTxt(encodeBase64Text.value, encodeDownloadBtn);
+    });
+
+    encodeToggleBtn.addEventListener('click', () => {
+        toggleBase64Display();
     });
 
     // Decode functionality
@@ -211,4 +227,68 @@ document.addEventListener('DOMContentLoaded', function() {
             timeout = setTimeout(later, wait);
         };
     }
-}); 
+
+    function downloadBase64AsTxt(base64Text, button) {
+        if (!base64Text) {
+            showError(encodeFileInfo, 'No Base64 data to download');
+            return;
+        }
+
+        const originalText = button.textContent;
+        button.disabled = true;
+        button.innerHTML = '<span class="loading"></span>';
+
+        try {
+            // Create a blob with the base64 content
+            const blob = new Blob([base64Text], { type: 'text/plain' });
+            
+            // Create a temporary URL for the blob
+            const url = window.URL.createObjectURL(blob);
+            
+            // Create a temporary anchor element for download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `base64_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.txt`;
+            
+            // Trigger the download
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Update button state
+            button.textContent = 'Downloaded!';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 2000);
+            
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            showError(encodeFileInfo, 'Failed to download file');
+            button.textContent = 'Download Failed';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 2000);
+        }
+    }
+
+    function toggleBase64Display() {
+        const isTextareaHidden = encodeBase64Text.classList.contains('hidden');
+        
+        if (isTextareaHidden) {
+            // Show textarea, hide placeholder
+            encodeBase64Text.classList.remove('hidden');
+            encodeBase64Placeholder.classList.add('hidden');
+            encodeToggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Base64';
+        } else {
+            // Show placeholder, hide textarea
+            encodeBase64Text.classList.add('hidden');
+            encodeBase64Placeholder.classList.remove('hidden');
+            encodeToggleBtn.innerHTML = '<i class="fas fa-eye"></i> Show Base64';
+        }
+    }
+});
