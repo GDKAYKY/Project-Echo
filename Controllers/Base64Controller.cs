@@ -1,7 +1,4 @@
-using System;
-using System.IO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace ProjectEcho.Controllers;
 
@@ -9,11 +6,6 @@ namespace ProjectEcho.Controllers;
 [Route("api/[controller]")]
 public class Base64Controller : ControllerBase
 {
-    /// <summary>
-    /// Converte uma imagem enviada para Base64
-    /// </summary>
-    /// <param name="file">Arquivo de imagem</param>
-    /// <returns>String Base64 da imagem</returns>
     [HttpPost("encode")]
     public async Task<IActionResult> EncodeImageToBase64(IFormFile file)
     {
@@ -21,20 +13,25 @@ public class Base64Controller : ControllerBase
         {
             if (file == null || file.Length == 0)
             {
-                return BadRequest(new { error = "Nenhum arquivo foi enviado." });
+                return BadRequest(new { error = "No File Sent." });
             }
 
             // Verificar se é uma imagem válida
-            var allowedTypes = new[] { "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bmp", "image/webp" };
-            if (!allowedTypes.Contains(file.ContentType.ToLower()))
+            var allowedTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
-                return BadRequest(new { error = "Tipo de arquivo não suportado. Use JPEG, PNG, GIF, BMP ou WebP." });
+            "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bmp", "image/webp",
+            "video/mp4", "video/webm", "video/ogg", "video/avi", "video/mov", "video/mkv"
+            };
+
+            if (!allowedTypes.Contains(file.ContentType, StringComparer.OrdinalIgnoreCase))
+            {
+                return BadRequest(new { error = "Unsuported File Format." });
             }
 
-            // Verificar tamanho do arquivo (máximo 10MB)
-            if (file.Length > 10 * 1024 * 1024)
+            // Max Base64 File Size 128MB
+            if (file.Length > 128 * 1024 * 1024)
             {
-                return BadRequest(new { error = "Arquivo muito grande. Tamanho máximo: 10MB." });
+                return BadRequest(new { error = "Max File Size Reached." });
             }
 
             using (var memoryStream = new MemoryStream())
@@ -42,9 +39,9 @@ public class Base64Controller : ControllerBase
                 await file.CopyToAsync(memoryStream);
                 var imageBytes = memoryStream.ToArray();
                 var base64String = Convert.ToBase64String(imageBytes);
-                    
-                return Ok(new 
-                { 
+
+                return Ok(new
+                {
                     base64 = base64String,
                     mimeType = file.ContentType,
                     fileName = file.FileName,
@@ -56,15 +53,9 @@ public class Base64Controller : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { error = "Erro interno do servidor.", details = ex.Message });
+            return StatusCode(500, new { error = "Internal Server Error.", details = ex.Message });
         }
     }
-
-    /// <summary>
-    /// Decodifica uma string Base64 para imagem
-    /// </summary>
-    /// <param name="request">Dados da requisição contendo Base64</param>
-    /// <returns>Arquivo de imagem</returns>
     [HttpPost("decode")]
     public IActionResult DecodeBase64ToImage([FromBody] Base64DecodeRequest request)
     {
@@ -72,21 +63,32 @@ public class Base64Controller : ControllerBase
         {
             if (string.IsNullOrEmpty(request.Base64Data))
             {
-                return BadRequest(new { error = "Dados Base64 não fornecidos." });
+                return BadRequest(new { error = "Couldnt find Base64 Data" });
             }
 
             // Remover prefixo data URL se presente
-            var base64Data = request.Base64Data;
-            if (base64Data.Contains(","))
+            string base64Data = request.Base64Data ?? "";
+
+            int commaIndex = base64Data.IndexOf(',');
+            if (commaIndex >= 0)
+                base64Data = base64Data[(commaIndex + 1)..];
+
+            base64Data = base64Data.Trim();
+
+            byte[] imageBytes;
+            try
             {
-                base64Data = base64Data.Split(',')[1];
+                imageBytes = Convert.FromBase64String(base64Data);
+            }
+            catch (FormatException)
+            {
+                throw new InvalidOperationException("Invalid Base64");
             }
 
-            var imageBytes = Convert.FromBase64String(base64Data);
-                
+
             // Determinar tipo de conteúdo
-            var contentType = request.MimeType ?? "image/png";
-            var fileName = request.FileName ?? $"image_{DateTime.Now:yyyyMMddHHmmss}.png";
+            string contentType = request.MimeType ?? "image/png";
+            string fileName = request.FileName ?? $"image_{DateTime.Now:yyyyMMddHHmmss}.png";
 
             return File(imageBytes, contentType, fileName);
         }
@@ -100,11 +102,7 @@ public class Base64Controller : ControllerBase
         }
     }
 
-    /// <summary>
-    /// Valida se uma string é um Base64 válido
-    /// </summary>
-    /// <param name="request">Dados da requisição</param>
-    /// <returns>Resultado da validação</returns>
+
     [HttpPost("validate")]
     public IActionResult ValidateBase64([FromBody] Base64ValidateRequest request)
     {
@@ -112,27 +110,27 @@ public class Base64Controller : ControllerBase
         {
             if (string.IsNullOrEmpty(request.Base64Data))
             {
-                return Ok(new { isValid = false, error = "Dados Base64 não fornecidos." });
+                return Ok(new { isValid = false, error = "Base64 Data not Provided." });
             }
 
             var base64Data = request.Base64Data;
-            if (base64Data.Contains(","))
+            if (base64Data.Contains(','))
             {
                 base64Data = base64Data.Split(',')[1];
             }
 
             var imageBytes = Convert.FromBase64String(base64Data);
-                
-            return Ok(new 
-            { 
-                isValid = true, 
+
+            return Ok(new
+            {
+                isValid = true,
                 size = imageBytes.Length,
                 sizeFormatted = FormatBytes(imageBytes.Length)
             });
         }
         catch (FormatException)
         {
-            return Ok(new { isValid = false, error = "Formato Base64 inválido." });
+            return Ok(new { isValid = false, error = "Invalid Base64 Format." });
         }
         catch (Exception ex)
         {
@@ -142,10 +140,10 @@ public class Base64Controller : ControllerBase
 
     private static string FormatBytes(long bytes)
     {
-        string[] suffixes = { "B", "KB", "MB", "GB" };
+        string[] suffixes = ["B", "KB", "MB", "GB"];
         int counter = 0;
         decimal number = bytes;
-        while (Math.Round(number / 1024) >= 1)
+        while (Math.Round(number / 1024) >= 1 && counter < suffixes.Length - 1)
         {
             number /= 1024;
             counter++;

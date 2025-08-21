@@ -326,8 +326,8 @@ namespace Project_Echo.Services
                 using var command = dbConnection.CreateCommand();
                 
                 // Determinar o operador JSON correto
-                string jsonPathOperator = isNestedPath 
-                    ? (jsonOperator == "=" ? "#>>" : "#>") 
+                string jsonPathOperator = isNestedPath
+                    ? (jsonOperator == "=" ? """#>>""" : "#>")
                     : (jsonOperator == "=" ? "->>" : "->");
                 
                 // Formatar o caminho JSON corretamente
