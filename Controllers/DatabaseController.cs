@@ -5,20 +5,12 @@ namespace Project_Echo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DatabaseController : ControllerBase
+public class DatabaseController(IDatabaseService databaseService, ILogger<DatabaseController> logger, IDatabaseQueryService databaseQueryService, IDatabaseTypeDetector databaseTypeDetector) : ControllerBase
 {
-    private readonly IDatabaseService _databaseService;
-    private readonly ILogger<DatabaseController> _logger;
-    private readonly IDatabaseQueryService _databaseQueryService;
-    private readonly IDatabaseTypeDetector _databaseTypeDetector;
-
-    public DatabaseController(IDatabaseService databaseService, ILogger<DatabaseController> logger, IDatabaseQueryService databaseQueryService, IDatabaseTypeDetector databaseTypeDetector)
-    {
-        _databaseService = databaseService;
-        _logger = logger;
-        _databaseQueryService = databaseQueryService;
-        _databaseTypeDetector = databaseTypeDetector;
-    }
+    private readonly IDatabaseService _databaseService = databaseService;
+    private readonly ILogger<DatabaseController> _logger = logger;
+    private readonly IDatabaseQueryService _databaseQueryService = databaseQueryService;
+    private readonly IDatabaseTypeDetector _databaseTypeDetector = databaseTypeDetector;
 
     [HttpPost("query")]
     public async Task<IActionResult> ExecuteQuery([FromBody] QueryRequest request)
@@ -62,7 +54,8 @@ public class DatabaseController : ControllerBase
             var connection = await _databaseService.GetConnectionAsync(connectionId);
             if (connection == null)
             {
-                return NotFound(new { success = false, error = new { message = "Database connection not found" } });
+                _logger.LogInformation("Database connection with ID {ConnectionId} not found", connectionId);
+                return NotFound(new { success = false, error = new { message = "Database connection not found" }});
             }
 
             var tables = await _databaseTypeDetector.GetTablesAsync(connection.Host, connection.Type);
@@ -80,4 +73,6 @@ public class DatabaseController : ControllerBase
         public string ConnectionId { get; set; } = string.Empty;
         public string Query { get; set; } = string.Empty;
     }
+
+
 }

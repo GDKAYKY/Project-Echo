@@ -32,7 +32,6 @@
     margin: 0 auto;
     background: var(--color-surface-dark);
     border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 25px;
     border: 2px solid var(--border-color);
@@ -69,7 +68,6 @@
     border-color: var(--accent-color);
     background: var(--color-surface-hover);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .upload-area.dragover {
@@ -80,7 +78,6 @@
 
 .upload-area:active {
     transform: translateY(0);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
 .upload-icon {
@@ -91,7 +88,7 @@
 }
 
 .upload-area p {
-    pointer-events: none;;
+    pointer-events: none;
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
@@ -212,7 +209,6 @@
     max-width: 100%;
     max-height: 300px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .file-info {
