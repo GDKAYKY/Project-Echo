@@ -172,6 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const base64ColumnIndex = results.columns.findIndex(col => col.toUpperCase() === 'BASE64');
                 const hasBase64Column = base64ColumnIndex !== -1;
 
+                // Header with optional matched table name
+                if (results.matchedTable) {
+                    html += `<p><strong>Table:</strong> ${results.matchedTable}</p>`;
+                }
+
                 // Create table header
                 html += '<table class="results-table">';
                 html += '<thead><tr>';
@@ -216,6 +221,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         <img class="modal-content" id="previewImage">
                     </div>`;
                 }
+            }
+
+            // Render analyzer table only for non-CPF queries (backend sends null for CPF searches)
+            if (results.analysis && Array.isArray(results.analysis.columns) && Array.isArray(results.analysis.rows)) {
+                html += '<h3>Analysis</h3>';
+                html += '<table class="results-table">';
+                html += '<thead><tr>';
+                results.analysis.columns.forEach(column => {
+                    html += `<th>${column}</th>`;
+                });
+                html += '</tr></thead>';
+                html += '<tbody>';
+                results.analysis.rows.forEach(row => {
+                    html += '<tr>';
+                    row.forEach(cell => {
+                        html += `<td>${cell ?? ''}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
             }
 
             searchResults.innerHTML = html;

@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Project_Echo</RootNamespace>
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +32,10 @@
 
   <ItemGroup>
     <Folder Include="Views\Test\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="newdb\CSharpDatabaseAnalyzer\CSharpDatabaseAnalyzer\CSharpDatabaseAnalyzer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
