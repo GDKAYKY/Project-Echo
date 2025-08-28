@@ -67,18 +67,18 @@ public class DocumentationController : Controller
         }
     }
 
-    private List<DocumentationLink> GetNavigationLinks()
+    private static List<DocumentationLink> GetNavigationLinks()
     {
         return
         [
-            new() { Title = "Documentation Home", Url = "/Documentation/index" },
-            new() { Title = "Getting Started", Url = "/Documentation/getting-started" },
-            new() { Title = "User Guide", Url = "/Documentation/user-guide" },
-            new() { Title = "Features", Url = "/Documentation/features" },
-            new() { Title = "API Reference", Url = "/Documentation/api-reference" },
-            new() { Title = "Deployment", Url = "/Documentation/deployment" },
-            new() { Title = "Development", Url = "/Documentation/development" },
-            new() { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
+            new DocumentationLink { Title = "Documentation Home", Url = "/Documentation/index" },
+            new DocumentationLink { Title = "Getting Started", Url = "/Documentation/getting-started" },
+            new DocumentationLink { Title = "User Guide", Url = "/Documentation/user-guide" },
+            new DocumentationLink { Title = "Features", Url = "/Documentation/features" },
+            new DocumentationLink { Title = "API Reference", Url = "/Documentation/api-reference" },
+            new DocumentationLink { Title = "Deployment", Url = "/Documentation/deployment" },
+            new DocumentationLink { Title = "Development", Url = "/Documentation/development" },
+            new DocumentationLink { Title = "Troubleshooting", Url = "/Documentation/troubleshooting" }
         ];
     }
 }

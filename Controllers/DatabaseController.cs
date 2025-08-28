@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Project_Echo.Services;
-using CSharpDatabaseAnalyzer.QueryAnalyzer;
 using System.Text.RegularExpressions;
 using Project_Echo.Models;
 
@@ -8,12 +7,13 @@ namespace Project_Echo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DatabaseController(IDatabaseService databaseService, ILogger<DatabaseController> logger, IDatabaseQueryService databaseQueryService, IDatabaseTypeDetector databaseTypeDetector) : ControllerBase
+public class DatabaseController(IDatabaseService databaseService, ILogger<DatabaseController> logger, IDatabaseQueryService databaseQueryService, IDatabaseTypeDetector databaseTypeDetector, IQueryAnalyzer queryAnalyzer) : ControllerBase
 {
     private readonly IDatabaseService _databaseService = databaseService;
     private readonly ILogger<DatabaseController> _logger = logger;
     private readonly IDatabaseQueryService _databaseQueryService = databaseQueryService;
     private readonly IDatabaseTypeDetector _databaseTypeDetector = databaseTypeDetector;
+    private readonly IQueryAnalyzer _queryAnalyzer = queryAnalyzer;
 
     [HttpPost("query")]
     public async Task<IActionResult> ExecuteQuery([FromBody] QueryRequest request)
@@ -110,8 +110,7 @@ public class DatabaseController(IDatabaseService databaseService, ILogger<Databa
             object[][]? analysisRows = null;
             if (!isCpfSearch)
             {
-                var analyzer = new QueryAnalyzer();
-                var analysisDict = analyzer.AnalyzeQuery(request.Query);
+                var analysisDict = _queryAnalyzer.AnalyzeQuery(request.Query);
                 analysisColumns = new[] { "Key", "Match" };
                 analysisRows = analysisDict
                     .Select(kvp => new object[] { kvp.Key, kvp.Value })

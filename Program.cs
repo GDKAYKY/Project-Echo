@@ -1,14 +1,15 @@
 using Project_Echo.Services.Navigation;
-using Project_Echo.Services;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
+using Project_Echo.Services.Media;
+using Project_Echo.Services;
 
-// Make the program async
 await Main();
 
 async Task Main()
 {
+
     var builder = WebApplication.CreateBuilder(args);
 
     // Configure port for Render
@@ -61,6 +62,10 @@ async Task Main()
     builder.Services.AddScoped<IDatabaseService, DatabaseService>();
     builder.Services.AddScoped<IDatabaseQueryService, DatabaseQueryService>();
     builder.Services.AddScoped<IDatabaseTypeDetector, DatabaseTypeDetector>();
+    builder.Services.AddScoped<IQueryAnalyzer, QueryAnalyzer>();
+
+    // Media conversion services
+    builder.Services.AddScoped<IMediaConversionService, MediaConversionService>();
 
     // Add logging
     builder.Logging.ClearProviders();

@@ -155,21 +155,15 @@ namespace Project_Echo.Services
                     break;
 
                 case DatabaseType.SQLServer:
-                    // For SQL Server, the WHERE clause is part of the subquery,
-                    // so we need to ensure it's parameterized correctly here too.
-                    // This is a complex case with string parsing. For now, we'll
-                    // assume it's handled by the calling method that provides params.
-                    // If the `WhereClause` is not parameterized here, it remains a vulnerability
-                    // for SQL Server pagination.
-                    sql = $@"{sql}
-                        WITH PagedData AS (
-                            SELECT *, ROW_NUMBER() OVER (ORDER BY {(string.IsNullOrEmpty(query.OrderBy) ? "(SELECT NULL)" : query.OrderBy)}) AS RowNum
-                            FROM {tableName}
-                        )
-                        SELECT * FROM PagedData
-                        WHERE RowNum BETWEEN {(query.Page - 1) * query.PageSize + 1} AND {query.Page * query.PageSize}";
-                    // The WHERE clause for PagedData needs to be built with parameters here.
-                    // This is where a more structured QueryModel for filters would be ideal.
+                    sql = $"""
+                           {sql}
+                                                   WITH PagedData AS (
+                                                       SELECT *, ROW_NUMBER() OVER (ORDER BY {(string.IsNullOrEmpty(query.OrderBy) ? "(SELECT NULL)" : query.OrderBy)}) AS RowNum
+                                                       FROM {tableName}
+                                                   )
+                                                   SELECT * FROM PagedData
+                                                   WHERE RowNum BETWEEN {(query.Page - 1) * query.PageSize + 1} AND {query.Page * query.PageSize}
+                           """;
                     break;
 
                 case DatabaseType.PostgreSQL:

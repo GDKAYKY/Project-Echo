@@ -1,4 +1,0 @@
-SELECT * FROM usuarios WHERE cpf = '123.456.789-00';
-SELECT nome, email FROM clientes WHERE endereco LIKE '%São Paulo%';
-UPDATE funcionarios SET primeiro_nome = 'João' WHERE id = 1;
-

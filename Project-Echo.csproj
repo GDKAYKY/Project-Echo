@@ -34,9 +34,6 @@
     <Folder Include="Views\Test\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="newdb\CSharpDatabaseAnalyzer\CSharpDatabaseAnalyzer\CSharpDatabaseAnalyzer.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="docs\**\*.md">

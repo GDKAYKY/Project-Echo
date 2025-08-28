@@ -1,10 +1,9 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    profiles: ["prod"]
     ports:
       - "8080:8080"
       - "8443:443"
@@ -23,9 +22,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    profiles: ["dev"]
     ports:
-      - "8080:8080"
-      - "8443:443"
+      - "8082:8080"
     volumes:
       - .:/app
       - database_storage:/app/database_storage
@@ -73,6 +72,16 @@ services:
     command: /opt/mssql/bin/sqlservr
     mem_limit: 2GB
     cpus: 2.0
+
+  yt-tools:
+    image: debian:bookworm-slim
+    profiles: ["dev", "prod"]
+    volumes:
+      - ./media:/work
+    environment:
+      - TZ=America/Sao_Paulo
+    entrypoint: /bin/bash -lc "apt-get update && apt-get install -y --no-install-recommends ffmpeg curl ca-certificates python3 && curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod a+rx /usr/local/bin/yt-dlp && mkdir -p /work && exec tail -f /dev/null"
+
 
 volumes:
   database_storage:
